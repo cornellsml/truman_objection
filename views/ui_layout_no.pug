@@ -25,6 +25,20 @@ html
       { 
         display: none; 
       }
+      .borderVaccine { 
+        border: 30px solid transparent;
+        padding: 0px;
+        border-image: url("/public/final.png") 45 round;
+        z-index:20;
+        width:auto;
+        height:auto;
+        //- position:relative;
+      }
+      .profilePic img
+      { 
+        z-index:-20;
+      }
+
       .ui.menu .item img.logo {
       margin-left: 3.5em;
       }
@@ -72,7 +86,20 @@ html
         margin-top: 8px;
         vertical-align: middle;
       }
-      
+      .sticky {
+        position: -webkit-sticky;
+        position: sticky;
+        //- background-color: yellow;
+        //- overflow: hidden;
+        top: 0;
+        width: 200 %
+        padding: 0px;
+        font-size: 20px;
+        color : #000000;
+        z-index: 10;
+        //- border-style: solid;
+      }
+          
   script.
     if ('serviceWorker' in navigator) {
     console.log("Will the service worker register?");
@@ -97,6 +124,7 @@ html
     .ui.vertically.padded.grid.container
       include partials/ui_header_no
       include partials/ui_flash
+      //- include partials/sticker
       block content
 
     //include partials/ui_footer

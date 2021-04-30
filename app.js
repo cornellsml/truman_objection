@@ -20,6 +20,11 @@ const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
 var schedule = require('node-schedule');
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
+
 const multer = require('multer');
 //Math.random().toString(36)+'00000000000000000').slice(2, 10) + Date.now()
 
@@ -75,6 +80,8 @@ const passportConfig = require('./config/passport');
  * Create Express server.
  */
 const app = express();
+app.use(express.cookieParser('your secret here'));
+app.use(express.session());
 
 /**
  * Connect to MongoDB.

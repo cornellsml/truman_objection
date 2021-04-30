@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-
+//norm
 console.log('Started data loading script !!');
 
 
@@ -137,6 +137,7 @@ async function doPopulate() {
               actordetail.class = actor_raw.class;
               actordetail.username = actor_raw.username;
 
+
               var actor = new Actor(actordetail);
 
               actor.save(function (err) {
@@ -170,15 +171,23 @@ async function doPopulate() {
                         var postdetail = new Object();
 
                         postdetail.likes =  getLikes();
-                        postdetail.experiment_group = new_post.experiment_group
+                        // postdetail.experiment_group = new_post.experiment_group
                         postdetail.post_id = new_post.id;
                         postdetail.body = new_post.body;
-                        postdetail.class = new_post.class;
+                        postdetail.post_class = new_post.posts_class;
                         postdetail.picture = new_post.picture;
                         postdetail.lowread = getReads(6, 20);
                         postdetail.highread = getReads(145, 203);
                         postdetail.actor = act;
                         postdetail.time = timeStringToNum(new_post.time);
+                        postdetail.control = new_post.control;
+                        postdetail.des_20 = new_post.des_20;
+                        postdetail.des_80 = new_post.des_80;
+                        postdetail.des_20_community_injunctive = new_post.des_20_community_injunctive;
+                        postdetail.des_80_community_injunctive = new_post.des_80_community_injunctive;
+                        // will need to add the new columns !!
+
+
 
                         var script = new Script(postdetail);
                         script.save(function (err) {
@@ -193,6 +202,7 @@ async function doPopulate() {
                     else {
                         //Else no ACTOR Found
                         console.log("No Actor Found!!!");
+                        console.log("post id: ", new_post.id)
                         callback();
                     }
                 });
@@ -360,11 +370,21 @@ async function doPopulate() {
 
                             comment_detail.body = new_replies.body
                             comment_detail.commentID = new_replies.id;
-                            comment_detail.class = new_replies.class;
+                            comment_detail.category = new_replies.category;
                             comment_detail.module = new_replies.module;
                             comment_detail.likes = getLikesComment();
                             comment_detail.time = timeStringToNum(new_replies.time);
                             comment_detail.actor = act;
+                            comment_detail.control = new_replies.control;
+                            comment_detail.des_20 = new_replies.des_20;
+                            comment_detail.des_80 = new_replies.des_80;
+                            comment_detail.des_20_injunctive_platform = new_replies.des_20_injunctive_platform;
+                            comment_detail.des_80_injunctive_platform = new_replies.des_80_injunctive_platform;
+                            comment_detail.des_20_community_injunctive = new_replies.des_20_community_injunctive;
+                            comment_detail.des_80_community_injunctiveNumber = new_replies.des_80_community_injunctiveNumber;
+
+
+
                             pr.comments.push(comment_detail);
                             pr.comments.sort(function (a, b) { return a.time - b.time; });
 

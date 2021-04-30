@@ -178,8 +178,15 @@ exports.postSignup = (req, res, next) => {
 /*###############################
 Place Experimental Varibles Here!
 ###############################*/
-  var var_num = 4;
-  var result = ['var1', 'var2','var3', 'var4'][Math.floor(Math.random() * var_num)]
+  //keeping this for now for the sake of having posts display - can eliminate eventually
+  // var versions = 4;
+  // var varResult = ['var1', 'var2', 'var3', 'var4'][Math.floor(Math.random() * versions)]
+
+  //Randomly assigning user into one of the 6 conditions
+  var var_num = 7;
+  
+  var result = ["control", 'des_20','des_80', 'des_20_community_injunctive', 'des_80_community_injunctive', 'des_20_injunctive_platform', 'des_80_injunctive_platform'][Math.floor(Math.random() * var_num)]
+
   
   var resultArray = result.split(':');
   //[0] is script_type, [1] is post_nudge

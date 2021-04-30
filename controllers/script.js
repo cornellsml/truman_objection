@@ -1,3 +1,4 @@
+// norm
 const Script = require('../models/Script.js');
 const User = require('../models/User');
 const Notification = require('../models/Notification');
@@ -22,13 +23,13 @@ function shuffle(array) {
   return array;
 }
 
-
 /**
  * GET /
  * List of Script posts for Feed
 */
 exports.getScript = (req, res, next) => {
 
+  console.log('what is this req.params.caseId: ',  req.params.caseId)
   //req.user.createdAt
   var time_now = Date.now();
   var time_diff = time_now - req.user.createdAt;
@@ -70,6 +71,8 @@ exports.getScript = (req, res, next) => {
   
     //filter the script based on experimental group
     scriptFilter = user.group;
+
+    console.log(' so this is :', scriptFilter);
       
     
 
@@ -121,7 +124,10 @@ exports.getScript = (req, res, next) => {
   
     //Get the newsfeed
     Script.find()
-      .where("experiment_group").equals(scriptFilter)
+      // .where("experiment_group").equals(scriptFilter)
+      //zhila: ask this one and how to pull the replies .. 
+      // ZHILAAA: UNCOMMENT IT AFTER TESTING
+      // .where(scriptFilter).equals("1")
       .where('time').lte(time_diff).gte(time_limit)
       .sort('-time')
       .populate('actor')
@@ -135,7 +141,7 @@ exports.getScript = (req, res, next) => {
       .exec(function (err, script_feed) {
         if (err) { return next(err); }
         //Successful, so render
-
+        console.log('WHATS THE LENGTH OF IT? ', script_feed.length);
         //update script feed to see if reading and posts has already happened
         var finalfeed = [];
 
@@ -194,11 +200,11 @@ exports.getScript = (req, res, next) => {
 
                       var cat = new Object();
                       cat.body = user.feedAction[feedIndex].comments[i].comment_body;
+                      console.log('what is this comment body: ',cat.body); // this is user comment
                       cat.new_comment = user.feedAction[feedIndex].comments[i].new_comment;
                       cat.time = user.feedAction[feedIndex].comments[i].time;
                       cat.commentID = user.feedAction[feedIndex].comments[i].new_comment_id;
                       cat.likes = 0;
-
                       script_feed[0].comments.push(cat);
                       //console.log("Already have COMMENT ARRAY");
                 
@@ -302,7 +308,7 @@ exports.getScript = (req, res, next) => {
 
       
       //shuffle up the list
-      //finalfeed = shuffle(finalfeed);
+      finalfeed = shuffle(finalfeed);
 
 
       user.save((err) => {
@@ -314,8 +320,17 @@ exports.getScript = (req, res, next) => {
       });
 
       console.log("Script Size is now: "+finalfeed.length);
-      res.render('script', { script: finalfeed});
+      res.render('script_injunctive_rules', { script: finalfeed});  // control
 
+
+      // if(scriptFilter == 'des_20-injunctive_platform' || scriptFilter == 'des_80-injunctive_platform' ){
+      //   res.render('script_injunctive_rules', { script: finalfeed});
+      // }
+      // else
+      // {
+      //   res.render('script', { script: finalfeed});  // control
+      // }
+      
       });//end of Script.find()
 
     
@@ -352,7 +367,7 @@ exports.getScriptFeed = (req, res, next) => {
   //study3_n20, study3_n80
 
 
-
+  console.log('what is this req.params.caseId: ', req.params.caseId)
   scriptFilter = req.params.caseId;
 
   //req.params.modId
@@ -362,7 +377,7 @@ exports.getScriptFeed = (req, res, next) => {
   
     Script.find()
       //change this if you want to test other parts
-      //.where(scriptFilter).equals("yes")
+      .where(scriptFilter).equals("yes")
       //.where('time').lte(0)
       .sort('-time')
       .populate('actor')
