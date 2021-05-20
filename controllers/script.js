@@ -121,10 +121,12 @@ exports.getScript = (req, res, next) => {
   }
 
   
-  
+    console.log('what is the GROUP: ', scriptFilter);
     //Get the newsfeed
     Script.find()
       // .where("experiment_group").equals(scriptFilter)
+      // .where("post_class").equals(scriptFilter)
+      .where(scriptFilter).equals(1)
       //zhila: ask this one and how to pull the replies .. 
       // ZHILAAA: UNCOMMENT IT AFTER TESTING
       // .where(scriptFilter).equals("1")
@@ -141,7 +143,7 @@ exports.getScript = (req, res, next) => {
       .exec(function (err, script_feed) {
         if (err) { return next(err); }
         //Successful, so render
-        console.log('WHATS THE LENGTH OF IT? ', script_feed.length);
+        console.log('WHATS THE LENGTH OF IT now? ', script_feed.length);
         //update script feed to see if reading and posts has already happened
         var finalfeed = [];
 
@@ -320,7 +322,9 @@ exports.getScript = (req, res, next) => {
       });
 
       console.log("Script Size is now: "+finalfeed.length);
-      res.render('script_injunctive_rules', { script: finalfeed});  // control
+      res.render('script.pug', { script: finalfeed});  // control
+
+      // res.render('vaccinatedFrame-test.pug', { script: finalfeed});  // control
 
 
       // if(scriptFilter == 'des_20-injunctive_platform' || scriptFilter == 'des_80-injunctive_platform' ){

@@ -1,9 +1,40 @@
 extends ui_layout_no
   
 block content
+  //- script(src='jquery.js')
+  //- script(src='jquery.sticky.js')
+
 
   //-Change this URI to a CDN you are using for Photos
-  -var cdn = "";
+  -var cdn = "https://normalizationtruman.s3.us-east-2.amazonaws.com";
+  //- Adding the community's rules on the top of the feed
+  //- .fluid.sticky
+  //-   .computer.only.tablet.only.row
+  //-     .ui.container
+  //-       #example2.ui.inverted.tertiary.red.segment
+  //-         //- .container(style='margin:1.5em 1.5em 1.5em 325px')
+  //-         //- h3.ui.header Stuck Content
+  //-         //- .ui.sticky(style='')
+  //-         .ui.divided.items
+  //-           .item
+  //-             .ui.tiny.image
+  //-               img.ui.tiny.image(src='/public/logo.png', id='logo')
+  //-             .middle.aligned.content
+  //-               h3.ui.header  Community's rules!
+  //-         //- h3.ui.header
+  //-         .ui.text.container
+  //-         //- h3 Community's rules!
+        
+  //-         h4.ul
+  //-             li We're a global community of many types of people, who all have the right to feel comfortable and who may not think what you think, believe what you believe, or see what you see. So, be polite and respectful in your interactions with other members.
+
+  //-             li The opinions expressed here are not necessarily the opinions of EatSnap.Love and we assume no responsibility for such content. Everyone has the right to freedom of opinion and expression.
+
+
+
+
+
+
 
   .computer.only.tablet.only.three.wide.column 
     .ui.card
@@ -155,125 +186,126 @@ block content
               i.big.send.link.icon
 
       //- This is the blocked images:
-      else if (val.post_class ==='blocked')
-        -console.log('Whats the blocked post post class variable: ', val.post_class);
-        .ui.fluid.card.dim(postID=val.id, state=val.state || 'unread', type='actor', actor_un = val.actor.username, actor_name = val.actor.profile.name, actor_pic = val.actor.profile.picture)
-          //- dimmer DIV for flagging
-          .ui.active.dimmer
-                .contentnode 
-                  .center
-                    h2.ui.inverted.icon.header
-                      i.file.alternate.outline.icon.icon
-                      |  This is disputed!
-                      h3.ui.inverted.header
-                      a(href='/tos')
-                        span(style="font-size:150%;font-weight: bold;color: #FFFFFF;text-align='center';")="Help keep our platform reliable. Find out more about our community rules"
-          //- Normal Base Post
-          .content
-            .right.floated.time.meta= (user.createdAt.getTime() + val.time)
-            |  
-            //-a(href='/user/'+val.actor.username)
-              img.ui.avatar.image(src=cdn+'/profile_pictures/'+val.actor.profile.picture)
-              span=val.actor.profile.name
-            a(href='/user/'+val.actor.username)     
-              img.ui.avatar.image.lazyload(data-src=cdn+"/profile_pictures/"+val.actor.profile.picture)
-              span=val.actor.profile.name
-          //-div(style="position: relative; z-index: 1;")
-            img(src="image.png" style="position: absolute; z-index: 2;")
-            span#overlay_text(style="position: relative; top: -10px; z-index: 3;") OVERLAY
-          .img.post
-            //-img.post(src="/"+val.picture)
-            //img(src='/public/picture.svg', data-src="/post_pictures/"+val.picture, style="max-width:100%;width:100%;")
-            img.lazyload(data-src=cdn+"/post_pictures/"+val.picture, style="max-width:100%;width:100%;")
-          .content
-            .description=val.body
-          .three.ui.bottom.attached.icon.buttons
-            .ui.reply.button(tabindex='0')
-              i.reply.icon
-              |  Reply
-            .ui.flag.button(tabindex='0')
-              i.flag.icon
-              |  Flag
-            if val.like
-              .ui.labeled.button(tabindex='0')
-                .ui.red.like.button
-                  i.heart.icon
-                  |  Like
-                a.ui.basic.red.left.pointing.label=val.likes
-            else
-              .ui.labeled.button(tabindex='0')
-                .ui.like.button
-                  i.heart.icon
-                  |  Like
-                a.ui.basic.red.left.pointing.label.count=val.likes
-          //- zhila: work on this!
-          if (val.comments.length > 0)
-            .content
-              .ui.comments
-                each comment in val.comments
-                  //-IF this comment is USER made, do this
-                  if (user.group == 'des_80' && comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || (comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20-injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1) 
-                    if (user.createdAt.getTime() + comment.time) < Date.now()
-                      -console.log('what does this object have after updates and populate: ', comment);
-                      if comment.new_comment
-                        -console.log("New COMMENT AREA");
-                        .comment(commentID=comment.new_comment_id)
-                          a.avatar.image(href='/me')
-                            if user.profile.picture
-                              img(src='/user_post/'+user.profile.picture)
-                            else
-                              img(src=user.gravatar(60))
-                          .content
-                            a.author(href='/me')=user.profile.name || user.username || user.id
-                            .metadata
-                              span.date=(user.createdAt.getTime() + comment.time)
-                              .rating
-                                i.heart.icon
-                                span.num=0
-                                |  Likes
-                            .text=comment.body
-                            .actions
-                              a.like.comment Like
-                              a.flag.comment Flag
-                      //- Else this is a normal comment from the script
-                      else
-                        .comment(commentID=comment.id)
-                          a.avatar(href='/user/'+comment.actor.username)
-                            //-img(src=cdn+'/profile_pictures/'+comment.actor.profile.picture)                       
-                            img.lazyload(data-src=cdn+"/profile_pictures/"+comment.actor.profile.picture)
-                          .content
-                            a.author(href='/user/'+comment.actor.username)=comment.actor.profile.name
-                            .metadata
-                              span.date=(val.time + comment.time+user.createdAt.getTime())
-                              .rating
-                                if comment.liked
-                                  i.red.heart.icon
-                                  span=comment.likes
-                                  |  Likes 
-                                else
-                                  i.heart.icon
-                                  span.num=comment.likes
-                                  |  Likes
-                            .text=comment.body
-                            .actions
-                              if comment.liked
-                                a.red.like.comment Like
-                              else
-                                a.like.comment Like
-                              a.flag.comment Flag
-          .extra.content
-            .ui.fluid.left.labeled.right.icon.input
-              .ui.label
-                if user.profile.picture
-                  img.ui.avatar.image(src='/user_post/'+user.profile.picture, name=user.profile.name || user.username || user.id)
-                else
-                  img.ui.avatar.image(src=user.gravatar(60), name=user.profile.name || user.username || user.id)            
-              input.newcomment(type='text', placeholder='Write a Comment')
-              i.big.send.link.icon
+      //- else if (val.post_class ==='blocked')
+      //-   -console.log('Whats the blocked post post class variable: ', val.post_class);
+      //-   .ui.fluid.card.dim(postID=val.id, state=val.state || 'unread', type='actor', actor_un = val.actor.username, actor_name = val.actor.profile.name, actor_pic = val.actor.profile.picture)
+      //-     //- dimmer DIV for flagging
+      //-     .ui.active.dimmer
+      //-           .contentnode 
+      //-             .center
+      //-               h2.ui.inverted.icon.header
+      //-                 i.file.alternate.outline.icon.icon
+      //-                 |  This is disputed!
+      //-                 h3.ui.inverted.header
+      //-                 a(href='/tos')
+      //-                   span(style="font-size:150%;font-weight: bold;color: #FFFFFF;text-align='center';")="Help keep our platform reliable. Find out more about our community rules"
+      //-     //- Normal Base Post
+      //-     .content
+      //-       .right.floated.time.meta= (user.createdAt.getTime() + val.time)
+      //-       |  
+      //-       //-a(href='/user/'+val.actor.username)
+      //-         img.ui.avatar.image(src=cdn+'/profile_pictures/'+val.actor.profile.picture)
+      //-         span=val.actor.profile.name
+      //-       a(href='/user/'+val.actor.username)     
+      //-         img.ui.avatar.image.lazyload(data-src=+"/profile_pictures/"+val.actor.profile.picture)
+      //-         span=val.actor.profile.name
+      //-     //-div(style="position: relative; z-index: 1;")
+      //-     .content
+      //-       // img(src="image.png" style="position: absolute; z-index: 2;")
+      //-       // span#overlay_text(style="position: relative; top: -10px; z-index: 3;") OVERLAY
+      //-       // .img.post
+      //-       // //-img.post(src="/"+val.picture)
+      //-       //img(src='/public/picture.svg', data-src="/post_pictures/"+val.picture, style="max-width:100%;width:100%;")
+      //-       img.lazyload(data-src=cdn+"/post_pictures/"+val.picture, style="max-width:100%;width:100%;")
+      //-     .content
+      //-       .description=val.body
+      //-     .three.ui.bottom.attached.icon.buttons
+      //-       .ui.reply.button(tabindex='0')
+      //-         i.reply.icon
+      //-         |  Reply
+      //-       .ui.flag.button(tabindex='0')
+      //-         i.flag.icon
+      //-         |  Flag
+      //-       if val.like
+      //-         .ui.labeled.button(tabindex='0')
+      //-           .ui.red.like.button
+      //-             i.heart.icon
+      //-             |  Like
+      //-           a.ui.basic.red.left.pointing.label=val.likes
+      //-       else
+      //-         .ui.labeled.button(tabindex='0')
+      //-           .ui.like.button
+      //-             i.heart.icon
+      //-             |  Like
+      //-           a.ui.basic.red.left.pointing.label.count=val.likes
+      //-     //- zhila: work on this!
+      //-     if (val.comments.length > 0)
+      //-       .content
+      //-         .ui.comments
+      //-           each comment in val.comments
+      //-             //-IF this comment is USER made, do this
+      //-             if (user.group == 'des_80' && comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || (comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20-injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1) 
+      //-               if (user.createdAt.getTime() + comment.time) < Date.now()
+      //-                 -console.log('what does this object have after updates and populate: ', comment);
+      //-                 if comment.new_comment
+      //-                   -console.log("New COMMENT AREA");
+      //-                   .comment(commentID=comment.new_comment_id)
+      //-                     a.avatar.image(href='/me')
+      //-                       if user.profile.picture
+      //-                         img(src='/user_post/'+user.profile.picture)
+      //-                       else
+      //-                         img(src=user.gravatar(60))
+      //-                     .content
+      //-                       a.author(href='/me')=user.profile.name || user.username || user.id
+      //-                       .metadata
+      //-                         span.date=(user.createdAt.getTime() + comment.time)
+      //-                         .rating
+      //-                           i.heart.icon
+      //-                           span.num=0
+      //-                           |  Likes
+      //-                       .text=comment.body
+      //-                       .actions
+      //-                         a.like.comment Like
+      //-                         a.flag.comment Flag
+      //-                 //- Else this is a normal comment from the script
+      //-                 else
+      //-                   .comment(commentID=comment.id)
+      //-                     a.avatar(href='/user/'+comment.actor.username)
+      //-                       //-img(src=cdn+'/profile_pictures/'+comment.actor.profile.picture)                       
+      //-                       img.lazyload(data-src=cdn+"/profile_pictures/"+comment.actor.profile.picture)
+      //-                     .content
+      //-                       a.author(href='/user/'+comment.actor.username)=comment.actor.profile.name
+      //-                       .metadata
+      //-                         span.date=(val.time + comment.time+user.createdAt.getTime())
+      //-                         .rating
+      //-                           if comment.liked
+      //-                             i.red.heart.icon
+      //-                             span=comment.likes
+      //-                             |  Likes 
+      //-                           else
+      //-                             i.heart.icon
+      //-                             span.num=comment.likes
+      //-                             |  Likes
+      //-                       .text=comment.body
+      //-                       .actions
+      //-                         if comment.liked
+      //-                           a.red.like.comment Like
+      //-                         else
+      //-                           a.like.comment Like
+      //-                         a.flag.comment Flag
+      //-     .extra.content
+      //-       .ui.fluid.left.labeled.right.icon.input
+      //-         .ui.label
+      //-           if user.profile.picture
+      //-             img.ui.avatar.image(src='/user_post/'+user.profile.picture, name=user.profile.name || user.username || user.id)
+      //-           else
+      //-             img.ui.avatar.image(src=user.gravatar(60), name=user.profile.name || user.username || user.id)            
+      //-         input.newcomment(type='text', placeholder='Write a Comment')
+      //-         i.big.send.link.icon
       
       
       //- blocked
-      else if (val.post_class =='blocked')
+      else if (val.post_class ==='blocked')
         -console.log('Whats the blocked post> ', val.body);
         .ui.fluid.card.dim(postID=val.id, state=val.state || 'unread', type='actor', actor_un = val.actor.username, actor_name = val.actor.profile.name, actor_pic = val.actor.profile.picture)
           //- dimmer DIV for flagging
@@ -286,8 +318,6 @@ block content
                       h3.ui.inverted.header
                       a(href='/tos')
                         span(style="font-size:150%;font-weight: bold;color: #FFFFFF;text-align='center';")="Help keep our platform reliable. Find out more about our community rules"
-
-
           .content
             .right.floated.time.meta= (user.createdAt.getTime() + val.time)
             |  
@@ -420,7 +450,7 @@ block content
               img.ui.avatar.image(src=cdn+'/profile_pictures/'+val.actor.profile.picture)
               span=val.actor.profile.name
             a(href='/user/'+val.actor.username)     
-              img.ui.avatar.image.lazyload(data-src=cdn+"/profile_pictures/"+val.actor.profile.picture)
+              img.ui.avatar.massive.image.lazyload(data-src=cdn+"/profile_pictures/"+val.actor.profile.picture)
               span=val.actor.profile.name
           //-div(style="position: relative; z-index: 1;")
             img(src="image.png" style="position: absolute; z-index: 2;")
@@ -585,7 +615,37 @@ block content
         input.ui.green.button(type='submit', name="foo", value='Submit', form='postform')
 
   
-  
+  //- .computer.only.tablet.only.five.wide.column 
+  //-   .sticky
+  //-     .ui.card
+  //-       //- #example2.ui.inverted.tertiary.blue.segment
+  //-       #example2.ui.inverted.tertiary.yellow.segment
+  //-         //- .container(style='margin:1.5em 1.5em 1.5em 325px')
+  //-         //- h3.ui.header Stuck Content
+  //-         //- .ui.sticky(style='')
+  //-         .ui.divided.items
+  //-           .item
+  //-             .ui.tiny.image
+  //-               img.ui.tiny.image(src='/public/logo.png', id='logo')
+  //-             .middle.aligned.content
+  //-               h3.ui.header  Community's rules!
+  //-         h3.ui.header
+  //-           .ui.text.container
+  //-             //- h3 Community's rules!
+            
+  //-           h4.ul
+  //-               //- li(style='font-style: italic;font-size:15px; color:black') We're a global community of many types of people, who all have the right to feel comfortable and who may not think what you think, believe what you believe, or see what you see. So, be polite and respectful in your interactions with other members.
+
+  //-               //- li The opinions expressed here are not necessarily the opinions of EatSnap.Love and we assume no responsibility for such content. Everyone has the right to freedom of opinion and expression.
+
+  //-               li(style='font-style: italic;font-size:18px; color:black; line-height: 1.4') We're a global community of many types of people. Please be polite and respectful in your interactions with other members.
+  //-               br
+  //-               li(style='font-style: italic;font-size:18px; color:black; line-height: 1.4') We're a community who trust sciecne, do not spread health misinformation.
+  //-               br
+  //-               li(style='font-style: italic;font-size:18px; color:black; line-height: 1.4') If you see rule violation, please flag the post and our moderators will take action to remove the content. (Add the email here)
+  //-               br
+  //-               li(style='font-style: italic;font-size:18px; color:black; line-height: 1.4') Please don&#39t call out other users. If you need moderator support regarding another user or group please flag their posts instead.
+
 
 
 

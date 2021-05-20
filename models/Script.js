@@ -21,7 +21,7 @@ const scriptSchema = new mongoose.Schema({
   des_20:Number,
   des_80: Number,
   des_20_community_injunctive:Number,
-  des_80_community_injunctiveNumber: Number,
+  des_80_community_injunctive: Number,
   des_20_injunctive_platform: Number,
   des_80_injunctive_platform: Number,
 
