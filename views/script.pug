@@ -6,7 +6,8 @@ block content
 
 
   //-Change this URI to a CDN you are using for Photos
-  -var cdn = "https://normalizationtruman.s3.us-east-2.amazonaws.com";
+  // -var cdn = "https://normalizationtruman.s3.us-east-2.amazonaws.com";
+  -var cdn ="";
   //- Adding the community's rules on the top of the feed
   //- .fluid.sticky
   //-   .computer.only.tablet.only.row
@@ -489,10 +490,10 @@ block content
                   //-IF this comment is USER made, do this                  
                   if (val.time + comment.time) < Date.now()
                     //- here I add this!
-                    if (user.group == 'des_80' && comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || ( comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20-injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1) 
+                    if (user.group == 'des_80' && comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || ( comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20_injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1) 
 
                       if comment.new_comment
-                        -console.log("New COMMENT AREA");
+                        -console.log("Do we have New COMMENT AREA");
                         .comment(commentID=comment.new_comment_id)
                           a.avatar.image(href='/me')
                             if user.profile.picture

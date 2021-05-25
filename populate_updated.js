@@ -201,6 +201,9 @@ function createPostInstances() {
                 postdetail.des_80 = new_post.des_80;
                 postdetail.des_20_community_injunctive = new_post.des_20_community_injunctive;
                 postdetail.des_80_community_injunctive = new_post.des_80_community_injunctive;
+                postdetail.des_20_injunctive_platform = new_post.des_20_injunctive_platform;
+                postdetail.des_80_injunctive_platform = new_post.des_80_injunctive_platform;
+
 
                 //console.log('Looking up Actor: ' + act.username);
                 //console.log(mongoose.Types.ObjectId.isValid(postdetail.actor.$oid));
@@ -293,6 +296,56 @@ function actorNotifyInstances() {
     );
 }
 
+
+
+// 
+function actorNotifyInstances_likes() {
+    async.each(notification_reply_list, function (new_notify, callback) {
+        Actor.findOne({ username: new_notify.actor }, (err, act) => {
+            if (err) { console.log("actorNotifyInstances error"); console.log(err); return; }
+            // console.log("start post for: "+new_post.id);
+            if (act) {  
+                //console.log('Looking up Actor ID is : ' + act._id); 
+                var notifydetail = new Object();
+                notifydetail.userPost = new_notify.userPostId;
+                notifydetail.actor = act;
+                notifydetail.notificationType = 'like';
+                notifydetail.replyBody = new_notify.body;
+                notifydetail.time = timeStringToNum(new_notify.time);
+
+                var notify = new Notification(notifydetail);
+                notify.save(function (err) {
+                    if (err) {
+                        console.log("Something went wrong in Saving Notify Actor reply!!!");
+                        // console.log(err);
+                        callback(err);
+                    }
+                    // console.log('Saved New Post: ' + script.id);
+                    callback();
+                });
+            }//if ACT
+
+            else {
+                //Else no ACTOR Found
+                console.log("No Actor Found!!!");
+                callback();
+            }
+            // console.log("BOTTOM OF SAVE");
+        });
+    },
+        function (err) {
+            if (err) {
+                console.log("END IS WRONG!!!");
+                // console.log(err);
+                callback(err);
+            }
+            //return response
+            console.log("All DONE WITH Notification Actor Likes!!!")
+            return 'Loaded Notification Actor Replies'
+            //mongoose.connection.close();
+        }
+    );
+}
 /*************************
 createNotificationInstances:
 Creates each post and uploads it to the DB
@@ -399,7 +452,7 @@ function createPostRepliesInstances() {
                         comment_detail.des_20_injunctive_platform = new_replies.des_20_injunctive_platform;
                         comment_detail.des_80_injunctive_platform = new_replies.des_80_injunctive_platform;
                         comment_detail.des_20_community_injunctive = new_replies.des_20_community_injunctive;
-                        comment_detail.des_80_community_injunctiveNumber = new_replies.des_80_community_injunctiveNumber;
+                        comment_detail.des_80_community_injunctive = new_replies.des_80_community_injunctive;
                         //pr.comments = insert_order(comment_detail, pr.comments);
                         //console.log('Comment'+comment_detail.commentID+' on Post '+pr.post_id+' Length before: ' + pr.comments.length); 
                         pr.comments.push(comment_detail);
@@ -483,7 +536,9 @@ async function loadDatabase() {
         // await promisify(createNotificationInstances);
         // await promisify(createPostInstances);
         // await promisify(createPostRepliesInstances);
-        await promisify(actorNotifyInsntances);
+        await promisify(actorNotifyInstances);
+        // DON"T RUN THE FOLLOWING LINE ANYMORE
+        // await promisify(actorNotifyInstances_likes);
     } catch (err) {
         console.log('Error occurred in Loading', err);
     }

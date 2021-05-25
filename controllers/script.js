@@ -123,6 +123,14 @@ exports.getScript = (req, res, next) => {
   
     console.log('what is the GROUP: ', scriptFilter);
     //Get the newsfeed
+    // if(scriptFilter =='des_20_injunctive_platform')
+    // {
+    //   scriptFilter = 'des_20';
+    // }
+    // if(scriptFilter =='des_80_injunctive_platform')
+    // {
+    //   scriptFilter = 'des_80';
+    // }
     Script.find()
       // .where("experiment_group").equals(scriptFilter)
       // .where("post_class").equals(scriptFilter)
@@ -143,7 +151,7 @@ exports.getScript = (req, res, next) => {
       .exec(function (err, script_feed) {
         if (err) { return next(err); }
         //Successful, so render
-        console.log('WHATS THE LENGTH OF IT now? ', script_feed.length);
+        console.log('WHATS THE LENGTH OF IT now if the group is des_20_injunctive_platform? ', script_feed.length);
         //update script feed to see if reading and posts has already happened
         var finalfeed = [];
 
@@ -321,19 +329,22 @@ exports.getScript = (req, res, next) => {
         //req.flash('success', { msg: 'Profile information has been updated.' });
       });
 
-      console.log("Script Size is now: "+finalfeed.length);
-      res.render('script.pug', { script: finalfeed});  // control
+      console.log("Script Size is now:  "+finalfeed.length);
+      console.log('the class isss: ',scriptFilter);
+      // res.render('script', { script: finalfeed});  // control
 
       // res.render('vaccinatedFrame-test.pug', { script: finalfeed});  // control
 
 
-      // if(scriptFilter == 'des_20-injunctive_platform' || scriptFilter == 'des_80-injunctive_platform' ){
-      //   res.render('script_injunctive_rules', { script: finalfeed});
-      // }
-      // else
-      // {
-      //   res.render('script', { script: finalfeed});  // control
-      // }
+      if(scriptFilter === 'des_20_injunctive_platform' || scriptFilter === 'des_80_injunctive_platform' ){
+        console.log('this is 1');
+        res.render('script_injunctive_rules', { script: finalfeed});
+      }
+      else
+      {
+        res.render('script', { script: finalfeed});  // control
+        console.log('this is 2');
+      }
       
       });//end of Script.find()
 
@@ -381,7 +392,7 @@ exports.getScriptFeed = (req, res, next) => {
   
     Script.find()
       //change this if you want to test other parts
-      .where(scriptFilter).equals("yes")
+      // .where(scriptFilter).equals("yes")
       //.where('time').lte(0)
       .sort('-time')
       .populate('actor')
