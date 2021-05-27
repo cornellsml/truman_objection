@@ -326,7 +326,7 @@ $("i.big.send.link.icon").click(function() {
 ;
 
   //this is the LIKE button
-  $('.like.button')
+  $('#likeButton.ui.basic.button')
   .on('click', function() {
 
     //if already liked, unlike if pressed
@@ -450,6 +450,59 @@ $("i.big.send.link.icon").click(function() {
      nextQuestion.show();
    } );
  });
+
+ $('#falgebutton.ui.basic.button')
+  .on('click', function() {
+     active_flag = 1;
+    temp = parseInt(localStorage.getItem("session_flags"))+1;
+    window.localStorage.setItem("session_flags",temp);
+    console.log('session flag number: ', localStorage.getItem("session_flags"));
+     var post = $(this).closest( ".ui.fluid.card.dim"); // ok I guess instead of doing on the whole card, do it on
+     var postID = post.attr( "postID" );
+     var flag = Date.now();
+     console.log("***********FLAG: post "+postID+" at time "+flag);
+     $.post( "/feed", { postID: postID, flag: flag, _csrf : $('meta[name="csrf-token"]').attr('content') } );
+     console.log("Removing Post content now!");
+     post.find(".ui.dimmer.flag").dimmer({
+                   closable: false
+                  })
+                  .dimmer('show');
+      //repeat to ensure its closable             
+      post.find(".ui.dimmer.flag").dimmer({
+                   closable: false
+                  })
+                  .dimmer('show');
+
+    var img_flagged = $(this).closest( ".imgage.dim");
+    img_flagged.find(".ui.dimmer.flag").dimmer({
+                   closable: false
+                  })
+                  .dimmer('show');
+    //repeat to ensure its closable             
+    img_flagged.find(".ui.dimmer.flag").dimmer({
+                 closable: false
+                })
+                .dimmer('show');
+    
+
+  });
+
+  //User wants to REREAD
+  $('.ui.button.reread')
+  .on('click', function() {
+    //.ui.active.dimmer
+    $(this).closest( ".ui.dimmer" ).removeClass( "active" );
+    $(this).closest( ".ui.fluid.card.dim" ).find(".ui.inverted.read.dimmer").dimmer('hide');
+     var postID = $(this).closest( ".ui.fluid.card.dim" ).attr( "postID" );
+     var reread = Date.now();
+     console.log("##########REREAD######SEND TO DB######: post "+postID+" at time "+reread);
+     $.post( "/feed", { postID: postID, start: reread, _csrf : $('meta[name="csrf-token"]').attr('content') } );
+     //maybe send this later, when we have a re-read event to time???
+     //$.post( "/feed", { postID: postID, like: like, _csrf : $('meta[name="csrf-token"]').attr('content') } );
+
+  });
+
+
 
  //this is the "no" button when responding to the content moderation question
   $('.disagree')
