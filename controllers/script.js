@@ -133,7 +133,7 @@ exports.getScript = (req, res, next) => {
     // }
     Script.find()
       // .where("experiment_group").equals(scriptFilter)
-      // .where("post_class").equals(scriptFilter)
+      // .where("post_class").equals(scri ptFilter)
       .where(scriptFilter).equals(1)
       //zhila: ask this one and how to pull the replies .. 
       // ZHILAAA: UNCOMMENT IT AFTER TESTING
@@ -375,25 +375,36 @@ exports.getScriptFeed = (req, res, next) => {
   //study2_n0_p0
   console.log("$#$#$#$#$#$#$START GET FEED$#$#$$#$#$#$#$#$#$#$#$#$#");
   var scriptFilter = "";
+  // console.log('@@@@@@ what can we get from request here: ', req);
+  console.log('@@@@@@ what the param has: ', req.params.caseId)
 
   
 
-  var profileFilter = "";
+  // var profileFilter = req.params.caseId;
   //study3_n20, study3_n80
 
 
-  console.log('what is this req.params.caseId: ', req.params.caseId)
+
+  console.log('what is this req.params.caseId: ', (req.params.caseId));
   scriptFilter = req.params.caseId;
 
   //req.params.modId
   console.log("#############SCRIPT FILTER IS NOW " + scriptFilter);
+  var time_now = Date.now();
+  // var time_diff = time_now - req.user.createdAt;
+  var time_diff = 0;
+  //var today = moment();
+  //var tomorrow = moment(today).add(1, 'days');
+  var one_days = 86400000 * 1; //one day in milliseconds
+  var time_limit = time_diff - one_days; 
   
   //{
   
     Script.find()
       //change this if you want to test other parts
       // .where(scriptFilter).equals("yes")
-      //.where('time').lte(0)
+      .where(scriptFilter).equals(1)
+      .where('time').lte(time_diff).gte(time_limit)
       .sort('-time')
       .populate('actor')
       .populate({ 
@@ -410,14 +421,15 @@ exports.getScriptFeed = (req, res, next) => {
         //update script feed to see if reading and posts has already happened
         var finalfeed = [];
         finalfeed = script_feed;
+        console.log('what is inside this feed???', finalfeed);
 
       
       //shuffle up the list
       //finalfeed = shuffle(finalfeed);
 
-
-      console.log("Script Size is now: "+finalfeed.length);
-      res.render('feed', { script: finalfeed, namefilter:profileFilter});
+      console.log("Script Size is now: "+finalfeed.length)
+      // res.render('feed_pilot', { script: finalfeed, namefilter:profileFilter});
+      res.render('feed_pilot', { script: finalfeed});
 
       });//end of Script.find()
 

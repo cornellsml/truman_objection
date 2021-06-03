@@ -262,6 +262,20 @@ app.post('/post/new', userpostupload.single('picinput'), check, csrf, scriptCont
 app.post('/account/profile', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, csrf, userController.postUpdateProfile);
 //app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
 
+// Zhila
+// for the pilot
+//can we specify the condition in the URL .. now that the user doesn't have an account, where do we set their group?
+// app.get('/p_r5', scriptController.getScriptPilot); 
+app.get('/newsfeed/r5', scriptController.getScriptFeed);
+
+app.get('/newsfeed/r25', scriptController.getScriptFeed);
+
+app.get('/newsfeed/r40', scriptController.getScriptFeed);
+
+app.get('/newsfeed/r60', scriptController.getScriptFeed);
+
+
+
 app.get('/tos', function (req, res) {
   res.render('tos', {
     title: 'TOS'

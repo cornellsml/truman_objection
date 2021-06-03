@@ -20,10 +20,15 @@ const scriptSchema = new mongoose.Schema({
   control:Number,
   des_20:Number,
   des_80: Number,
+  r5: Number,
+  r25: Number,
+  r40: Number,
+  r60: Number,
   des_20_community_injunctive:Number,
   des_80_community_injunctive: Number,
   des_20_injunctive_platform: Number,
   des_80_injunctive_platform: Number,
+  
 
   experiment_group: String,
 
@@ -45,6 +50,10 @@ const scriptSchema = new mongoose.Schema({
     des_80_community_injunctive: Number,
     des_20_injunctive_platform: Number,
     des_80_injunctive_platform: Number,
+    r5: Number,
+    r25: Number,
+    r40: Number,
+    r60: Number,
     }, { versionKey: false })]
   
 },{ versionKey: false });

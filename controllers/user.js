@@ -186,7 +186,7 @@ Place Experimental Varibles Here!
   var var_num = 7;
   
   var result = ["control", 'des_20','des_80', 'des_20_community_injunctive', 'des_80_community_injunctive', 'des_20_injunctive_platform', 'des_80_injunctive_platform'][Math.floor(Math.random() * var_num)]
-
+ // for the pilot, we might need to change these manually in script.js
   
   var resultArray = result.split(':');
   //[0] is script_type, [1] is post_nudge

@@ -203,6 +203,11 @@ function createPostInstances() {
                 postdetail.des_80_community_injunctive = new_post.des_80_community_injunctive;
                 postdetail.des_20_injunctive_platform = new_post.des_20_injunctive_platform;
                 postdetail.des_80_injunctive_platform = new_post.des_80_injunctive_platform;
+                postdetail.r5=new_post.r5;
+                postdetail.r25=new_post.r25;
+                postdetail.r40=new_post.r40;
+                postdetail.r60=new_post.r60;
+
 
 
                 //console.log('Looking up Actor: ' + act.username);
