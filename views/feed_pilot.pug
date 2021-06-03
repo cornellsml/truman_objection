@@ -28,7 +28,8 @@ block content
                       span="The admins will review this post further. We are sorry you had this experience."
         //- Normal Base Post
         .content
-          .right.floated.time.meta= (1547752372994 + val.time)
+          //- .right.floated.time.meta= (1547752372994 + val.time)
+          .right.floated.time.meta= (Date.now()-43200000+ val.time)   
           |
           //- img.ui.avatar.image(src=cdn+'/profile_pictures/'+val.actor.profile.picture)
           //- span=val.actor.profile.name  
@@ -81,7 +82,8 @@ block content
                             .metadata
                               //- check this part as well.. 
                               //- span.date=(user.createdAt.getTime() + comment.time)
-                              span.date=(1547752372994 + val.time +comment.time)
+                              // span.date=(1547752372994 + val.time +comment.time)
+                              span.date=(Date.now()-43200000 + comment.time)
                               //- span.date=(val.time + comment.time +user.createdAt.getTime())
                               -console.log('what is this span date????? : ', (val.time + comment.time))
                               .rating
@@ -103,7 +105,8 @@ block content
                             a.author(href='#')=comment.actor.profile.name
                             .metadata
                               //- span.date=(user.createdAt.getTime() + comment.time)
-                              span.date=(1547752372994 + val.time +comment.time)
+                              // span.date=(1547752372994 + val.time +comment.time)
+                              span.date=(Date.now()-43200000 + val.time +comment.time)
                               .rating
                                 if comment.liked
                                   i.red.heart.icon
