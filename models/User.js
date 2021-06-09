@@ -120,6 +120,7 @@ const userSchema = new mongoose.Schema({
     startTime: Number, //always the newest startTime (full date in ms)
     rereadTimes: Number,
     readTime : [Number],
+    profile_frame: {type: Boolean, default: false},
     picture_clicks : [Number],
     })],
 

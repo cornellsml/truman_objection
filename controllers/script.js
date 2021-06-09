@@ -154,6 +154,7 @@ exports.getScript = (req, res, next) => {
         console.log('WHATS THE LENGTH OF IT now if the group is des_20_injunctive_platform? ', script_feed.length);
         //update script feed to see if reading and posts has already happened
         var finalfeed = [];
+        var finalfeed_profileFrame = [];
 
         var user_posts = [];
 
@@ -172,6 +173,7 @@ exports.getScript = (req, res, next) => {
           if(typeof script_feed[0] === 'undefined') {
               console.log("Script_Feed is empty, push user_posts");
               finalfeed.push(user_posts[0]);
+              finalfeed_profileFrame.push(user_post[0]);
               user_posts.splice(0,1);
           }
           else if(!(typeof user_posts[0] === 'undefined') && (script_feed[0].time < user_posts[0].relativeTime)){
@@ -252,6 +254,12 @@ exports.getScript = (req, res, next) => {
 
               }//end of IF Comments
 
+              // add the profile picture frame post if not shown yer
+              // if(user.feedAction[feedIndex].profile_frame ==false)
+              // {
+
+              // }
+
               if (user.feedAction[feedIndex].readTime[0])
               { 
                 script_feed[0].read = true;
@@ -299,6 +307,7 @@ exports.getScript = (req, res, next) => {
 
             }//end of IF we found Feed_action
 
+
             else
             {
               //console.log("NO FEED ACTION SO, ADDED TO FINAL FEED");
@@ -319,7 +328,26 @@ exports.getScript = (req, res, next) => {
       
       //shuffle up the list
       finalfeed = shuffle(finalfeed);
+      var finalfeed_withFrame=JSON.parse(JSON.stringify(finalfeed));
 
+      // unique actors ...
+      unique_authors = [...new Set(finalfeed_withFrame.map(item => item.actor.username))];
+      unique_authors = shuffle(unique_authors);
+
+      //add the profile pictures for the unique authors ...
+      for( var i=0; i<unique_authors.length; i++)
+      {
+        var temp_record = finalfeed_withFrame.filter(obj => { return obj.actor.username == unique_authors[i]})
+          
+          var middle_post = {
+            type:'profile_photo',
+            picture : temp_record[0].actor.profile.picture,
+            name: temp_record[0].actor.profile.name,
+            username: temp_record[0].actor.username
+          }
+          finalfeed_withFrame.push(middle_post);
+          Array.prototype.push.apply(finalfeed_withFrame, temp_record);
+      }
 
       user.save((err) => {
         if (err) {
@@ -328,6 +356,7 @@ exports.getScript = (req, res, next) => {
         }
         //req.flash('success', { msg: 'Profile information has been updated.' });
       });
+      finalfeed_withFrame =shuffle(finalfeed_withFrame);
 
       console.log("Script Size is now:  "+finalfeed.length);
       console.log('the class isss: ',scriptFilter);
@@ -336,15 +365,17 @@ exports.getScript = (req, res, next) => {
       // res.render('vaccinatedFrame-test.pug', { script: finalfeed});  // control
 
 
-      if(scriptFilter === 'des_20_injunctive_platform' || scriptFilter === 'des_80_injunctive_platform' ){
-        console.log('this is 1');
-        res.render('script_injunctive_rules', { script: finalfeed});
-      }
-      else
-      {
-        res.render('script', { script: finalfeed});  // control
-        console.log('this is 2');
-      }
+      // if(scriptFilter === 'des_20_injunctive_platform' || scriptFilter === 'des_80_injunctive_platform' ){
+      //   console.log('this is 1');
+      //   res.render('script_injunctive_rules', { script: finalfeed});
+      // }
+      // else
+      // {
+      //   res.render('script', { script: finalfeed});  // control
+      //   console.log('this is 2');
+      // }
+      res.render('feed_profile_pic', { script: finalfeed_withFrame});
+      
       
       });//end of Script.find()
 
