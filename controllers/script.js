@@ -151,7 +151,6 @@ exports.getScript = (req, res, next) => {
       .exec(function (err, script_feed) {
         if (err) { return next(err); }
         //Successful, so render
-        console.log('WHATS THE LENGTH OF IT now if the group is des_20_injunctive_platform? ', script_feed.length);
         //update script feed to see if reading and posts has already happened
         var finalfeed = [];
         var finalfeed_profileFrame = [];
@@ -365,16 +364,15 @@ exports.getScript = (req, res, next) => {
       // res.render('vaccinatedFrame-test.pug', { script: finalfeed});  // control
 
 
-      // if(scriptFilter === 'des_20_injunctive_platform' || scriptFilter === 'des_80_injunctive_platform' ){
-      //   console.log('this is 1');
-      //   res.render('script_injunctive_rules', { script: finalfeed});
-      // }
-      // else
-      // {
-      //   res.render('script', { script: finalfeed});  // control
-      //   console.log('this is 2');
-      // }
-      res.render('feed_profile_pic', { script: finalfeed_withFrame});
+      if(scriptFilter === 'des_20_injunctive_platform' || scriptFilter === 'des_80_injunctive_platform' ){
+        res.render('script_injunctive_rules', { script: finalfeed});
+      }
+      else
+      {
+        res.render('script', { script: finalfeed});  // control
+        console.log('this is 2');
+      }
+      // res.render('feed_profile_pic', { script: finalfeed_withFrame});
       
       
       });//end of Script.find()
