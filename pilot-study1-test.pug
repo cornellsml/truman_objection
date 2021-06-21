@@ -1,10 +1,9 @@
-extends pilot_layout
+extends ui_layout_no
   
 block content
 
   
   -var cdn = "https://normalizationtruman.s3.us-east-2.amazonaws.com";
-  
   // -var cdn = "";
   .computer.only.tablet.only.four.wide.column 
     
@@ -70,11 +69,13 @@ block content
               each comment in val.comments
                 //-IF this comment is USER made, do this
                 if (val.time + comment.time) < Date.now()
-                    -console.log('what is the damn script now:', script_type, comment.category)
-                      control.log('does it gere hereee?')
-                    
-                    //- if(((script_type== 'r5' ||script_type== 'r25' ||script_type== 'r40' ||script_type== 'r60' ||script_type== 'des_20' ||script_type== 'des_80' ) && comment.des_80 == 1) || ((script_type=='des_20_community_injunctive' || script_type=='des_80_community_injunctive') &&(comment.control==1 || comment.category==='pro-vaccine')))
-                    if(comment.des_80 == 1)
+                    //- here I add this!
+                    -console.log('what is the damn script now:')
+                    //- if (((script_type== 'des_80' || script_type== 'des_80' || script_type=='des_20-injunctive_platform' || script_type=='des_80-injunctive_platform') && (comment.category == 'control' ||comment.category == "anti-vaccine")) 
+                    //-   ||((script_type=='des_80_community_injunctive' || script_type=='des_20_community_injunctive') && (comment.category =='pro-vaccine' || comment.category =='control' )))
+
+                    //-  //- comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || ( comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20_injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1)
+                    if (comment.des_80 == 1) 
                       if comment.new_comment
                         -console.log("Do we have New COMMENT AREA");
                         .comment(commentID=comment.id)

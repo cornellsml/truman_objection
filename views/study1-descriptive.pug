@@ -1,10 +1,9 @@
-extends pilot_layout
+extends ui_layout_no
   
 block content
 
   
   -var cdn = "https://normalizationtruman.s3.us-east-2.amazonaws.com";
-  
   // -var cdn = "";
   .computer.only.tablet.only.four.wide.column 
     
@@ -70,11 +69,14 @@ block content
               each comment in val.comments
                 //-IF this comment is USER made, do this
                 if (val.time + comment.time) < Date.now()
-                    -console.log('what is the damn script now:', script_type, comment.category)
-                      control.log('does it gere hereee?')
+                    //- here I add this!
                     
-                    //- if(((script_type== 'r5' ||script_type== 'r25' ||script_type== 'r40' ||script_type== 'r60' ||script_type== 'des_20' ||script_type== 'des_80' ) && comment.des_80 == 1) || ((script_type=='des_20_community_injunctive' || script_type=='des_80_community_injunctive') &&(comment.control==1 || comment.category==='pro-vaccine')))
-                    if(comment.des_80 == 1)
+                    //- if (comment.des_80 == 1)
+                    -console.log('what is the damn category now: ', script_type)
+                    
+                    -console.log('what is the damn category now please: ', script_type)
+                    //- if(comment.des_80 == 1)
+                    if(((script_type =='des_20' || script_type== 'des_80') &&(comment.des_80 == 1)) ||((script_type=='des_20_community_injunctive' || script_type=='des_80_community_injunctive')&&(comment.control==1 || comment.category=="pro-vaccine")))
                       if comment.new_comment
                         -console.log("Do we have New COMMENT AREA");
                         .comment(commentID=comment.id)

@@ -328,25 +328,25 @@ exports.getScript = (req, res, next) => {
       //shuffle up the list
       finalfeed = shuffle(finalfeed);
       var finalfeed_withFrame=JSON.parse(JSON.stringify(finalfeed));
-
+      console.log('what is finalfeed_withFrameL ', finalfeed_withFrame);
       // unique actors ...
       unique_authors = [...new Set(finalfeed_withFrame.map(item => item.actor.username))];
       unique_authors = shuffle(unique_authors);
 
       //add the profile pictures for the unique authors ...
-      for( var i=0; i<unique_authors.length; i++)
-      {
-        var temp_record = finalfeed_withFrame.filter(obj => { return obj.actor.username == unique_authors[i]})
+      // for( var i=0; i<unique_authors.length; i++)
+      // {
+      //   var temp_record = finalfeed_withFrame.filter(obj => { return obj.actor.username == unique_authors[i]})
           
-          var middle_post = {
-            type:'profile_photo',
-            picture : temp_record[0].actor.profile.picture,
-            name: temp_record[0].actor.profile.name,
-            username: temp_record[0].actor.username
-          }
-          finalfeed_withFrame.push(middle_post);
-          Array.prototype.push.apply(finalfeed_withFrame, temp_record);
-      }
+      //     var middle_post = {
+      //       type:'profile_photo',
+      //       picture : temp_record[0].actor.profile.picture,
+      //       name: temp_record[0].actor.profile.name,
+      //       username: temp_record[0].actor.username
+      //     }
+      //     finalfeed_withFrame.push(middle_post);
+      //     Array.prototype.push.apply(finalfeed_withFrame, temp_record);
+      // }
 
       user.save((err) => {
         if (err) {
@@ -355,7 +355,7 @@ exports.getScript = (req, res, next) => {
         }
         //req.flash('success', { msg: 'Profile information has been updated.' });
       });
-      finalfeed_withFrame =shuffle(finalfeed_withFrame);
+      // finalfeed_withFrame =shuffle(finalfeed_withFrame);
 
       console.log("Script Size is now:  "+finalfeed.length);
       console.log('the class isss: ',scriptFilter);
@@ -370,7 +370,7 @@ exports.getScript = (req, res, next) => {
       else
       {
         res.render('script', { script: finalfeed});  // control
-        console.log('this is 2');
+        // console.log('this is 2');
       }
       // res.render('feed_profile_pic', { script: finalfeed_withFrame});
       
@@ -458,8 +458,21 @@ exports.getScriptFeed = (req, res, next) => {
 
       console.log("Script Size is now: "+finalfeed.length)
       // res.render('feed_pilot', { script: finalfeed, namefilter:profileFilter});
-      res.render('feed_pilot', { script: finalfeed});
-
+      // if(scriptFilter =='r5'|| scriptFilter =='r25' || scriptFilter =='r40' || scriptFilter =='r60')
+      // {
+      //   res.render('feed_pilot', { script: finalfeed, script_type: scriptFilter});
+      // }
+      // else if(scriptFilter =='des_20'|| scriptFilter =='des_80' || scriptFilter =="des_20_community_injunctive" || scriptFilter =="des_80_community_injunctive")
+      // {
+      //   res.render('study1-descriptive', { script: finalfeed, script_type: scriptFilter});
+      // }
+      // else if(scriptFilter =='des_20_injunctive_platform'|| scriptFilter =='des_20_injunctive_platform')
+      // {
+      //   // NEED TO ADD THE RULES..SCTICKER..
+      //   res.render('study1-injunctive', { script: finalfeed, script_type: scriptFilter});
+      // }    
+      // res.render('pilot-study1-test', { script: finalfeed, comment_type: comment_type, script_type: scriptFilter});
+      res.render('feed_pilot', { script: finalfeed, script_type: scriptFilter});
       });//end of Script.find()
 
 };//end of .getScript

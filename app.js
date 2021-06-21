@@ -273,6 +273,13 @@ app.get('/newsfeed/r25', scriptController.getScriptFeed);
 app.get('/newsfeed/r40', scriptController.getScriptFeed);
 
 app.get('/newsfeed/r60', scriptController.getScriptFeed);
+//        
+app.get('/newsfeed/des_20', scriptController.getScriptFeed);
+app.get('/newsfeed/des_80', scriptController.getScriptFeed);
+app.get('/newsfeed/des_20_community_injunctive', scriptController.getScriptFeed);
+app.get('/newsfeed/des_80_community_injunctive', scriptController.getScriptFeed);
+app.get('/newsfeed/des_20_injunctive_platform', scriptController.getScriptFeed);
+app.get('/newsfeed/des_80_injunctive_platform', scriptController.getScriptFeed);
 
 
 
