@@ -1,11 +1,12 @@
-extends ui_layout_no
+extends pilot_layout
   
 block content
 
   
   -var cdn = "https://normalizationtruman.s3.us-east-2.amazonaws.com";
+  
   // -var cdn = "";
-  .computer.only.tablet.only.four.wide.column 
+  .computer.only.tablet.only.three.wide.column 
     
 
   #content.eight.wide.computer.ten.wide.tablet.sixteen.wide.mobile.column(style='display: none;')
@@ -69,11 +70,12 @@ block content
               each comment in val.comments
                 //-IF this comment is USER made, do this
                 if (val.time + comment.time) < Date.now()
-                    //- here I add this!
+                    -console.log('what is the damn script now:', script_type, comment.category)
+                      control.log('does it gere hereee?')
+                    
                     //- if(((script_type== 'r5' ||script_type== 'r25' ||script_type== 'r40' ||script_type== 'r60' ||script_type== 'des_20' ||script_type== 'des_80' ) && comment.des_80 == 1) || ((script_type=='des_20_community_injunctive' || script_type=='des_80_community_injunctive') &&(comment.control==1 || comment.category==='pro-vaccine')))
-                    //- ONLY CONTROL posts will have comments? or the anti-vaxx will have anti-accine comments as well?
-                    if (comment.control == 1) 
-                    //- if (comment.des_80 == 1) 
+                    //- des_80 includes both control and anti-vaccine comments
+                    if((comment.control==1) || ((script_type =='des_20' || script_type== 'des_80') &&(comment.des_80 == 1)) ||(((script_type=='des_5_injunctive_platform' || script_type=='des_30_injunctive_platform' || script_type=='des_60_injunctive_platform')&&(comment.control==1 || comment.category=="pro-vaccine"))))
                       if comment.new_comment
                         -console.log("Do we have New COMMENT AREA");
                         .comment(commentID=comment.id)
@@ -174,25 +176,6 @@ block content
     br
     br
     br
-    .ui.tiny.post.modal()
-      i.close.icon
-      .header Add a New Post
-      .content
-        form#postform.ui.feed.form(action='/post/new', method='POST', enctype='multipart/form-data')
-          input(type='hidden', name='_csrf', value=_csrf)
-          .field
-            textarea(rows='2', placeholder='Share your meal', name='body')
-          .field.image-upload
-            label(for='picinput')
-              .image.content
-                img#imgInp.ui.fluid.image(src='/public/photo-camera.svg')
-            //-input#picinput(type='file', accept='image/*', capture='camera', name='picinput')
-            input#picinput(type='file', accept='image/*', name='picinput')
-          .ui.error.message
-      .actions
-        input.ui.green.button(type='submit', name="foo", value='Submit', form='postform')
-
-  
 
   .computer.only.tablet.only.five.wide.column 
     .sticky
@@ -225,4 +208,4 @@ block content
                 br
                 li(style='font-style: italic;font-size:18px; color:black; line-height: 1.4') Please don&#39t call out other users. If you need moderator support regarding another user or group please flag their posts instead.
 
-
+    

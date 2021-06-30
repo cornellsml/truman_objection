@@ -199,20 +199,21 @@ function createPostInstances() {
                 postdetail.control = new_post.control;
                 postdetail.des_20 = new_post.des_20;
                 postdetail.des_80 = new_post.des_80;
-                postdetail.des_20_community_injunctive = new_post.des_20_community_injunctive;
-                postdetail.des_80_community_injunctive = new_post.des_80_community_injunctive;
-                postdetail.des_20_injunctive_platform = new_post.des_20_injunctive_platform;
-                postdetail.des_80_injunctive_platform = new_post.des_80_injunctive_platform;
+                postdetail.des_5_community_injunctive = new_post.des_5_community_injunctive;
+                postdetail.des_30_community_injunctive = new_post.des_30_community_injunctive;
+                postdetail.des_60_community_injunctive = new_post.des_60_community_injunctive;
+                postdetail.des_5_injunctive_platform = new_post.des_5_injunctive_platform;
+                postdetail.des_30_injunctive_platform = new_post.des_30_injunctive_platform;
+                postdetail.des_60_injunctive_platform = new_post.des_60_injunctive_platform;
                 postdetail.r5=new_post.r5;
                 postdetail.r25=new_post.r25;
                 postdetail.r40=new_post.r40;
+                postdetail.r30=new_post.r30;
                 postdetail.r60=new_post.r60;
+                postdetail.r5_rules_noCommunity = new_post.r5_rules_noCommunity;
+                postdetail.r30_rules_noCommunity = new_post.r30_rules_noCommunity;
+                postdetail.r60_rules_noCommunity = new_post.r60_rules_noCommunity;
 
-
-
-                //console.log('Looking up Actor: ' + act.username);
-                //console.log(mongoose.Types.ObjectId.isValid(postdetail.actor.$oid));
-                //console.log(postdetail);
 
                 var script = new Script(postdetail);
                 script.save(function (err) {

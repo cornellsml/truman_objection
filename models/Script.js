@@ -22,12 +22,19 @@ const scriptSchema = new mongoose.Schema({
   des_80: Number,
   r5: Number,
   r25: Number,
+  r30: Number,
   r40: Number,
   r60: Number,
-  des_20_community_injunctive:Number,
-  des_80_community_injunctive: Number,
-  des_20_injunctive_platform: Number,
-  des_80_injunctive_platform: Number,
+  des_5_community_injunctive:Number,
+  des_30_community_injunctive: Number,
+  des_60_community_injunctive: Number,
+  des_5_injunctive_platform: Number,
+  des_30_injunctive_platform: Number,
+  des_60_injunctive_platform: Number,
+  r5_rules_noCommunity: Number,
+  r30_rules_noCommunity: Number,
+  r60_rules_noCommunity: Number,
+  
   
 
   experiment_group: String,

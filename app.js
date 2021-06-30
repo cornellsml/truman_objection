@@ -267,19 +267,24 @@ app.post('/account/profile', passportConfig.isAuthenticated, useravatarupload.si
 //can we specify the condition in the URL .. now that the user doesn't have an account, where do we set their group?
 // app.get('/p_r5', scriptController.getScriptPilot); 
 app.get('/newsfeed/r5', scriptController.getScriptFeed);
-
-app.get('/newsfeed/r25', scriptController.getScriptFeed);
-
-app.get('/newsfeed/r40', scriptController.getScriptFeed);
-
+app.get('/newsfeed/r30', scriptController.getScriptFeed);
 app.get('/newsfeed/r60', scriptController.getScriptFeed);
+
+// app.get('/newsfeed/r40', scriptController.getScriptFeed);
+
 //        
-app.get('/newsfeed/des_20', scriptController.getScriptFeed);
-app.get('/newsfeed/des_80', scriptController.getScriptFeed);
-app.get('/newsfeed/des_20_community_injunctive', scriptController.getScriptFeed);
-app.get('/newsfeed/des_80_community_injunctive', scriptController.getScriptFeed);
-app.get('/newsfeed/des_20_injunctive_platform', scriptController.getScriptFeed);
-app.get('/newsfeed/des_80_injunctive_platform', scriptController.getScriptFeed);
+app.get('/newsfeed/r5_rules_noCommunity', scriptController.getScriptFeed);
+app.get('/newsfeed/r30_rules_noCommunity', scriptController.getScriptFeed);
+app.get('/newsfeed/r60_rules_noCommunity', scriptController.getScriptFeed);
+
+app.get('/newsfeed/des_5_community_injunctive', scriptController.getScriptFeed);
+app.get('/newsfeed/des_30_community_injunctive', scriptController.getScriptFeed);
+app.get('/newsfeed/des_60_community_injunctive', scriptController.getScriptFeed);
+
+// app.get('/newsfeed/des_80', scriptController.getScriptFeed);
+app.get('/newsfeed/des_5_injunctive_platform', scriptController.getScriptFeed);
+app.get('/newsfeed/des_30_injunctive_platform', scriptController.getScriptFeed);
+app.get('/newsfeed/des_60_injunctive_platform', scriptController.getScriptFeed);
 
 
 

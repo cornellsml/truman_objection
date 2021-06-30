@@ -364,15 +364,16 @@ exports.getScript = (req, res, next) => {
       // res.render('vaccinatedFrame-test.pug', { script: finalfeed});  // control
 
 
-      if(scriptFilter === 'des_20_injunctive_platform' || scriptFilter === 'des_80_injunctive_platform' ){
-        res.render('script_injunctive_rules', { script: finalfeed});
-      }
-      else
-      {
-        res.render('script', { script: finalfeed});  // control
-        // console.log('this is 2');
-      }
-      // res.render('feed_profile_pic', { script: finalfeed_withFrame});
+      // if(scriptFilter === 'des_20_injunctive_platform' || scriptFilter === 'des_80_injunctive_platform' ){
+      //   res.render('script_injunctive_rules', { script: finalfeed});
+      // }
+      // else
+      // {
+      //   res.render('script', { script: finalfeed});  // control
+      //   // console.log('this is 2');
+      // }
+      res.render('script_injunctive_rules', { script: finalfeed_withFrame});
+
       
       
       });//end of Script.find()
@@ -457,22 +458,37 @@ exports.getScriptFeed = (req, res, next) => {
       //finalfeed = shuffle(finalfeed);
 
       console.log("Script Size is now: "+finalfeed.length)
-      // res.render('feed_pilot', { script: finalfeed, namefilter:profileFilter});
-      // if(scriptFilter =='r5'|| scriptFilter =='r25' || scriptFilter =='r40' || scriptFilter =='r60')
-      // {
-      //   res.render('feed_pilot', { script: finalfeed, script_type: scriptFilter});
-      // }
-      // else if(scriptFilter =='des_20'|| scriptFilter =='des_80' || scriptFilter =="des_20_community_injunctive" || scriptFilter =="des_80_community_injunctive")
-      // {
-      //   res.render('study1-descriptive', { script: finalfeed, script_type: scriptFilter});
-      // }
-      // else if(scriptFilter =='des_20_injunctive_platform'|| scriptFilter =='des_20_injunctive_platform')
+      //this is last column in matrix - the conditins will be renamed to des_5_noRules_noCommunityComment , des_30_noRules_noCommunityComment  , des_60_noRules_noCommunityComment  
+      if(scriptFilter =='r5'|| scriptFilter =='r30' ||scriptFilter =='r60')
+      {
+        // noRules_noCommunityComment (no provacine comments) 
+        res.render('noRules_noCommunityComment', { script: finalfeed, script_type: scriptFilter});
+      }
+      // this is the third column in the matrix
+      else if(scriptFilter =='r5_rules_noCommunity'|| scriptFilter =='r30_rules_noCommunity' ||scriptFilter =='r30_rules_noCommunity')
+      { 
+        res.render('rules_noCommunityComment', { script: finalfeed, script_type: scriptFilter});
+      }
+      //this is the second column in the matrxi
+      else if(scriptFilter =="des_5_community_injunctive" || scriptFilter =="des_30_community_injunctive" || scriptFilter =="des_60_community_injunctive")
+      {
+        // descriptive-community injunctive  (provaccine comments)
+        res.render('noRules_CommunityComment', { script: finalfeed, script_type: scriptFilter});
+      }
+      //this is the first column in the matrix rules_CommunityComment
+      else if(scriptFilter =='des_5_injunctive_platform'|| scriptFilter=='des_30_injunctive_platform' || scriptFilter =='des_60_injunctive_platform')
+      {
+        res.render('rules_CommunityComment', { script: finalfeed, script_type: scriptFilter});
+      }
+      //5, 30, 60 % + rules + community
+      // else if(scriptFilter =='des_20_injunctive_platform_community'|| scriptFilter =='des_80_injunctive_platform_community ' || scriptFilter=='des_60_injunctive_platform_community')
       // {
       //   // NEED TO ADD THE RULES..SCTICKER..
-      //   res.render('study1-injunctive', { script: finalfeed, script_type: scriptFilter});
-      // }    
+      //   // descriptive-platform injunctive
+      // res.render('study1-injunctive', { script: finalfeed, script_type: scriptFilter});
+      // }       
       // res.render('pilot-study1-test', { script: finalfeed, comment_type: comment_type, script_type: scriptFilter});
-      res.render('feed_pilot', { script: finalfeed, script_type: scriptFilter});
+      // res.render('feed_pilot', { script: finalfeed, script_type: scriptFilter});
       });//end of Script.find()
 
 };//end of .getScript
