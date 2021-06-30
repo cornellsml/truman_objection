@@ -465,7 +465,7 @@ exports.getScriptFeed = (req, res, next) => {
         res.render('noRules_noCommunityComment', { script: finalfeed, script_type: scriptFilter});
       }
       // this is the third column in the matrix
-      else if(scriptFilter =='r5_rules_noCommunity'|| scriptFilter =='r30_rules_noCommunity' ||scriptFilter =='r30_rules_noCommunity')
+      else if(scriptFilter =='r5_rules_noCommunity'|| scriptFilter =='r30_rules_noCommunity' ||scriptFilter =='r60_rules_noCommunity')
       { 
         res.render('rules_noCommunityComment', { script: finalfeed, script_type: scriptFilter});
       }
