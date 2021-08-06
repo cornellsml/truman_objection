@@ -210,8 +210,11 @@ $("i.big.send.link.icon").click(function() {
   {
     //.three.ui.bottom.attached.icon.buttons
     //console.log("Adding new Comments sections")
-    var buttons = card.find( ".three.ui.bottom.attached.icon.buttons" )
-    buttons.after( '<div class="content"><div class="ui comments"></div>' );
+    // var buttons = card.find( ".three.ui.bottom.attached.icon.buttons" )
+    // buttons.after( '<div class="content"><div class="ui comments"></div>' );
+    // var comments = card.find( ".ui.comments" )
+    var buttons = card.find('#falgebutton.ui.basic.button').parents('div.content')
+    buttons.after('<div class="content"><div class="ui comments"></div>')
     var comments = card.find( ".ui.comments" )
   }
   if (text.trim() !== '')

@@ -330,8 +330,8 @@ exports.getScript = (req, res, next) => {
       var finalfeed_withFrame=JSON.parse(JSON.stringify(finalfeed));
       console.log('what is finalfeed_withFrameL ', finalfeed_withFrame);
       // unique actors ...
-      unique_authors = [...new Set(finalfeed_withFrame.map(item => item.actor.username))];
-      unique_authors = shuffle(unique_authors);
+      // unique_authors = [...new Set(finalfeed_withFrame.map(item => item.actor.username))];
+      // unique_authors = shuffle(unique_authors);
 
       //add the profile pictures for the unique authors ...
       // for( var i=0; i<unique_authors.length; i++)
@@ -364,15 +364,16 @@ exports.getScript = (req, res, next) => {
       // res.render('vaccinatedFrame-test.pug', { script: finalfeed});  // control
 
 
-      // if(scriptFilter === 'des_20_injunctive_platform' || scriptFilter === 'des_80_injunctive_platform' ){
-      //   res.render('script_injunctive_rules', { script: finalfeed});
-      // }
-      // else
-      // {
-      //   res.render('script', { script: finalfeed});  // control
-      //   // console.log('this is 2');
-      // }
-      res.render('script_injunctive_rules', { script: finalfeed_withFrame});
+      if(scriptFilter === 'r5_rules_noComments' || scriptFilter === 'r30_rules_noComments' || scriptFilter === 'r60_rules_noComments' || scriptFilter ==='des_5_rules_comments' || scriptFilter ==='des_30_rules_comments' || scriptFilter ==='des_60_rules_comments')
+      {
+        res.render('script_injunctive_rules', { script: finalfeed});
+      }
+      else
+      {
+        res.render('script', { script: finalfeed});  // control
+        // console.log('this is 2');
+      }
+      // res.render('script_injunctive_rules', { script: finalfeed_withFrame});
 
       
       

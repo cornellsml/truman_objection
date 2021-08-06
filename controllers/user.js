@@ -183,9 +183,10 @@ Place Experimental Varibles Here!
   // var varResult = ['var1', 'var2', 'var3', 'var4'][Math.floor(Math.random() * versions)]
 
   //Randomly assigning user into one of the 6 conditions
-  var var_num = 7;
-  
-  var result = ["control", 'des_20','des_80', 'des_20_community_injunctive', 'des_80_community_injunctive', 'des_20_injunctive_platform', 'des_80_injunctive_platform'][Math.floor(Math.random() * var_num)]
+  var var_num = 12;
+  var result = ["r_5", "r_30", "r_60", "des_5_community_comments", "des_30_community_comments", "des_60_community_comments", "des_5_rules_comments", "des_30_rules_comments","des_60_rules_comments", "r5_rules_noComments", "r30_rules_noComments", "r60_rules_noComments"][Math.floor(Math.random() * var_num)]
+ // for the pilot, we might need to change these manually in script.js
+  // var result = ["control", 'des_30','des_60', 'des_20_community_injunctive', 'des_80_community_injunctive', 'des_20_injunctive_platform', 'des_80_injunctive_platform'][Math.floor(Math.random() * var_num)]
  // for the pilot, we might need to change these manually in script.js
   
   var resultArray = result.split(':');

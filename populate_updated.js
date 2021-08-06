@@ -184,7 +184,6 @@ function createPostInstances() {
                 
                 postdetail.likes =  getLikes();
 
-                
                 postdetail.experiment_group = new_post.experiment_group
                 postdetail.post_id = new_post.id;
                 postdetail.body = new_post.body;
@@ -196,23 +195,23 @@ function createPostInstances() {
                 postdetail.time = timeStringToNum(new_post.time);
                         // postdetail.experiment_group = new_post.experiment_group
                 postdetail.post_class = new_post.posts_class;
-                postdetail.control = new_post.control;
-                postdetail.des_20 = new_post.des_20;
-                postdetail.des_80 = new_post.des_80;
-                postdetail.des_5_community_injunctive = new_post.des_5_community_injunctive;
-                postdetail.des_30_community_injunctive = new_post.des_30_community_injunctive;
-                postdetail.des_60_community_injunctive = new_post.des_60_community_injunctive;
-                postdetail.des_5_injunctive_platform = new_post.des_5_injunctive_platform;
-                postdetail.des_30_injunctive_platform = new_post.des_30_injunctive_platform;
-                postdetail.des_60_injunctive_platform = new_post.des_60_injunctive_platform;
-                postdetail.r5=new_post.r5;
-                postdetail.r25=new_post.r25;
-                postdetail.r40=new_post.r40;
-                postdetail.r30=new_post.r30;
-                postdetail.r60=new_post.r60;
-                postdetail.r5_rules_noCommunity = new_post.r5_rules_noCommunity;
-                postdetail.r30_rules_noCommunity = new_post.r30_rules_noCommunity;
-                postdetail.r60_rules_noCommunity = new_post.r60_rules_noCommunity;
+
+                postdetail.control = new_post.r_5;
+                postdetail.r_30 = new_post.r_30;
+                postdetail.r_60 = new_post.r_60;
+
+                postdetail.des_5_community_comments = new_post.des_5_community_comments;
+                postdetail.des_30_community_comments = new_post.des_30_community_comments;
+                postdetail.des_60_community_comments = new_post.des_60_community_comments;
+
+                postdetail.des_5_rules_comments = new_post.des_5_rules_comments;
+                postdetail.des_30_rules_comments = new_post.des_30_rules_comments;
+                postdetail.des_60_rules_comments = new_post.des_60_rules_comments;
+
+                postdetail.r5_rules_noComments=new_post.r5_rules_noComments;
+                postdetail.r30_rules_noComments=new_post.r30_rules_noComments;
+                postdetail.r60_rules_noComments=new_post.r60_rules_noComments;
+                
 
 
                 var script = new Script(postdetail);
@@ -440,8 +439,7 @@ function createPostRepliesInstances() {
             if (act) {
                 Script.findOne({ post_id: new_replies.reply }, function (err, pr) {
                     if (pr) {
-                        // console.log('Looking up Actor ID is : ' + act._id); 
-                        // console.log('Looking up OP POST ID is : ' + pr._id); 
+
                         var comment_detail = new Object();
                         //postdetail.actor = {};
                         comment_detail.body = new_replies.body
@@ -452,13 +450,23 @@ function createPostRepliesInstances() {
                         comment_detail.time = timeStringToNum(new_replies.time);
                         comment_detail.actor = act;
                         comment_detail.category = new_replies.category;
-                        comment_detail.control = new_replies.control;
-                        comment_detail.des_20 = new_replies.des_20;
-                        comment_detail.des_80 = new_replies.des_80;
-                        comment_detail.des_20_injunctive_platform = new_replies.des_20_injunctive_platform;
-                        comment_detail.des_80_injunctive_platform = new_replies.des_80_injunctive_platform;
-                        comment_detail.des_20_community_injunctive = new_replies.des_20_community_injunctive;
-                        comment_detail.des_80_community_injunctive = new_replies.des_80_community_injunctive;
+
+                        comment_detail.des_5 = new_replies.des_5;
+                        comment_detail.des_30 = new_replies.des_30;
+                        comment_detail.des_60 = new_replies.des_60;
+
+                        comment_detail.des_5_community_comments = new_replies.des_5_community_comments;
+                        comment_detail.des_30_community_comments = new_replies.des_30_community_comments;
+                        comment_detail.des_60_community_comments = new_replies.des_60_community_comments;
+
+                        comment_detail.des_5_rules_comments = new_replies.des_5_rules_comments;
+                        comment_detail.des_30_rules_comments = new_replies.des_30_rules_comments;
+                        comment_detail.des_60_rules_comments = new_replies.des_60_rules_comments;
+
+                        comment_detail.r5_rules_noComments = new_replies.r5_rules_noComments;
+                        comment_detail.r30_rules_noComments = new_replies.r30_rules_noComments;
+                        comment_detail.r60_rules_noComments = new_replies.r60_rules_noComments;
+
                         //pr.comments = insert_order(comment_detail, pr.comments);
                         //console.log('Comment'+comment_detail.commentID+' on Post '+pr.post_id+' Length before: ' + pr.comments.length); 
                         pr.comments.push(comment_detail);
@@ -541,10 +549,8 @@ async function loadDatabase() {
         // await promisify(createActorInstances);
         // await promisify(createNotificationInstances);
         // await promisify(createPostInstances);
-        // await promisify(createPostRepliesInstances);
-        await promisify(actorNotifyInstances);
-        // DON"T RUN THE FOLLOWING LINE ANYMORE
-        // await promisify(actorNotifyInstances_likes);
+        await promisify(createPostRepliesInstances);
+        // await promisify(actorNotifyInstances);
     } catch (err) {
         console.log('Error occurred in Loading', err);
     }
