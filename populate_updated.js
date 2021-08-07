@@ -108,7 +108,7 @@ function timeStringToNum(v) {
 //create a radom number (for likes) with a weighted distrubution
 //this is for posts
 function getLikes() {
-    var notRandomNumbers = [1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 5, 6];
+    var notRandomNumbers = [1, 1, 1, 2, 2, 2,3, 3, 3, 4, 4, 5,5,5, 6,6,6,6,6,6, 7,7,7,7,7,7,7, 8,8,8,8,8,8,8,8,8,9,9,9,9,9,9,9,9, 9, 10, 10,10, 10,10, 10,10, 10,10, 10,11,11,11,11,11,11,11,11,11,11,11,11,12,12,12,12,12,12,12,12,12,12,12,12,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,13,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,15,15,15,15,15,15,15,15,15,15,15,15,15,15,15, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17];
     var idx = Math.floor(Math.random() * notRandomNumbers.length);
     return notRandomNumbers[idx];
 }
@@ -196,7 +196,7 @@ function createPostInstances() {
                         // postdetail.experiment_group = new_post.experiment_group
                 postdetail.post_class = new_post.posts_class;
 
-                postdetail.control = new_post.r_5;
+                postdetail.r_5 = new_post.r_5;
                 postdetail.r_30 = new_post.r_30;
                 postdetail.r_60 = new_post.r_60;
 
@@ -549,8 +549,8 @@ async function loadDatabase() {
         // await promisify(createActorInstances);
         // await promisify(createNotificationInstances);
         // await promisify(createPostInstances);
-        await promisify(createPostRepliesInstances);
-        // await promisify(actorNotifyInstances);
+        // await promisify(createPostRepliesInstances);
+        await promisify(actorNotifyInstances);
     } catch (err) {
         console.log('Error occurred in Loading', err);
     }

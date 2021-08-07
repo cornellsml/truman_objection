@@ -54,25 +54,24 @@ block content
                   img(src="/"+val.reply.picture)
               .content
                 .description=val.reply.body
-          .three.ui.bottom.attached.icon.buttons
-              //-.ui.reply.button(tabindex='0')
-              .ui.button(tabindex='0')
-                i.reply.icon
-                |  Reply
-              //-.ui.flag.button(tabindex='0')
-              .ui.button(tabindex='0')
-                i.flag.icon
-                |  Flag
-              if val.like
-                //-.ui.red.like.button
-                .ui.red.button
-                  i.heart.icon
-                  |  Like
-              else
-                //-.ui.like.button
-                .ui.button
-                  i.heart.icon
-                  |  Like
+              .content
+                #flgComment.span.right.floated
+                  if val.like
+                    #likeButton.ui.basic.button
+                      //- i.big.red.heart.outline.like.icon
+                      i.red.large.heart.icon
+                      | Like
+                    a.ui.basic.red.left.pointing.label=val.likes
+                  else
+                    #likeButton.ui.basic.button
+                      //- i.big.heart.outline.like.icon
+                      i.heart.large.icon
+                      | Like
+                    a.ui.basic.red.left.pointing.label.count=val.likes
+                //- i.flag.icon
+                span.right.floated
+                  #falgebutton.ui.basic.button
+                   i.large.flag.icon
         else
           .content
             .right.floated.time.meta= (user.createdAt.getTime() + val.relativeTime)
@@ -104,64 +103,64 @@ block content
             .content
               .ui.comments
                 each comment in val.comments
-                  //-IF this comment is USER made, do this
-                  if (user.createdAt.getTime() + comment.time) < Date.now()
-                    if !comment.flagged
-                      if comment.new_comment
-                        -console.log("New COMMENT AREA");
-                        .comment(commentID=comment.commentID)
-                          a.avatar.image(href='/me')
-                            if user.profile.picture
-                              img(src='/user_post/'+user.profile.picture)
+                  //-IF this comment is USER made, do this                  
+                  if ((user.createdAt.getTime() + comment.time) < Date.now() && (!comment.flagged))
+                    if comment.new_comment
+                      -console.log("New COMMENT AREA");
+                      .comment(commentID=comment.new_comment_id)
+                        a.avatar.image(href='/me')
+                          if user.profile.picture
+                            img(src='/user_post/'+user.profile.picture)
+                          else
+                            img(src=user.gravatar(60))
+                        .content
+                          a.author(href='/me')=user.profile.name || user.username || user.id
+                          .metadata
+                            //- check this part as well.. 
+                            //- span.date=(user.createdAt.getTime() + comment.time)
+                            span.date=(user.createdAt.getTime() +comment.time)
+                            //- span.date=(val.time + comment.time +user.createdAt.getTime())
+                            -console.log('what is this span date????? : ', (val.time + comment.time))
+                            .rating
+                              i.heart.icon
+                              span.num=0
+                              |  Likes
+                          .text=comment.body
+                          .actions
+                            a.like.comment Like
+                            a.flag.comment Flag
+                    //- Else this is a normal comment from the script
+                    else
+                      .comment(commentID=comment.id)
+                        a.avatar(href='/user/'+comment.actor.username)
+                          //-img(src=cdn+'/profile_pictures/'+comment.actor.profile.picture)                       
+                          img.lazyload(data-src="/profile_pictures/"+comment.actor.profile.picture)
+                        .content
+                          a.author(href='/user/'+comment.actor.username)=comment.actor.profile.name
+                          .metadata
+                            span.date=(user.createdAt.getTime() + comment.time)
+                            //- span.date=(val.time + comment.time+user.createdAt.getTime())
+                            -console.log('print the comment time  :', val.time + comment.time)
+                            -console.log('what is the comment timing now? : ', Date(comment.time))
+                            -console.log('and what was this before: ', (user.createdAt.getTime() + comment.time))
+                            .rating
+                              if comment.liked
+                                i.red.heart.icon
+                                span=comment.likes
+                                |  Likes 
+                              else
+                                i.heart.icon
+                                span.num=comment.likes
+                                |  Likes
+                          .text=comment.body
+                          .actions
+                            if comment.liked
+                              a.red.like.comment Like
                             else
-                              img(src=user.gravatar(60))
-                          .content
-                            a.author(href='/me')=user.profile.name || user.username || user.id
-                            .metadata
-                              span.date=(user.createdAt.getTime() + comment.time)
-                              .rating
-                                if comment.liked
-                                  i.red.heart.icon
-                                  span=comment.likes
-                                  | Likes 
-                                else
-                                  i.heart.icon
-                                  span.num=comment.likes
-                                  |  Likes
-                            .text=comment.body
-                            .actions
-                              if comment.liked
-                                a.red.like.comment Like
-                              else
-                                a.like.comment Like
-                              a.flag.comment Flag
-                      //- Else this is a normal comment from the script
-                      else
-                        .comment(commentID=comment.commentID)
-                          a.avatar(href='/user/'+comment.actor.username)
-                            img(src='/profile_pictures/'+comment.actor.profile.picture)
-                          .content
-                            a.author(href='/user/'+comment.actor.username)=comment.actor.profile.name
-                            .metadata
-                              span.date=(user.createdAt.getTime() + comment.time)
-                              .rating
-                                if comment.liked
-                                  i.red.heart.icon
-                                  span=comment.likes
-                                  | Likes 
-                                else
-                                  i.heart.icon
-                                  span.num=comment.likes
-                                  |  Likes
-                            .text=comment.body
-                            .actions
-                              if comment.liked
-                                a.red.like.comment Like
-                              else
-                                a.like.comment Like
-                              a.flag.comment Flag
+                              a.like.comment Like
+                            a.flag.comment Flag
           .extra.content
-            .ui.fluid.left.labeled.right.icon.input
+            #comment.ui.fluid.left.labeled.right.icon.input
               .ui.label
                 if user.profile.picture
                   img.ui.avatar.image(src='/user_post/'+user.profile.picture, name=user.profile.name || user.username || user.id)
