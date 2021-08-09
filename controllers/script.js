@@ -80,7 +80,7 @@ exports.getScript = (req, res, next) => {
     if (!user.active)
     {
       req.logout();
-      req.flash('errors', { msg: 'Account is no longer active. Study is over' });
+      req.flash('errors', { msg: 'Account is no longer active. Study is over.' });
       res.redirect('/login');
     }
 
