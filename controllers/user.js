@@ -533,7 +533,7 @@ var sendReminderEmail = function(user){
       from: 'do-not-reply@eatsnap.love',
       subject: 'Remember to Check Out 🍴📷.❤️ Today',
       text: `Hey ${u_name},\n\n
-      Just wanted to remind you to visit https://eatsnap.love today.\n
+      Just wanted to remind you to visit https://al.eatsnap.love today.\n
       Your participation in our study is a huge help in beta testing the app.
       Remember to fully participate in the study you must:\n
       * create one new post each day\n 
