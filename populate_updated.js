@@ -390,7 +390,7 @@ function createNotificationInstances() {
                 var notify = new Notification(notifydetail);
                 notify.save(function (err) {
                     if (err) {
-                        console.log("Something went wrong in Saving Notify!!!");
+                        console.log("Something went wrong in Saving Notify!!! ", act);
                         // console.log(err);
                         callback(err);
                     }

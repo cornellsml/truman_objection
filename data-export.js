@@ -14,7 +14,9 @@ const fs = require('fs')
 var UAParser = require('ua-parser-js');
 const util = require('util');
 
+// const dotenv = require("dotenv");
 
+dotenv.config();
 
 var csvWriter = require('csv-write-stream');
 var mlm_writer = csvWriter();
@@ -39,7 +41,9 @@ Array.prototype.sum = function() {
 
 var mlm_array = [];
 
-dotenv.load({ path: '.env' });
+// dotenv.load({ path: '.env' });
+dotenv.config({ path: '.env' });
+
 
 
 /*
@@ -63,7 +67,7 @@ mongoose.Promise = global.Promise;
 
 //mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
 //mongoose.connect(process.env.MONGOLAB_TEST || process.env.PRO_MONGOLAB_URI, { useMongoClient: true });
-mongoose.connect(process.env.MONGOLAB_TEST || process.env.PRO_MONGOLAB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGOLAB_TEST || process.env.PRO_MONGOLAB_URI || process.env.mongolab_uri_test, { useNewUrlParser: true });
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
@@ -71,8 +75,9 @@ mongoose.connection.on('error', (err) => {
 });
 
 
+
 User.find()
-  .where('active').equals(false)
+  // .where('active').equals(false)
   .populate({ 
          path: 'feedAction.post',
          model: 'Script',
@@ -242,6 +247,7 @@ User.find()
         //per feedAction
         mlm.GeneralLikeNumber = 0;
         mlm.GeneralFlagNumber = 0;
+        mlm.totalPostRead = 0;
 
         sur.postID = -1;
         sur.body = "";
@@ -320,6 +326,15 @@ User.find()
               mlm.GeneralFlagNumber++;
             }
 
+
+            if(users[i].feedAction[k].viewedTime[0])
+            {
+              mlm.totalPostRead++;
+              // console.log("before avg read is "+mlm.AveReadTime);
+              mlm.AveReadTime += users[i].feedAction[k].viewedTime.sum() / users[i].feedAction[k].viewedTime.length;
+              // console.log("after avg read is "+mlm.AveReadTime);
+            }
+
           }
 
 
@@ -328,6 +343,8 @@ User.find()
       //mlm.GeneralReplyNumber = users[i].numReplies + 1;
       mlm.GeneralPostNumber = users[i].numPosts + 1;
       mlm.GeneralCommentNumber = users[i].numComments + 1;
+
+      mlm.TotalNumberRead = mlm.totalPostRead;
         
 
 

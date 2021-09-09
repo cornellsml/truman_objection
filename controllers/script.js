@@ -801,6 +801,17 @@ exports.postUpdateFeedAction = (req, res, next) => {
         user.feedAction[feedIndex].replyTime.push(reply);
       }
 
+      else if ((!user.feedAction[feedIndex].viewedTime) && req.body.viewed)
+      {
+        let viewedTime = req.body.viewed;
+        user.feedAction[feedIndex].viewedTime = [viewedTime];
+      }
+      else if ((user.feedAction[feedIndex].viewedTime)&&req.body.viewed)
+      {
+        let viewedTime = req.body.viewed;
+        user.feedAction[feedIndex].viewedTime.push(viewedTime);
+      }
+
       else
       {
         console.log("Got a POST that did not fit anything. Possible Error.")
