@@ -641,10 +641,11 @@ exports.stillActive = () => {
         console.log("Looking at user "+users[i].email);      
         var time_diff = Date.now() - users[i].createdAt;
         var three_days = 259200000;
+        var one_day = 86400000;
 
         console.log("Time period is  "+time_diff);  
-        console.log("Three days is  "+three_days);
-        if (time_diff >= three_days)
+        console.log("One days is  "+one_day);
+        if (time_diff >= one_day)
         {
             if (users[i].isAdmin)
             {
@@ -698,7 +699,7 @@ exports.userTestResults = (req, res) => {
           console.log("@@@@@@@@@@Looking at user "+users[i].email);      
           var time_diff = Date.now() - users[i].createdAt;
           var three_days = 259200000;
-          var one_day =     86400000;
+          var one_day = 86400000;
 
           //check if completed or not yet 
           if (!users[i].completed)

@@ -77,7 +77,7 @@ mongoose.connection.on('error', (err) => {
 
 
 User.find()
-  // .where('active').equals(false)
+  .where('active').equals(false)
   .populate({ 
          path: 'feedAction.post',
          model: 'Script',
@@ -107,6 +107,9 @@ User.find()
         mlm.email = users[i].email;
         sur.email = users[i].email;
         sums.email = users[i].email;
+
+        mlm.experimental_condition = users[i].group;
+        sums.experimental_condition = users[i].group;
 
         mlm.StartDate = users[i].createdAt;
         sur.StartDate = users[i].createdAt;
@@ -220,7 +223,8 @@ User.find()
         mlm.citevisits = users[i].log.length;
         sums.citevisits = users[i].log.length;
 
-        if (users[i].completed)
+
+        if (users[i].study_days[0] >=2 && users[i].study_days[1] >=2 && users[i].numPosts >= 2)
         {
           mlm.CompletedStudy = 1;
           sums.CompletedStudy = 1;
@@ -232,6 +236,36 @@ User.find()
           sums.CompletedStudy = 0;
           //sur.CompletedStudy = 0;
         }
+
+        if(users[i].study_days[0] >=2)
+        {
+          mlm.CompletedDay1 = 1;
+        }
+        else
+        {
+          mlm.CompletedDay1 = 0;
+        }
+
+        if(users[i].study_days[1] >=2)
+        {
+          mlm.CompletedDay2 = 1;
+        }
+        else
+        {
+          mlm.CompletedDay2 = 0;
+        }
+
+
+
+        if(users[i].study_days[2] >=1)
+        {
+          mlm.CompletedDay3 = 1;
+        }
+        else
+        {
+          mlm.CompletedDay3 = 0;
+        }
+
 
         if (users[i].study_days.length > 0)
         {
@@ -327,13 +361,19 @@ User.find()
             }
 
 
-            if(users[i].feedAction[k].viewedTime[0])
+            // ZHILA: this viewedTime was not defined for the first 35 particpants and I had to comment it
+            if(users[i].feedAction[k].viewedTime)
             {
-              mlm.totalPostRead++;
-              // console.log("before avg read is "+mlm.AveReadTime);
-              mlm.AveReadTime += users[i].feedAction[k].viewedTime.sum() / users[i].feedAction[k].viewedTime.length;
-              // console.log("after avg read is "+mlm.AveReadTime);
+              if(users[i].feedAction[k].viewedTime[0])
+              {
+                mlm.totalPostRead++;
+                // console.log("before avg read is "+mlm.AveReadTime);
+                mlm.AveReadTime += users[i].feedAction[k].viewedTime.sum() / users[i].feedAction[k].viewedTime.length;
+                // console.log("after avg read is "+mlm.AveReadTime);
+              }
+
             }
+            
 
           }
 
@@ -341,6 +381,7 @@ User.find()
         }//for Per FeedAction
 
       //mlm.GeneralReplyNumber = users[i].numReplies + 1;
+      mlm.AveReadTime = mlm.AveReadTime/mlm.totalPostRead;
       mlm.GeneralPostNumber = users[i].numPosts + 1;
       mlm.GeneralCommentNumber = users[i].numComments + 1;
 
