@@ -328,7 +328,7 @@ exports.getScript = (req, res, next) => {
       //shuffle up the list
       finalfeed = shuffle(finalfeed);
       var finalfeed_withFrame=JSON.parse(JSON.stringify(finalfeed));
-      console.log('what is finalfeed_withFrameL ', finalfeed_withFrame);
+      // console.log('what is finalfeed_withFrameL ', finalfeed_withFrame);
       // unique actors ...
       // unique_authors = [...new Set(finalfeed_withFrame.map(item => item.actor.username))];
       // unique_authors = shuffle(unique_authors);

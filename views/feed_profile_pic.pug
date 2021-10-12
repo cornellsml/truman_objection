@@ -402,9 +402,9 @@ block content
                             .metadata
                               //- span.date=(user.createdAt.getTime() + comment.time)
                               span.date=(val.time + comment.time+user.createdAt.getTime())
-                              -console.log('print the comment time  :', val.time + comment.time)
-                              -console.log('what is the comment timing now? : ', Date(comment.time))
-                              -console.log('and what was this before: ', (user.createdAt.getTime() + comment.time))
+                              //- -console.log('print the comment time  :', val.time + comment.time)
+                              //- -console.log('what is the comment timing now? : ', Date(comment.time))
+                              //- -console.log('and what was this before: ', (user.createdAt.getTime() + comment.time))
                               .rating
                                 if comment.liked
                                   i.red.heart.icon
@@ -548,9 +548,9 @@ block content
                             .metadata
                               //- span.date=(user.createdAt.getTime() + comment.time)
                               span.date=(val.time + comment.time+user.createdAt.getTime())
-                              -console.log('print the comment time  :', val.time + comment.time)
-                              -console.log('what is the comment timing now? : ', Date(comment.time))
-                              -console.log('and what was this before: ', (user.createdAt.getTime() + comment.time))
+                              //- -console.log('print the comment time  :', val.time + comment.time)
+                              //- -console.log('what is the comment timing now? : ', Date(comment.time))
+                              //- -console.log('and what was this before: ', (user.createdAt.getTime() + comment.time))
                               .rating
                                 if comment.liked
                                   i.red.heart.icon

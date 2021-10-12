@@ -73,8 +73,11 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const notificationController = require('./controllers/notification');
 
-userController.mailAllActiveUsers();
-userController.stillActive();
+
+// userController.mailAllActiveUsers();
+// userController.stillActive();
+// userController.mailAllActiveUsers();
+
 /**
  * API keys and Passport configuration.
  */

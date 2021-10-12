@@ -519,6 +519,7 @@ exports.getForgot = (req, res) => {
 var sendReminderEmail = function(user){
     if (!user) { return; }
     var u_name = user.profile.name || user.email || 'buddy';
+    console.log('SENDING email to: ', user.username)
     const transporter = nodemailer.createTransport({
       service: '"Mailgun"',
       auth: {
@@ -545,7 +546,7 @@ var sendReminderEmail = function(user){
     };
     transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
-              console.log(' Error occurred in sending reminders');
+              console.log(' Error occurred in sending reminders: ', user.username);
               console.log(error.message);
               return;
           }
@@ -562,10 +563,12 @@ var sendReminderEmail = function(user){
  */
 var sendFinalEmail = function(user){
     if (!user) { return; }
-    console.log("!!!!!!SENDING FINAL E_MAIL!!!!", user)
-    console.log("did it send the eamil though?")
+    // console.log("!!!!!!SENDING FINAL E_MAIL!!!!", user.username)
+    // console.log('SOMETHINE!!!! ', process.env.MAILGUN_USER, process.env.MAILGUN_PASSWORD)
+    // console.log("did it send the eamil though?")
     var u_name = user.profile.name || user.email || 'buddy';
     const transporter = nodemailer.createTransport({
+      // console.log('SOMETHINE!!!! ', process.env.MAILGUN_USER, process.env.MAILGUN_PASSWORD)
       service: '"Mailgun"',
       auth: {
         user: process.env.MAILGUN_USER,
@@ -589,7 +592,7 @@ var sendFinalEmail = function(user){
     };
     transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
-              console.log('Error occurred');
+              console.log('Error occurred in sending final email');
               console.log(error.message);
               return;
           }
@@ -606,9 +609,11 @@ var sendFinalEmail = function(user){
  */
 exports.mailAllActiveUsers = () => {
   console.log('$%^$%$#%$#$%%&^%&^%^&%&^$^%$%$^% MAILING ALL USERS NOW!!!!!!!!!!!!!!!');
-  User.find().where('active').equals(true).exec(    
+  
+  User.find().where('active').equals(true).exec(  
+
     function(err, users){
-    console.log('sending the email to users???')
+    console.log('sending the email to users:');
     
     // handle error
     if (err) {
@@ -631,6 +636,7 @@ exports.mailAllActiveUsers = () => {
  * Turn off all old accounts. Groundhog admin accounts
  */
 exports.stillActive = () => {
+
   User.find().where('active').equals(true).exec(    
     function(err, users){
     
@@ -640,7 +646,9 @@ exports.stillActive = () => {
     } else {
       // E-mail all active users
       for (var i = users.length - 1; i >= 0; i--) {
-        console.log("Looking at user "+users[i].email);      
+        console.log('what is the number of active users : ', users.length)
+        console.log("Looking at user ?+? "+users[i].email);
+
         var time_diff = Date.now() - users[i].createdAt;
         // var three_days = 259200000;
         var one_day = 86400000;
@@ -662,12 +670,12 @@ exports.stillActive = () => {
             else
             {
               users[i].active = false;
-              console.log("turning off user "+users[i].email);
+              console.log("turning off user :::: "+users[i].email);
               sendFinalEmail(users[i]);
 
               users[i].save((err) => {
                 if (err) { return next(err); }
-              console.log("Success in turning off");
+              console.log("Success in turning off!!!@@@@");
               });
             }
         }
