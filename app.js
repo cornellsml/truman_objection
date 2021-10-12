@@ -18,6 +18,8 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
+// see if we can check their status several times a day? every 3 or 4 hours..
+// emails.. create a user.. run the schedule function...
 var schedule = require('node-schedule');
 
 mongoose.set('useNewUrlParser', true);
@@ -88,7 +90,7 @@ app.use(express.session());
  */
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.mongolab_uri_test, { useNewUrlParser: true });
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
@@ -101,7 +103,7 @@ mongoose.connection.on('error', (err) => {
 ** Mailing Users
 */
 var rule = new schedule.RecurrenceRule();
-rule.hour = 4;
+rule.hour = 2;
 rule.minute = 55;
  
 var j = schedule.scheduleJob(rule, function(){
@@ -109,6 +111,47 @@ var j = schedule.scheduleJob(rule, function(){
   console.log('@@@@@@######@@@@@@@@Sending Mail to All ACTIVE USERS!!!!!');
   console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
   userController.mailAllActiveUsers();
+}); 
+
+
+var rule1 = new schedule.RecurrenceRule();
+rule1.hour = 4;
+rule1.minute = 55;
+ 
+var j1 = schedule.scheduleJob(rule1, function(){
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  console.log('@@@@@@######@@@@@@@@Sending Mail to All ACTIVE USERS!!!!!');
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  userController.mailAllActiveUsers();
+}); 
+
+var rule2 = new schedule.RecurrenceRule();
+rule2.hour = 6;
+rule2.minute = 55;
+ 
+var j2 = schedule.scheduleJob(rule2, function(){
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  console.log('@@@@@@######@@@@@@@@Sending Mail to All ACTIVE USERS!!!!!');
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  userController.mailAllActiveUsers();
+}); 
+
+
+
+
+/****
+**CRON JOBS 
+**Check if users are still active 12 and 20
+*/
+var rule0 = new schedule.RecurrenceRule();
+rule0.hour = 2;
+rule0.minute = 30;
+ 
+var j0 = schedule.scheduleJob(rule0, function(){
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  console.log('@@@@@@######@@@@@@@@Checking if Users are active!!!!!');
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  userController.stillActive();
 }); 
 
 
@@ -127,36 +170,61 @@ var j = schedule.scheduleJob(rule1, function(){
   userController.stillActive();
 }); 
 
-/****
-**CRON JOBS 
-**Check if users are still active 12 and 20
-*/
-var rule2 = new schedule.RecurrenceRule();
-rule2.hour = 12;
-rule2.minute = 30;
- 
-var j2 = schedule.scheduleJob(rule2, function(){
-  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
-  console.log('@@@@@@######@@@@@@@@2222 Checking if Users are active 2222!!!!!');
-  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
-  userController.stillActive();
-}); 
 
 /****
 **CRON JOBS 
 **Check if users are still active 12 and 20
 */
-var rule3 = new schedule.RecurrenceRule();
-rule3.hour = 20;
-rule3.minute = 30;
+var rule2 = new schedule.RecurrenceRule();
+rule2.hour = 6;
+rule2.minute = 30;
  
-var j3 = schedule.scheduleJob(rule3, function(){
+
+// 
+var j2 = schedule.scheduleJob(rule2, function(){
   console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
   console.log('@@@@@@######@@@@@@@@3333 Checking if Users are active 3333!!!!!');
   console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
   userController.stillActive();
 }); 
 
+
+var rule3 = new schedule.RecurrenceRule();
+rule3.hour = 8;
+rule3.minute = 30;
+ 
+var j3 = schedule.scheduleJob(rule3, function(){
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  console.log('@@@@@@######@@@@@@@@Checking if Users are active!!!!!');
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  userController.stillActive();
+}); 
+
+/****
+**CRON JOBS 
+**Check if users are still active 12 and 20
+*/
+var rule4 = new schedule.RecurrenceRule();
+rule4.hour = 10;
+rule4.minute = 30;
+ 
+var j4= schedule.scheduleJob(rule4, function(){
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  console.log('@@@@@@######@@@@@@@@2222 Checking if Users are active 2222!!!!!');
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  userController.stillActive();
+}); 
+
+var rule5 = new schedule.RecurrenceRule();
+rule5.hour = 12;
+rule5.minute = 30;
+ 
+var j5 = schedule.scheduleJob(rule5, function(){
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  console.log('@@@@@@######@@@@@@@@2222 Checking if Users are active 2222!!!!!');
+  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+  userController.stillActive();
+}); 
 
 /**
  * Express configuration.
@@ -183,7 +251,7 @@ app.use(session({
   },
   secret: process.env.SESSION_SECRET,
   store: new MongoStore({
-    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
+    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.mongolab_uri_test,
     autoReconnect: true,
     clear_interval: 3600
   })
