@@ -1,0 +1,10 @@
+mongolab_uri_test="mongodb+srv://Norm:thinkblue@cluster0.ax9cb.mongodb.net/norm"
+
+
+
+POST_SURVEY=https://lehigh.co1.qualtrics.com/jfe/form/SV_9GeiByfJ5CpNW4K
+=
+
+MONGODB_URI='mongodb+srv://Norm:thinkblue@cluster0.ax9cb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+
+MONGOLAB_URI='mongodb+srv://Norm:thinkblue@cluster0.ax9cb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'

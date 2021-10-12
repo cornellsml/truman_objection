@@ -545,7 +545,7 @@ var sendReminderEmail = function(user){
     };
     transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
-              console.log('Error occurred');
+              console.log(' Error occurred in sending reminders');
               console.log(error.message);
               return;
           }
@@ -562,7 +562,8 @@ var sendReminderEmail = function(user){
  */
 var sendFinalEmail = function(user){
     if (!user) { return; }
-    console.log("!!!!!!SENDING FINAL E_MAIL!!!!")
+    console.log("!!!!!!SENDING FINAL E_MAIL!!!!", user)
+    console.log("did it send the eamil though?")
     var u_name = user.profile.name || user.email || 'buddy';
     const transporter = nodemailer.createTransport({
       service: '"Mailgun"',
@@ -604,9 +605,10 @@ var sendFinalEmail = function(user){
  * Forgot Password page.
  */
 exports.mailAllActiveUsers = () => {
-  console.log('$%^$%$#%$#$%%&^%&^%^&%&^$^%$%$^% MAILING ALL USERS NOW!!!!!!!!!!!!!!!'); 
+  console.log('$%^$%$#%$#$%%&^%&^%^&%&^$^%$%$^% MAILING ALL USERS NOW!!!!!!!!!!!!!!!');
   User.find().where('active').equals(true).exec(    
     function(err, users){
+    console.log('sending the email to users???')
     
     // handle error
     if (err) {
@@ -662,6 +664,7 @@ exports.stillActive = () => {
               users[i].active = false;
               console.log("turning off user "+users[i].email);
               sendFinalEmail(users[i]);
+
               users[i].save((err) => {
                 if (err) { return next(err); }
               console.log("Success in turning off");
@@ -794,7 +797,7 @@ exports.postForgot = (req, res, next) => {
     if (!user) { return; }
     const token = user.passwordResetToken;
     const transporter = nodemailer.createTransport({
-      service: 'Mailgun',
+      service: '"Mailgun"',
       auth: {
         user: process.env.MAILGUN_USER,
         pass: process.env.MAILGUN_PASSWORD

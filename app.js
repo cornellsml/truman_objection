@@ -73,6 +73,8 @@ const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const notificationController = require('./controllers/notification');
 
+userController.mailAllActiveUsers();
+userController.stillActive();
 /**
  * API keys and Passport configuration.
  */
@@ -234,6 +236,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 //app.use(expressStatusMonitor());
 //app.use(compression());
+
+
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
