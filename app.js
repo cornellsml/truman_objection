@@ -95,7 +95,7 @@ app.use(express.session());
  */
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.mongolab_uri_test, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI, { useNewUrlParser: true });
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
@@ -259,7 +259,7 @@ app.use(session({
   },
   secret: process.env.SESSION_SECRET,
   store: new MongoStore({
-    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.mongolab_uri_test,
+    url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
     autoReconnect: true,
     clear_interval: 3600
   })
