@@ -77,6 +77,7 @@ const notificationController = require('./controllers/notification');
 // userController.mailAllActiveUsers();
 // userController.stillActive();
 // userController.mailAllActiveUsers();
+// userController.stillActive()
 
 /**
  * API keys and Passport configuration.
