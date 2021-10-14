@@ -132,7 +132,7 @@ var j1 = schedule.scheduleJob(rule1, function(){
 }); 
 
 var rule2 = new schedule.RecurrenceRule();
-rule2.hour = 6;
+rule2.hour = 10;
 rule2.minute = 55;
  
 var j2 = schedule.scheduleJob(rule2, function(){
@@ -143,27 +143,27 @@ var j2 = schedule.scheduleJob(rule2, function(){
 }); 
 
 
-var rule3 = new schedule.RecurrenceRule();
-rule3.hour = 8;
-rule3.minute = 55;
+// var rule3 = new schedule.RecurrenceRule();
+// rule3.hour = 8;
+// rule3.minute = 55;
  
-var j3 = schedule.scheduleJob(rule3, function(){
-  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
-  console.log('@@@@@@######@@@@@@@@Sending Mail to All ACTIVE USERS!!!!!');
-  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
-  userController.mailAllActiveUsers();
-}); 
+// var j3 = schedule.scheduleJob(rule3, function(){
+//   console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+//   console.log('@@@@@@######@@@@@@@@Sending Mail to All ACTIVE USERS!!!!!');
+//   console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+//   userController.mailAllActiveUsers();
+// }); 
 
-var rule4 = new schedule.RecurrenceRule();
-rule4.hour = 10;
-rule4.minute = 55;
+// var rule4 = new schedule.RecurrenceRule();
+// rule4.hour = 10;
+// rule4.minute = 55;
  
-var j4 = schedule.scheduleJob(rule4, function(){
-  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
-  console.log('@@@@@@######@@@@@@@@Sending Mail to All ACTIVE USERS!!!!!');
-  console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
-  userController.mailAllActiveUsers();
-}); 
+// var j4 = schedule.scheduleJob(rule4, function(){
+//   console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+//   console.log('@@@@@@######@@@@@@@@Sending Mail to All ACTIVE USERS!!!!!');
+//   console.log('@@@@@@######@@@@@@@@#########@@@@@@@@@@@@########');
+//   userController.mailAllActiveUsers();
+// }); 
 
 
 var rule5 = new schedule.RecurrenceRule();
