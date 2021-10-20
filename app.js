@@ -18,6 +18,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
+
 // see if we can check their status several times a day? every 3 or 4 hours..
 // emails.. create a user.. run the schedule function...
 var schedule = require('node-schedule');
@@ -312,6 +313,7 @@ app.use((req, res, next) => {
     next();
   } else {
     lusca.csrf()(req, res, next);
+    console.log('Removed CSRF!!!');
   }
 });
 
@@ -346,7 +348,7 @@ app.use((req, res, next) => {
   next();
 });
 
-var csrf = lusca({ csrf: true });
+// var csrf = lusca({ csrf: true });
 
 function check(req, res, next) {
     console.log("@@@@@@@@@@@@Body is now ");
@@ -368,9 +370,9 @@ app.get('/', passportConfig.isAuthenticated, scriptController.getScript);
 
 app.get('/newsfeed/:caseId', scriptController.getScriptFeed);
 
-app.post('/post/new', userpostupload.single('picinput'), check, csrf, scriptController.newPost);
+app.post('/post/new', userpostupload.single('picinput'), check, scriptController.newPost);
 
-app.post('/account/profile', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, csrf, userController.postUpdateProfile);
+app.post('/account/profile', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, userController.postUpdateProfile);
 //app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
 
 // Zhila
@@ -448,9 +450,9 @@ app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
 
 app.get('/account/signup_info', passportConfig.isAuthenticated, userController.getSignupInfo);
-app.post('/account/signup_info_post', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, csrf, userController.postSignupInfo);
+app.post('/account/signup_info_post', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, userController.postSignupInfo);
 
-app.post('/account/profile', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, csrf, userController.postUpdateProfile);
+app.post('/account/profile', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, userController.postUpdateProfile);
 
 
 app.get('/account', passportConfig.isAuthenticated, userController.getAccount);

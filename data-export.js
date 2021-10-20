@@ -67,7 +67,7 @@ mongoose.Promise = global.Promise;
 
 //mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
 //mongoose.connect(process.env.MONGOLAB_TEST || process.env.PRO_MONGOLAB_URI, { useMongoClient: true });
-mongoose.connect(process.env.MONGOLAB_TEST || process.env.PRO_MONGOLAB_URI || process.env.mongolab_uri_test, { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || process.env.mongolab_uri_test, { useNewUrlParser: true });
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
@@ -77,7 +77,7 @@ mongoose.connection.on('error', (err) => {
 
 
 User.find()
-  .where('active').equals(false)
+  // .where('active').equals(false)
   .populate({ 
          path: 'feedAction.post',
          model: 'Script',
@@ -95,7 +95,7 @@ User.find()
 
       for (var i = users.length - 1; i >= 0; i--) 
       {
-
+        console.log('total number of users is: ', users.length)
         var mlm = {};
         var sur = {};
         var sums = {};
