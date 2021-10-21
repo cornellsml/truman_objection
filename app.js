@@ -306,16 +306,16 @@ app.use(flash());
 
 
 
-app.use((req, res, next) => {
-  if ((req.path === '/api/upload') || (req.path === '/post/new') || (req.path === '/account/profile') || (req.path === '/account/signup_info_post')) {
-    console.log("Not checking CSRF - out path now");
-    //console.log("@@@@@request is " + req);
-    next();
-  } else {
-    lusca.csrf()(req, res, next);
-    console.log('Removed CSRF!!!');
-  }
-});
+// app.use((req, res, next) => {
+//   if ((req.path === '/api/upload') || (req.path === '/post/new') || (req.path === '/account/profile') || (req.path === '/account/signup_info_post')) {
+//     console.log("Not checking CSRF - out path now");
+//     //console.log("@@@@@request is " + req);
+//     next();
+//   } else {
+//     // lusca.csrf()(req, res, next);
+//     console.log('Removed CSRF!!!');
+//   }
+// });
 
 //app.use(lusca.xframe('SAMEORIGIN'));
 //allow-from https://example.com/
