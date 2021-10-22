@@ -7,32 +7,6 @@ block content
 
   //-Change this URI to a CDN you are using for Photos
   -var cdn = "https://normalizationtruman.s3.us-east-2.amazonaws.com";
-  //- -var cdn = "";
-  //- Adding the community's rules on the top of the feed
-  //- .fluid.sticky
-  //-   .computer.only.tablet.only.row
-  //-     .ui.container
-  //-       #example2.ui.inverted.tertiary.red.segment
-  //-         //- .container(style='margin:1.5em 1.5em 1.5em 325px')
-  //-         //- h3.ui.header Stuck Content
-  //-         //- .ui.sticky(style='')
-  //-         .ui.divided.items
-  //-           .item
-  //-             .ui.tiny.image
-  //-               img.ui.tiny.image(src='/public/logo.png', id='logo')
-  //-             .middle.aligned.content
-  //-               h3.ui.header  Community's rules!
-  //-         //- h3.ui.header
-  //-         .ui.text.container
-  //-         //- h3 Community's rules!
-        
-  //-         h4.ul
-  //-             li We're a global community of many types of people, who all have the right to feel comfortable and who may not think what you think, believe what you believe, or see what you see. So, be polite and respectful in your interactions with other members.
-
-  //-             li The opinions expressed here are not necessarily the opinions of EatSnap.Love and we assume no responsibility for such content. Everyone has the right to freedom of opinion and expression.
-
-
-
 
 
 
@@ -247,34 +221,33 @@ block content
           if (val.comments.length > 0)
             .content
               .ui.comments
-                each comment in val.comments
-                  //-IF this comment is USER made, do this
-                  // if (user.group == 'des_80' && comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || (comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20-injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1) 
-                  if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
-                    if (user.createdAt.getTime() + comment.time) < Date.now()
-                      -console.log('what does this object have after updates and populate: ', comment);
-                      if comment.new_comment
-                        -console.log("New COMMENT AREA");
-                        .comment(commentID=comment.new_comment_id)
-                          a.avatar.image(href='/me')
-                            if user.profile.picture
-                              img(src='/user_post/'+user.profile.picture)
-                            else
-                              img(src=user.gravatar(60))
-                          .content
-                            a.author(href='/me')=user.profile.name || user.username || user.id
-                            .metadata
-                              span.date=(user.createdAt.getTime() + comment.time)
-                              .rating
-                                i.heart.icon
-                                span.num=0
-                                |  Likes
-                            .text=comment.body
-                            .actions
-                              a.like.comment Like
-                              a.flag.comment Flag
+                each comment in val.comments    
+                  if (user.createdAt.getTime() + comment.time) < Date.now()
+                    -console.log('what does this object have after updates and populate: ', comment);
+                    if comment.new_comment
+                      -console.log("New COMMENT AREA");
+                      .comment(commentID=comment.new_comment_id)
+                        a.avatar.image(href='/me')
+                          if user.profile.picture
+                            img(src='/user_post/'+user.profile.picture)
+                          else
+                            img(src=user.gravatar(60))
+                        .content
+                          a.author(href='/me')=user.profile.name || user.username || user.id
+                          .metadata
+                            span.date=(user.createdAt.getTime() + comment.time)
+                            .rating
+                              i.heart.icon
+                              span.num=0
+                              |  Likes
+                          .text=comment.body
+                          .actions
+                            a.like.comment Like
+                            a.flag.comment Flag
                       //- Else this is a normal comment from the script
-                      else
+                    else
+                      if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
+
                         .comment(commentID=comment.id)
                           a.avatar(href='/user/'+comment.actor.username)
                             //-img(src=cdn+'/profile_pictures/'+comment.actor.profile.picture)                       
@@ -373,34 +346,34 @@ block content
                   if (val.time + comment.time) < Date.now()
                     //- here I add this!
                     // if (user.group == 'des_80' && comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || ( comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20-injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1) 
-                    if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
 
-                      if comment.new_comment
-                        -console.log("New COMMENT AREA");
-                        .comment(commentID=comment.new_comment_id)
-                          a.avatar.image(href='/me')
-                            if user.profile.picture
-                              img(src='/user_post/'+user.profile.picture)
-                            else
-                              img(src=user.gravatar(60))
-                          .content
-                            a.author(href='/me')=user.profile.name || user.username || user.id
-                            .metadata
-                              //- check this part as well.. 
-                              //- span.date=(user.createdAt.getTime() + comment.time)
-                              span.date=(user.createdAt.getTime() +comment.time)
-                              //- span.date=(val.time + comment.time +user.createdAt.getTime())
-                              -console.log('what is this span date????? : ', (val.time + comment.time))
-                              .rating
-                                i.heart.icon
-                                span.num=0
-                                |  Likes
-                            .text=comment.body
-                            .actions
-                              a.like.comment Like
-                              a.flag.comment Flag
+                    if comment.new_comment
+                      -console.log("New COMMENT AREA");
+                      .comment(commentID=comment.new_comment_id)
+                        a.avatar.image(href='/me')
+                          if user.profile.picture
+                            img(src='/user_post/'+user.profile.picture)
+                          else
+                            img(src=user.gravatar(60))
+                        .content
+                          a.author(href='/me')=user.profile.name || user.username || user.id
+                          .metadata
+                            //- check this part as well.. 
+                            //- span.date=(user.createdAt.getTime() + comment.time)
+                            span.date=(user.createdAt.getTime() +comment.time)
+                            //- span.date=(val.time + comment.time +user.createdAt.getTime())
+                            -console.log('what is this span date????? : ', (val.time + comment.time))
+                            .rating
+                              i.heart.icon
+                              span.num=0
+                              |  Likes
+                          .text=comment.body
+                          .actions
+                            a.like.comment Like
+                            a.flag.comment Flag
                       //- Else this is a normal comment from the script
-                      else
+                    else
+                      if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
                         .comment(commentID=comment.id)
                           a.avatar(href='/user/'+comment.actor.username)
                             //-img(src=cdn+'/profile_pictures/'+comment.actor.profile.picture)                       
@@ -500,34 +473,35 @@ block content
                     //- here I add this!
                     //- if (user.group == 'des_80' && comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || ( comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20-injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1) 
 
-                    if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
+                  
 
-                      if comment.new_comment
-                        -console.log("New COMMENT AREA");
-                        .comment(commentID=comment.new_comment_id)
-                          a.avatar.image(href='/me')
-                            if user.profile.picture
-                              img(src='/user_post/'+user.profile.picture)
-                            else
-                              img(src=user.gravatar(60))
-                          .content
-                            a.author(href='/me')=user.profile.name || user.username || user.id
-                            .metadata
-                              //- check this part as well.. 
-                              //- span.date=(user.createdAt.getTime() + comment.time)
-                              span.date=(user.createdAt.getTime() +comment.time)
-                              //- span.date=(val.time + comment.time +user.createdAt.getTime())
-                              -console.log('what is this span date????? : ', (val.time + comment.time))
-                              .rating
-                                i.heart.icon
-                                span.num=0
-                                |  Likes
-                            .text=comment.body
-                            .actions
-                              a.like.comment Like
-                              a.flag.comment Flag
+                    if comment.new_comment
+                      -console.log("New COMMENT AREA");
+                      .comment(commentID=comment.new_comment_id)
+                        a.avatar.image(href='/me')
+                          if user.profile.picture
+                            img(src='/user_post/'+user.profile.picture)
+                          else
+                            img(src=user.gravatar(60))
+                        .content
+                          a.author(href='/me')=user.profile.name || user.username || user.id
+                          .metadata
+                            //- check this part as well.. 
+                            //- span.date=(user.createdAt.getTime() + comment.time)
+                            span.date=(user.createdAt.getTime() +comment.time)
+                            //- span.date=(val.time + comment.time +user.createdAt.getTime())
+                            -console.log('what is this span date????? : ', (val.time + comment.time))
+                            .rating
+                              i.heart.icon
+                              span.num=0
+                              |  Likes
+                          .text=comment.body
+                          .actions
+                            a.like.comment Like
+                            a.flag.comment Flag
                       //- Else this is a normal comment from the script
-                      else
+                    else
+                      if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
                         .comment(commentID=comment.id)
                           a.avatar(href='/user/'+comment.actor.username)
                             //-img(src=cdn+'/profile_pictures/'+comment.actor.profile.picture)                       

@@ -8,31 +8,6 @@ block content
   //-Change this URI to a CDN you are using for Photos
   -var cdn = "https://normalizationtruman.s3.us-east-2.amazonaws.com";
   // -var cdn ="";
-  //- Adding the community's rules on the top of the feed
-  //- .fluid.sticky
-  //-   .computer.only.tablet.only.row
-  //-     .ui.container
-  //-       #example2.ui.inverted.tertiary.red.segment
-  //-         //- .container(style='margin:1.5em 1.5em 1.5em 325px')
-  //-         //- h3.ui.header Stuck Content
-  //-         //- .ui.sticky(style='')
-  //-         .ui.divided.items
-  //-           .item
-  //-             .ui.tiny.image
-  //-               img.ui.tiny.image(src='/public/logo.png', id='logo')
-  //-             .middle.aligned.content
-  //-               h3.ui.header  Community's rules!
-  //-         //- h3.ui.header
-  //-         .ui.text.container
-  //-         //- h3 Community's rules!
-        
-  //-         h4.ul
-  //-             li We're a global community of many types of people, who all have the right to feel comfortable and who may not think what you think, believe what you believe, or see what you see. So, be polite and respectful in your interactions with other members.
-
-  //-             li The opinions expressed here are not necessarily the opinions of EatSnap.Love and we assume no responsibility for such content. Everyone has the right to freedom of opinion and expression.
-
-
-
 
 
 
@@ -253,34 +228,35 @@ block content
                   //-IF this comment is USER made, do this                  
                   if (val.time + comment.time) < Date.now()
                     //- here I add this!
-                    if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || (user.group == 'r_60' && comment.des_60 == 1) || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
+                  
 
-                      if comment.new_comment
-                        -console.log("New COMMENT AREA");
-                        .comment(commentID=comment.new_comment_id)
-                          a.avatar.image(href='/me')
-                            if user.profile.picture
-                              img(src='/user_post/'+user.profile.picture)
-                            else
-                              img(src=user.gravatar(60))
-                          .content
-                            a.author(href='/me')=user.profile.name || user.username || user.id
-                            .metadata
-                              //- check this part as well.. 
-                              //- span.date=(user.createdAt.getTime() + comment.time)
-                              span.date=(user.createdAt.getTime() +comment.time)
-                              //- span.date=(val.time + comment.time +user.createdAt.getTime())
-                              -console.log('what is this span date????? : ', (val.time + comment.time))
-                              .rating
-                                i.heart.icon
-                                span.num=0
-                                |  Likes
-                            .text=comment.body
-                            .actions
-                              a.like.comment Like
-                              a.flag.comment Flag
+                    if comment.new_comment
+                      -console.log("New COMMENT AREA");
+                      .comment(commentID=comment.new_comment_id)
+                        a.avatar.image(href='/me')
+                          if user.profile.picture
+                            img(src='/user_post/'+user.profile.picture)
+                          else
+                            img(src=user.gravatar(60))
+                        .content
+                          a.author(href='/me')=user.profile.name || user.username || user.id
+                          .metadata
+                            //- check this part as well.. 
+                            //- span.date=(user.createdAt.getTime() + comment.time)
+                            span.date=(user.createdAt.getTime() +comment.time)
+                            //- span.date=(val.time + comment.time +user.createdAt.getTime())
+                            -console.log('what is this span date????? : ', (val.time + comment.time))
+                            .rating
+                              i.heart.icon
+                              span.num=0
+                              |  Likes
+                          .text=comment.body
+                          .actions
+                            a.like.comment Like
+                            a.flag.comment Flag
                       //- Else this is a normal comment from the script
-                      else
+                    else
+                      if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || (user.group == 'r_60' && comment.des_60 == 1) || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
                         .comment(commentID=comment.id)
                           a.avatar(href='/user/'+comment.actor.username)
                             //-img(src=cdn+'/profile_pictures/'+comment.actor.profile.picture)                       
@@ -377,35 +353,34 @@ block content
                 each comment in val.comments
                   //-IF this comment is USER made, do this                  
                   if (val.time + comment.time) < Date.now()
-                    //- here I add this!
-                    if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || (user.group == 'r_60' && comment.des_60 == 1)  || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
-
-                      if comment.new_comment
-                        -console.log("Do we have New COMMENT AREA");
-                        .comment(commentID=comment.new_comment_id)
-                          a.avatar.image(href='/me')
-                            if user.profile.picture
-                              img(src='/user_post/'+user.profile.picture)
-                            else
-                              img(src=user.gravatar(60))
-                          .content
-                            a.author(href='/me')=user.profile.name || user.username || user.id
-                            .metadata
-                              //- check this part as well.. 
-                              //- span.date=(user.createdAt.getTime() + comment.time)
-                              span.date=(user.createdAt.getTime() +comment.time)
-                              //- span.date=(val.time + comment.time +user.createdAt.getTime())
-                              -console.log('what is this span date????? : ', (val.time + comment.time))
-                              .rating
-                                i.heart.icon
-                                span.num=0
-                                |  Likes
-                            .text=comment.body
-                            .actions
-                              a.like.comment Like
-                              a.flag.comment Flag
+                    if comment.new_comment
+                      -console.log("Do we have New COMMENT AREA");
+                      .comment(commentID=comment.new_comment_id)
+                        a.avatar.image(href='/me')
+                          if user.profile.picture
+                            img(src='/user_post/'+user.profile.picture)
+                          else
+                            img(src=user.gravatar(60))
+                        .content
+                          a.author(href='/me')=user.profile.name || user.username || user.id
+                          .metadata
+                            //- check this part as well.. 
+                            //- span.date=(user.createdAt.getTime() + comment.time)
+                            span.date=(user.createdAt.getTime() +comment.time)
+                            //- span.date=(val.time + comment.time +user.createdAt.getTime())
+                            -console.log('what is this span date????? : ', (val.time + comment.time))
+                            .rating
+                              i.heart.icon
+                              span.num=0
+                              |  Likes
+                          .text=comment.body
+                          .actions
+                            a.like.comment Like
+                            a.flag.comment Flag
                       //- Else this is a normal comment from the script
-                      else
+                    else
+                      //- here I add this!
+                      if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || (user.group == 'r_60' && comment.des_60 == 1)  || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
                         .comment(commentID=comment.id)
                           a.avatar(href='/user/'+comment.actor.username)
                             //-img(src=cdn+'/profile_pictures/'+comment.actor.profile.picture)                       
@@ -504,36 +479,6 @@ block content
         input.ui.green.button(type='submit', name="foo", value='Submit', form='postform')
 
   
-  //- .computer.only.tablet.only.five.wide.column 
-  //-   .sticky
-  //-     .ui.card
-  //-       //- #example2.ui.inverted.tertiary.blue.segment
-  //-       #example2.ui.inverted.tertiary.yellow.segment
-  //-         //- .container(style='margin:1.5em 1.5em 1.5em 325px')
-  //-         //- h3.ui.header Stuck Content
-  //-         //- .ui.sticky(style='')
-  //-         .ui.divided.items
-  //-           .item
-  //-             .ui.tiny.image
-  //-               img.ui.tiny.image(src='/public/logo.png', id='logo')
-  //-             .middle.aligned.content
-  //-               h3.ui.header  Community's rules!
-  //-         h3.ui.header
-  //-           .ui.text.container
-  //-             //- h3 Community's rules!
-            
-  //-           h4.ul
-  //-               //- li(style='font-style: italic;font-size:15px; color:black') We're a global community of many types of people, who all have the right to feel comfortable and who may not think what you think, believe what you believe, or see what you see. So, be polite and respectful in your interactions with other members.
-
-  //-               //- li The opinions expressed here are not necessarily the opinions of EatSnap.Love and we assume no responsibility for such content. Everyone has the right to freedom of opinion and expression.
-
-  //-               li(style='font-style: italic;font-size:18px; color:black; line-height: 1.4') We're a global community of many types of people. Please be polite and respectful in your interactions with other members.
-  //-               br
-  //-               li(style='font-style: italic;font-size:18px; color:black; line-height: 1.4') We're a community who trust sciecne, do not spread health misinformation.
-  //-               br
-  //-               li(style='font-style: italic;font-size:18px; color:black; line-height: 1.4') If you see rule violation, please flag the post and our moderators will take action to remove the content. (Add the email here)
-  //-               br
-  //-               li(style='font-style: italic;font-size:18px; color:black; line-height: 1.4') Please don&#39t call out other users. If you need moderator support regarding another user or group please flag their posts instead.
 
 
 
