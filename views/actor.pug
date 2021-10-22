@@ -91,29 +91,30 @@ block content
                 each comment in val.comments
                   //-IF this comment is USER made, do this
                   if ((user.createdAt.getTime() + comment.time) < Date.now() && (!comment.flagged))
-                    if (user.group == 'des_80' && comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || ( comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20-injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1)
-                      if comment.new_comment
-                        -console.log("New COMMENT AREA");
-                        .comment(commentID=comment.new_comment_id)
-                          a.avatar.image(href='/me')
-                            if user.profile.picture
-                              img(src='/user_post/'+user.profile.picture)
-                            else
-                              img(src=user.gravatar(60))
-                          .content
-                            a.author(href='/me')=user.profile.name || user.username || user.id
-                            .metadata
-                              span.date=(user.createdAt.getTime() + comment.time)
-                              .rating
-                                i.heart.icon
-                                span.num=0
-                                |  Likes
-                            .text=comment.body
-                            .actions
-                              a.like.comment Like
-                              a.flag.comment Flag
+                    
+                    if comment.new_comment
+                      -console.log("New COMMENT AREA");
+                      .comment(commentID=comment.new_comment_id)
+                        a.avatar.image(href='/me')
+                          if user.profile.picture
+                            img(src='/user_post/'+user.profile.picture)
+                          else
+                            img(src=user.gravatar(60))
+                        .content
+                          a.author(href='/me')=user.profile.name || user.username || user.id
+                          .metadata
+                            span.date=(user.createdAt.getTime() + comment.time)
+                            .rating
+                              i.heart.icon
+                              span.num=0
+                              |  Likes
+                          .text=comment.body
+                          .actions
+                            a.like.comment Like
+                            a.flag.comment Flag
                       //- Else this is a normal comment from the script
-                      else
+                    else
+                      if (user.group == 'des_80' && comment.des_80 == 1) || (user.group == 'des_20' && comment.des_20 == 1) || ( comment.control == 1) || (user.group == 'des_20_community_injunctive' && comment.des_20_community_injunctive == 1) ||(user.group == 'des_80_community_injunctive' && comment.des_80_community_injunctive == 1) ||(user.group == 'des_20-injunctive_platform' && comment.des_20-injunctive_platform == 1) || (user.group == 'des_80_injunctive_platform' && comment.des_80_injunctive_platform == 1)
                         .comment(commentID=comment.id)
                           a.avatar(href='/user/'+comment.actor.username)
                             img(src='/profile_pictures/'+comment.actor.profile.picture)
