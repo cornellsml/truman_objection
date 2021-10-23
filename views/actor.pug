@@ -90,7 +90,7 @@ block content
               .ui.comments
                 each comment in val.comments
                   //-IF this comment is USER made, do this
-                  if ((user.createdAt.getTime() + comment.time) < Date.now() && (!comment.flagged))
+                  if ((val.time + comment.time) < Date.now() && (!comment.flagged))
                     if comment.new_comment
                       -console.log("New COMMENT AREA");
                       .comment(commentID=comment.new_comment_id)
@@ -114,6 +114,7 @@ block content
                       //- Else this is a normal comment from the script
                     else
                       if (user.group == 'r_5' && comment.des_5 == 1) || (user.group == 'r_30' && comment.des_30 == 1) || (user.group == 'r_60' && comment.des_60 == 1)  || ( comment.control == 1) || (user.group == 'des_5_community_comments' && comment.des_5_community_comments == 1) ||(user.group == 'des_30_community_comments' && comment.des_30_community_comments == 1) ||(user.group == 'des_60_community_comments' && comment.des_60_community_comments == 1) || (user.group == 'des_5_rules_comments' && comment.des_5_rules_comments == 1) || (user.group == 'des_30_rules_comments' && comment.des_30_rules_comments == 1) ||(user.group == 'des_60_rules_comments' && comment.des_60_rules_comments == 1) || (user.group =='r5_rules_noComments' && comment.r5_rules_noComments ==1) || (user.group =='r30_rules_noComments' && comment.r30_rules_noComments ==1) || (user.group =='r60_rules_noComments' && comment.r60_rules_noComments ==1)
+                        
                         .comment(commentID=comment.id)
                           a.avatar(href='/user/'+comment.actor.username)
                             img(src='/profile_pictures/'+comment.actor.profile.picture)
