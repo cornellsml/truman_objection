@@ -155,6 +155,11 @@ $(window).on("load", function() {
     // (Click) reply COMMENT 
     $("a.reply").click(openCommentReply);
 
+    // Focuses cursor to new comment input field, if the "Reply" button is clicked
+    $(".reply.button").click(function() {
+        $("textarea.newComment")[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+        // $("textarea.newComment").focus();
+    });
     // $("input.newcomment").keyup(function(event) {
     //     //i.big.send.link.icon
     //     //$(this).siblings( "i.big.send.link.icon")
