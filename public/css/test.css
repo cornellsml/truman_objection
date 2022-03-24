@@ -1,0 +1,32 @@
+.ui.fluid.card>.content>.description>p {
+    font-size: 1.2em;
+}
+
+.ui.five.bottom.attached.buttons.large {
+    background-color: #e0e1e2;
+}
+
+.ui.upvote.button,
+.ui.downvote.button,
+.ui.flag.button,
+.ui.share.button {
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+
+.pointing.label {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.ui.downvote.button {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+.ui.comments,
+.ui.comments>h3 {
+    font-size: 1.2em;
+}
