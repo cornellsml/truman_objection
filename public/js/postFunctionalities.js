@@ -117,8 +117,7 @@ function openCommentReply(e) {
         const comment_section = (
             `<form class="ui reply form">
                 <div class="field">
-                    <textarea>
-                    </textarea>
+                    <textarea></textarea>
                 </div>
                 <div class="ui blue labeled submit icon button">
                     <i class="icon edit"></i> Reply to ${reply_to}
@@ -126,6 +125,39 @@ function openCommentReply(e) {
             </form>`
         );
         $(comment_section).insertAfter(target).hide().show(400)[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+    }
+}
+
+function addNewComment(e) {
+    console.log("New COmment")
+    let target = $(e.target);
+    const form = target.parents("form.ui.reply.form");
+    const text = form.find("textarea.newcomment").val();
+    let orig_comment = form.parents(".comment").first();
+    // no comments area - add it
+    if (!orig_comment.find('.comments').length) {
+        const actions = card.find(".actions").first();
+        actions.after('<div class="ui comments">');
+        comments = actions.siblings(".ui.comments");
+    }
+    if (text.trim() !== "") {
+        const mess =
+            `<div class="comment">
+                <a class="avatar"> 
+                    <img src="/public/profile_pictures/genericphoto1.png"> 
+                </a>
+                <div class="content">
+                    <a class="author">Guest</a>
+                    <div class="metadata">
+                        <span class="date">Just now</span>
+                        <i class="heart icon"></i> 0 Likes
+                    </div>
+                    <div class="text">${text}</div>
+                </div>
+            </div>`;
+
+        card.find("textarea.newcomment").val("");
+        comments.append(mess);
     }
 }
 
@@ -160,6 +192,9 @@ $(window).on("load", function() {
         $("textarea.newComment")[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
         // $("textarea.newComment").focus();
     });
+    // create a new Comment
+    // $(".ui.blue.labeled.submit.icon.button").click(addNewComment);
+
     // $("input.newcomment").keyup(function(event) {
     //     //i.big.send.link.icon
     //     //$(this).siblings( "i.big.send.link.icon")
