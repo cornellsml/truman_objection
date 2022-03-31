@@ -1,3 +1,12 @@
+function changeColor(e) {
+    let target = $(e.target);
+    if (target.val().trim() !== "") {
+        target.parents(".ui.form").children('.ui.submit.button').addClass("blue");
+    } else {
+        target.parents(".ui.form").children('.ui.submit.button').removeClass("blue");
+    }
+}
+
 // ****** actions on main post *******
 function likePost(e) {
     let target = $(e.target).closest('.ui.upvote.button');
@@ -20,7 +29,7 @@ function likePost(e) {
 };
 
 function dislikePost(e) {
-    let target = $(e.target).closest('.ui.downvote.button');;
+    let target = $(e.target).closest('.ui.downvote.button');
     if (target.hasClass("red")) {
         target.removeClass("red");
         const label = target.siblings("a.ui.basic.red.left.pointing.label");
@@ -39,8 +48,56 @@ function dislikePost(e) {
     }
 };
 
+function addCommentToVideo(e) {
+    let target = $(e.target);
+    const form = target.parents(".ui.form");
+    const text = form.find("textarea.replyToVideo").val();
+    if (text.trim() !== "") {
+        const mess =
+            `<div class="comment">
+                <a class="avatar"> 
+                    <img src="/profile_pictures/genericphoto1.png"> 
+                </a>
+                <div class="content">
+                    <a class="author">Guest</a>
+                    <div class="metadata">
+                        <span class="date">Just now</span>
+                    </div>
+                    <div class="text">${text}</div>
+                    <div class="actions">
+                        <a class="upvote" onClick="likeComment(event)">
+                            <i class="icon thumbs up"/>
+                            <span class="num">0</span>
+                        </a>
+                        <a class="downvote" onClick="dislikeComment(event)">
+                            <i class="icon thumbs down"/>
+                            <span class="num">0</span>
+                        </a>
+                        <a class="reply" onClick="openCommentReply(event)">
+                            Reply
+                        </a>
+                        <a class="flag" onClick="flagComment(event)">
+                            Flag
+                        </a>
+                        <a class="share" onClick="shareComment(event)">
+                            Share
+                        </a>
+                    </div>
+                </div>
+            </div>`;
+
+        $("textarea.replyToVideo").val("");
+        $('.ui.button.replyToVideo').hide();
+        $("textarea.replyToVideo").blur();
+        $(".ui.comments").prepend(mess);
+        $(".ui.comments")[0].scrollIntoView({ block: 'start', inline: 'center', behavior: 'smooth' });
+    } else {
+        $("textarea.replyToVideo").focus();
+    }
+}
+
 function flagPost(e) {
-    let target = $(e.target).closest('.ui.flag.button');;
+    let target = $(e.target).closest('.ui.flag.button');
     if (target.hasClass("orange")) {
         target.removeClass("orange");
     } else {
@@ -107,67 +164,97 @@ function flagComment(e) {
         `);
 }
 
+function shareComment(e) {}
+
 function openCommentReply(e) {
-    let target = $(e.target).parents('.actions'); // Find comment element user is trying to reply to
-    const reply_to = target.siblings('a.author').text();
-    if (target.siblings('form.ui.reply.form').length !== 0) {
-        target.siblings('form.ui.reply.form').hide(function() { $(this).remove(); });
+    let target = $(e.target).parents('.content');
+    const reply_to = target.children('a.author').text();
+    const form = target.children('.ui.form');
+    if (form.length !== 0) {
+        form.hide(function() { $(this).remove(); });
         target[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     } else {
-        const comment_section = (
-            `<form class="ui reply form">
-                <div class="field">
-                    <textarea></textarea>
+        const form = (
+            `<div class="ui form">
+                <div class="inline field">
+                    <img class="ui image rounded" src="/profile_pictures/genericphoto1.png"/>
+                    <textarea class="replyToComment" type="text" placeholder="Add a Reply..." rows="1" onInput="changeColor(event)"></textarea>
                 </div>
-                <div class="ui blue labeled submit icon button">
-                    <i class="icon edit"></i> Reply to ${reply_to}
+                <div class="ui submit button replyToComment" onClick="addCommentToComment(event)">
+                    Reply to ${reply_to}
                 </div>
+                <div class="ui cancel basic blue button replyToComment" onClick="openCommentReply(event)">
+                    Cancel
+                </div>
+            </div>
             </form>`
         );
-        $(comment_section).insertAfter(target).hide().show(400)[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+        $(form).insertAfter(target.children('.actions')).hide().show(400)[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+        $(target).find('textarea.replyToComment').focus();
     }
 }
 
-function addNewComment(e) {
-    console.log("New COmment")
+function addCommentToComment(e) {
     let target = $(e.target);
-    const form = target.parents("form.ui.reply.form");
-    const text = form.find("textarea.newcomment").val();
-    let orig_comment = form.parents(".comment").first();
-    // no comments area - add it
-    if (!orig_comment.find('.comments').length) {
-        const actions = card.find(".actions").first();
-        actions.after('<div class="ui comments">');
-        comments = actions.siblings(".ui.comments");
+    const form = target.parents(".ui.form");
+    const text = form.find("textarea.replyToComment").val();
+    let orig_comment = form.closest(".comment");
+    // no comments area - add it; i.e. second level of comments; else it is third level
+    if (!orig_comment.children('.comments').length) {
+        orig_comment.append('<div class="comments">');
     }
+    comments = orig_comment.find(".comments");
     if (text.trim() !== "") {
         const mess =
             `<div class="comment">
                 <a class="avatar"> 
-                    <img src="/public/profile_pictures/genericphoto1.png"> 
+                    <img src="/profile_pictures/genericphoto1.png"> 
                 </a>
                 <div class="content">
                     <a class="author">Guest</a>
                     <div class="metadata">
                         <span class="date">Just now</span>
-                        <i class="heart icon"></i> 0 Likes
                     </div>
                     <div class="text">${text}</div>
+                    
                 </div>
             </div>`;
 
-        card.find("textarea.newcomment").val("");
+        form.find("textarea.newComment").val("");
+        form.remove();
         comments.append(mess);
     }
 }
 
 $(window).on("load", function() {
-
     // like POST
     $('.upvote.button').click(likePost);
 
     // dislike POST
     $('.downvote.button').click(dislikePost);
+
+    // Focuses cursor to new comment input field, if the "Reply" button is clicked
+    $(".reply.button").click(function() {
+        $("textarea.replyToVideo").focus();
+    });
+
+    // Open "Cancel" and "Comment" Buttons (to main video)
+    $('textarea[name="replyToVideo"]').focusin(function() {
+        if ($('.ui.button.replyToVideo').is(":hidden")) {
+            $('.ui.button.replyToVideo').show(300);
+        }
+    });
+
+    // Hide "Cancel" and "Comment" Buttons (to main video)
+    $('.ui.cancel.button.replyToVideo').click(function() {
+        if ($('.ui.button.replyToVideo').is(":visible")) {
+            $('textarea.replyToVideo').val("");
+            $('.ui.button.replyToVideo').hide(300);
+        }
+    })
+
+    // reply to Video
+    $('.ui.submit.button.replyToVideo').click(addCommentToVideo);
 
     // flag POST
     $('.flag.button').click(flagPost);
@@ -187,13 +274,8 @@ $(window).on("load", function() {
     // (Click) reply COMMENT 
     $("a.reply").click(openCommentReply);
 
-    // Focuses cursor to new comment input field, if the "Reply" button is clicked
-    $(".reply.button").click(function() {
-        $("textarea.newComment")[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
-        // $("textarea.newComment").focus();
-    });
     // create a new Comment
-    // $(".ui.blue.labeled.submit.icon.button").click(addNewComment);
+    $(".ui.blue.labeled.submit.icon.button").click(addCommentToComment);
 
     // $("input.newcomment").keyup(function(event) {
     //     //i.big.send.link.icon
@@ -202,4 +284,19 @@ $(window).on("load", function() {
     //         $(this).siblings("i.big.send.link.icon").click();
     //     }
     // });
+
+    $('textarea').on('input', changeColor);
+
+    // Press enter to submit a comment
+    window.addEventListener("keydown", function(event) {
+        if (!event.ctrlKey && event.key === "Enter" && event.target.className == "replyToVideo") {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            addCommentToVideo(event);
+        } else if (!event.ctrlKey && event.key === "Enter" && event.target.className == "replyToComment") {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            addCommentToComment(event);
+        }
+    }, true);
 });

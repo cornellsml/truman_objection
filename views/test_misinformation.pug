@@ -4,142 +4,158 @@ block styles
   link(type='text/css', rel='stylesheet', href='/public/css/test.css')
 
 block content
-  .ui.fluid.card      
-    .image
-      //- iframe(width='100%' height='568' src='https://www.youtube.com/embed/0bXmNBl9Xbg' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
-    video(src='/post_pictures/Objection_Video.mp4' width='100%' controls type="video/mp4")
-    .content
-      .description
-        h1 FDA granted full approval to the Pfizer vaccine
-        p 13,798 views &#183; Aug 29, 2021
-        p 
-          b Description: 
-          | This week, the FDA granted full approval to the Pfizer vaccine. Will that make a difference for vaccine-hesitant Americans? Dr. Irwin Redlener, founding director of the National Center for Disaster Preparedness at Columbia University and a MSNBC Public Health Analyst, joined NBC’s Joshua Johnson to discuss the process behind full FDA approval and its possible impact on vaccination rates.
-    .ui.five.bottom.attached.buttons.large
-      .ui.labeled.button
-        .ui.upvote.button(tabindex='0')
-          i.thumbs.up.icon
-          | Upvote
-        a.ui.basic.green.left.pointing.label 2
-      .ui.labeled.button
-        .ui.downvote.button(tabindex='0')
-          i.thumbs.down.icon
-          | Downvote
-        a.ui.basic.red.left.pointing.label 4
-      .ui.reply.button(tabindex='0')
-          i.reply.icon
-          | Reply
-      .ui.flag.button
-        i.flag.icon
-        | Flag
-      .ui.share.button(tabindex='0')
+  .eleven.wide.column.centered
+    .ui.fluid.card      
+      //- .image
+        //- iframe(width='100%' height='568' src='https://www.youtube.com/embed/0bXmNBl9Xbg' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+      video(src='/post_pictures/Objection_Video.mp4' width='100%' controls type='video/mp4')
+      .content
+        .description
+          h2 FDA granted full approval to the Pfizer vaccine 
+          p 
+            i.icon.user 
+            | 8 watching &#183; Aug 29, 2021
+          p.description.short
+            b Description: 
+            | This week, the FDA granted full approval to the Pfizer vaccine. Will that make a difference for vaccine-hesitant Americans? Dr. Irwin Redlener, founding director of the National Center for Disaster Preparedness at Columbia University and a MSNBC Public Health Analyst, joined NBC’s Joshua Johnson to discuss the process behind full FDA approval and its possible impact on vaccination rates.
+          a.showMoreLess SHOW MORE
+      .ui.five.bottom.attached.buttons
+        .ui.labeled.button
+          .ui.upvote.button(tabindex='0')
+            i.thumbs.up.icon
+            | Upvote
+          a.ui.basic.green.left.pointing.label 2
+        .ui.labeled.button
+          .ui.downvote.button(tabindex='0')
+            i.thumbs.down.icon
+            | Downvote
+          a.ui.basic.red.left.pointing.label 4
+        .ui.reply.button(tabindex='0')
+            i.comment.icon
+            | Comment
+        .ui.flag.button
+          i.flag.icon
+          | Flag
+        .ui.share.button(tabindex='0')
+          i.share.icon
+          | Share
+    .ui.form
+      .inline.field
+        img.ui.image.rounded(src='/profile_pictures/genericphoto1.png')
+        textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1')
+      .ui.submit.button.replyToVideo
+          | Comment
+      .ui.cancel.basic.blue.button.replyToVideo
+          | Cancel
+    .ui.comments
+        //- h3.ui.dividing.header Comments
+        //- .ui.form
+        //-   .inline.field
+        //-     a.avatar
+        //-       img.ui.image.rounded.replyToVideo(src='/profile_pictures/genericphoto1.png')
+        //-     textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1')
+        //-   .ui.submit.button.replyToVideo
+        //-       | Comment
+        //-   .ui.cancel.basic.blue.button.replyToVideo
+        //-       | Cancel
+        .comment
+          a.avatar
+            img(src='/profile_pictures/3.jpg')
+          .content
+            a.author Matt
+            .metadata
+              span.date Today at 5:42PM
+            .text
+              | That's great
+            .actions
+              a.upvote
+                i.icon.thumbs.up
+                span.num 2
+              a.downvote
+                i.icon.thumbs.down
+                span.num 4
+              a.reply 
+                | Reply
+              a.flag 
+                | Flag
+              a.share 
+                | Share
+        .comment
+          a.avatar
+            img(src='/profile_pictures/10.jpg')
+          .content
+            a.author Elliot Fu
+            .metadata
+              span.date Yesterday at 12:30AM
+            .text
+              p It means many more will die...That’s what it means
+            .actions
+              a.upvote
+                i.icon.thumbs.up
+                span.num 2
+              a.downvote
+                i.icon.thumbs.down
+                span.num 4
+              a.reply 
+                | Reply
+              a.flag 
+                | Flag
+              a.share
+                | Share
+          .comments
+            .comment
+              a.avatar
+                img(src='/profile_pictures/8.jpg')
+              .content
+                a.author Jenny Hess
+                .metadata
+                  span.date 3 minutes ago
+                .text
+                  | It doesn’t matter if you’re afraid of the vaccine or not. The pandemic has never been about you. It has always been about the people around you.
+                .actions
+                  a.upvote
+                    i.icon.thumbs.up
+                    span.num 2
+                  a.downvote
+                    i.icon.thumbs.down
+                    span.num 4
+                  a.reply 
+                    | Reply
+                  a.flag 
+                    | Flag
+                  a.share 
+                    | Share
+        .comment
+          a.avatar
+            img(src='/profile_pictures/13.png')
+          .content
+            a.author Joe Henderson
+            .metadata
+              span.date 5 days ago
+            .text
+              | Ah so sweet, the tears of the unvaccinated
+            .actions
+              a.upvote
+                i.icon.thumbs.up
+                | 2
+              a.downvote
+                i.icon.thumbs.down
+                | 4
+              a.reply 
+                | Reply
+              a.flag 
+                | Flag
+              a.share 
+                | Share
+    .ui.small.basic.share.modal
+      .ui.icon.header
         i.share.icon
-        | Share
-  .ui.comments
-      h3.ui.dividing.header Comments
-      .comment
-        a.avatar
-          img(src='/profile_pictures/3.jpg')
-        .content
-          a.author Matt
-          .metadata
-            span.date Today at 5:42PM
-          .text
-            | That's great
-          .actions
-            a.upvote
-              i.icon.thumbs.up
-              span.num 2
-            a.downvote
-              i.icon.thumbs.down
-              span.num 4
-            a.reply 
-              | Reply
-            a.flag 
-              | Flag
-            a.share 
-              | Share
-      .comment
-        a.avatar
-          img(src='/profile_pictures/10.jpg')
-        .content
-          a.author Elliot Fu
-          .metadata
-            span.date Yesterday at 12:30AM
-          .text
-            p It means many more will die...That’s what it means
-          .actions
-            a.upvote
-              i.icon.thumbs.up
-              span.num 2
-            a.downvote
-              i.icon.thumbs.down
-              span.num 4
-            a.reply 
-              | Reply
-            a.flag 
-              | Flag
-            a.share
-              | Share
-        .comments
-          .comment
-            a.avatar
-              img(src='/profile_pictures/8.jpg')
-            .content
-              a.author Jenny Hess
-              .metadata
-                span.date 3 minutes ago
-              .text
-                | It doesn’t matter if you’re afraid of the vaccine or not. The pandemic has never been about you. It has always been about the people around you.
-              .actions
-                a.upvote
-                  i.icon.thumbs.up
-                  span.num 2
-                a.downvote
-                  i.icon.thumbs.down
-                  span.num 4
-                a.reply 
-                  | Reply
-                a.flag 
-                  | Flag
-                a.share 
-                  | Share
-      .comment
-        a.avatar
-          img(src='/profile_pictures/13.png')
-        .content
-          a.author Joe Henderson
-          .metadata
-            span.date 5 days ago
-          .text
-            | Ah so sweet, the tears of the unvaccinated
-          .actions
-            a.upvote
-              i.icon.thumbs.up
-              | 2
-            a.downvote
-              i.icon.thumbs.down
-              | 4
-            a.reply 
-              | Reply
-            a.flag 
-              | Flag
-            a.share 
-              | Share
-      form.ui.reply.form
-        .field
-          textarea.newComment
-        .ui.blue.labeled.submit.icon.button
-          i.icon.edit
-          |  Add Reply
-  .ui.small.basic.share.modal
-    .ui.icon.header
-      i.share.icon
-      |     You have shared this video!
-    .actions(style="text-align:center;")   
-      .ui.green.ok.inverted.button
-        i.checkmark.icon
-        |   Done
+        |     You have shared this video!
+      .actions(style='text-align:center;')   
+        .ui.green.ok.inverted.button
+          i.checkmark.icon
+          |   Done
 
 block scripts
   script(src='/public/js/postFunctionalities.js')
+  script(src='/public/js/test.js')

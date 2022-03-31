@@ -1,6 +1,20 @@
+/* ---- VIDEO CSS ---- */
+
 .ui.fluid.card>.content>.description>p {
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
+
+p.description.short {
+    overflow: hidden;
+    height: 3em;
+}
+
+.ui.fluid.card>.content>.description>a {
+    font-size: 0.85em;
+}
+
+
+/* ---- VIDEO FUNCTIONALIIES CSS ---- */
 
 .ui.five.bottom.attached.buttons.large {
     background-color: #e0e1e2;
@@ -8,6 +22,7 @@
 
 .ui.upvote.button,
 .ui.downvote.button,
+.ui.reply.button,
 .ui.flag.button,
 .ui.share.button {
     -webkit-transition: all 0.25s ease;
@@ -26,7 +41,63 @@
     border-bottom-left-radius: 0px !important;
 }
 
+
+/* ---- COMMENT FORM TO VIDEO AND COMMENTS CSS ---- */
+
+.ui.form {
+    display: inline-block;
+    width: 100%;
+    margin-top: 1em;
+}
+
+.ui.form>.inline.field {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0em !important;
+}
+
+.ui.form>.inline.field>img.ui.image.rounded {
+    max-width: 43.75px !important;
+    width: 43.75px;
+    height: 43.75px;
+}
+
+textarea {
+    font-size: 1.1em !important;
+}
+
+.ui.button.replyToVideo {
+    float: right;
+    margin-top: 1em !important;
+    display: none;
+}
+
+.ui.button.replyToComment {
+    float: right;
+    margin-top: 1em !important;
+}
+
+
+/* ---- COMMENTS ---- */
+
+.ui.comments {
+    margin-top: 1em;
+}
+
+.ui.comments>.comment {
+    margin: 1em 0em 1em 0em;
+}
+
 .ui.comments,
 .ui.comments>h3 {
-    font-size: 1.2em;
+    font-size: 1.25em;
+}
+
+.ui.comments>form.ui.reply.form {
+    width: 100%;
+}
+
+.comment>.comments {
+    padding-left: 3em !important;
+    padding-bottom: 0em !important;
 }
