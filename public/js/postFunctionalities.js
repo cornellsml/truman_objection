@@ -174,11 +174,12 @@ function openCommentReply(e) {
         form.hide(function() { $(this).remove(); });
         target[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     } else {
-        const form = (
+        let comment_level = target.parents(".comment").length;
+        const comment_area = (
             `<div class="ui form">
                 <div class="inline field">
                     <img class="ui image rounded" src="/profile_pictures/genericphoto1.png"/>
-                    <textarea class="replyToComment" type="text" placeholder="Add a Reply..." rows="1" onInput="changeColor(event)"></textarea>
+                    <textarea class="replyToComment" type="text" placeholder="Add a Reply..." rows="1" onInput="changeColor(event)">${(comment_level == 2) ? "@"+reply_to+" " : ""}</textarea>
                 </div>
                 <div class="ui submit button replyToComment" onClick="addCommentToComment(event)">
                     Reply to ${reply_to}
@@ -189,8 +190,11 @@ function openCommentReply(e) {
             </div>
             </form>`
         );
-        $(form).insertAfter(target.children('.actions')).hide().show(400)[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
-        $(target).find('textarea.replyToComment').focus();
+        $(comment_area).insertAfter(target.children('.actions')).hide().show(400);
+        const comment_area_element = $(target).find('textarea.replyToComment');
+        const end = comment_area_element.val().length;
+        comment_area_element[0].setSelectionRange(end, end);
+        comment_area_element.focus()[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     }
 }
 
@@ -199,11 +203,15 @@ function addCommentToComment(e) {
     const form = target.parents(".ui.form");
     const text = form.find("textarea.replyToComment").val();
     let orig_comment = form.closest(".comment");
-    // no comments area - add it; i.e. second level of comments; else it is third level
-    if (!orig_comment.children('.comments').length) {
-        orig_comment.append('<div class="comments">');
+    let comment_level = form.parents(".comment").length; // = 1 if 1st level, =2 if 2nd level
+    if (comment_level == 1) {
+        if (!orig_comment.children('.comments').length) {
+            orig_comment.append('<div class="comments">');
+        }
+        comments = orig_comment.find(".comments");
+    } else {
+        comments = orig_comment.closest(".comments");
     }
-    comments = orig_comment.find(".comments");
     if (text.trim() !== "") {
         const mess =
             `<div class="comment">
@@ -216,13 +224,32 @@ function addCommentToComment(e) {
                         <span class="date">Just now</span>
                     </div>
                     <div class="text">${text}</div>
-                    
+                    <div class="actions">
+                        <a class="upvote" onClick="likeComment(event)">
+                            <i class="icon thumbs up"/>
+                            <span class="num">0</span>
+                        </a>
+                        <a class="downvote" onClick="dislikeComment(event)">
+                            <i class="icon thumbs down"/>
+                            <span class="num">0</span>
+                        </a>
+                        <a class="reply" onClick="openCommentReply(event)">
+                            Reply
+                        </a>
+                        <a class="flag" onClick="flagComment(event)">
+                            Flag
+                        </a>
+                        <a class="share" onClick="shareComment(event)">
+                            Share
+                        </a>
+                    </div>
                 </div>
             </div>`;
 
         form.find("textarea.newComment").val("");
         form.remove();
         comments.append(mess);
+        $(comments)[0].scrollIntoView({ block: 'start', inline: 'center', behavior: 'smooth' });
     }
 }
 
