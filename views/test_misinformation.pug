@@ -2,6 +2,7 @@ extends ui_layout
 
 block styles 
   link(type='text/css', rel='stylesheet', href='/public/css/test.css')
+  link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
 
 block content
   .eleven.wide.column.centered
@@ -159,5 +160,6 @@ block content
           |   Done
 
 block scripts
+  script(src='/public/js/lib/jquery.highlight-within-textarea.js')
   script(src='/public/js/postFunctionalities.js')
   script(src='/public/js/test.js')

@@ -1,6 +1,6 @@
-function changeColor(e) {
+function changeColor(e, string = "") {
     let target = $(e.target);
-    if (target.val().trim() !== "") {
+    if (target.val().trim() !== string) {
         target.parents(".ui.form").children('.ui.submit.button').addClass("blue");
     } else {
         target.parents(".ui.form").children('.ui.submit.button').removeClass("blue");
@@ -90,7 +90,7 @@ function addCommentToVideo(e) {
         $('.ui.button.replyToVideo').hide();
         $("textarea.replyToVideo").blur();
         $(".ui.comments").prepend(mess);
-        $(".ui.comments")[0].scrollIntoView({ block: 'start', inline: 'center', behavior: 'smooth' });
+        $(".ui.comments")[0].scrollIntoView({ block: 'start', behavior: 'smooth' });
     } else {
         $("textarea.replyToVideo").focus();
     }
@@ -172,14 +172,14 @@ function openCommentReply(e) {
     const form = target.children('.ui.form');
     if (form.length !== 0) {
         form.hide(function() { $(this).remove(); });
-        target[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+        target[0].scrollIntoView({ block: 'center', behavior: 'smooth' });
     } else {
         let comment_level = target.parents(".comment").length;
         const comment_area = (
             `<div class="ui form">
                 <div class="inline field">
                     <img class="ui image rounded" src="/profile_pictures/genericphoto1.png"/>
-                    <textarea class="replyToComment" type="text" placeholder="Add a Reply..." rows="1" onInput="changeColor(event)">${(comment_level == 2) ? "@"+reply_to+" " : ""}</textarea>
+                    <textarea class="replyToComment" type="text" placeholder="Add a Reply..." rows="1" onInput="changeColor(event${comment_level==2 ? ", '@"+reply_to +"'": ""})">${(comment_level == 2) ? "@"+reply_to+" " : ""}</textarea>
                 </div>
                 <div class="ui submit button replyToComment" onClick="addCommentToComment(event)">
                     Reply to ${reply_to}
@@ -194,14 +194,31 @@ function openCommentReply(e) {
         const comment_area_element = $(target).find('textarea.replyToComment');
         const end = comment_area_element.val().length;
         comment_area_element[0].setSelectionRange(end, end);
-        comment_area_element.focus()[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+        if (comment_level == 2) {
+            comment_area_element.highlightWithinTextarea({
+                highlight: [{
+                        highlight: "@" + reply_to, // string, regexp, array, function, or custom object
+                        className: 'blue'
+                    },
+                    {
+                        highlight: "@" + reply_to.split(" ")[0], // string, regexp, array, function, or custom object
+                        className: 'blue'
+                    }
+                ]
+            })
+        };
+        comment_area_element.focus();
+        comment_area_element[0].scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
 }
 
 function addCommentToComment(e) {
     let target = $(e.target);
     const form = target.parents(".ui.form");
-    const text = form.find("textarea.replyToComment").val();
+    if (!form.children(".ui.submit.button").hasClass("blue")) {
+        return;
+    }
+    let text = form.find("textarea.replyToComment").val();
     let orig_comment = form.closest(".comment");
     let comment_level = form.parents(".comment").length; // = 1 if 1st level, =2 if 2nd level
     if (comment_level == 1) {
@@ -213,6 +230,18 @@ function addCommentToComment(e) {
         comments = orig_comment.closest(".comments");
     }
     if (text.trim() !== "") {
+        const words = form.find("mark").map(function() {
+            return $(this).html();
+        })
+        const highlights = [...new Set(words)].sort(function(a, b) {
+            return b.length - a.length; // Desc order
+        });
+        if (highlights.length !== 0) {
+            for (word of highlights) {
+                var regEx = new RegExp('(?<!<a>)' + word, 'gmi');
+                text = text.replace(regEx, '<a>' + word + '</a>')
+            }
+        }
         const mess =
             `<div class="comment">
                 <a class="avatar"> 
@@ -249,7 +278,7 @@ function addCommentToComment(e) {
         form.find("textarea.newComment").val("");
         form.remove();
         comments.append(mess);
-        $(comments)[0].scrollIntoView({ block: 'start', inline: 'center', behavior: 'smooth' });
+        $(comments).last()[0].scrollIntoView({ block: 'start', behavior: 'smooth' });
     }
 }
 
@@ -276,11 +305,12 @@ $(window).on("load", function() {
     $('.ui.cancel.button.replyToVideo').click(function() {
         if ($('.ui.button.replyToVideo').is(":visible")) {
             $('textarea.replyToVideo').val("");
+            $('.ui.submit.button.replyToVideo').removeClass("blue");
             $('.ui.button.replyToVideo').hide(300);
         }
     })
 
-    // reply to Video
+    // reply to POST
     $('.ui.submit.button.replyToVideo').click(addCommentToVideo);
 
     // flag POST
@@ -298,29 +328,22 @@ $(window).on("load", function() {
     // flag COMMENT
     $("a.flag").click(flagComment);
 
-    // (Click) reply COMMENT 
+    // Open comment reply box 
     $("a.reply").click(openCommentReply);
 
-    // create a new Comment
+    // add a new Comment
     $(".ui.blue.labeled.submit.icon.button").click(addCommentToComment);
 
-    // $("input.newcomment").keyup(function(event) {
-    //     //i.big.send.link.icon
-    //     //$(this).siblings( "i.big.send.link.icon")
-    //     if (event.keyCode === 13) {
-    //         $(this).siblings("i.big.send.link.icon").click();
-    //     }
-    // });
-
+    // When textarea input changes
     $('textarea').on('input', changeColor);
 
     // Press enter to submit a comment
     window.addEventListener("keydown", function(event) {
-        if (!event.ctrlKey && event.key === "Enter" && event.target.className == "replyToVideo") {
+        if (!event.ctrlKey && event.key === "Enter" && $(event.target).hasClass("replyToVideo")) {
             event.preventDefault();
             event.stopImmediatePropagation();
             addCommentToVideo(event);
-        } else if (!event.ctrlKey && event.key === "Enter" && event.target.className == "replyToComment") {
+        } else if (!event.ctrlKey && event.key === "Enter" && $(event.target).hasClass("replyToComment")) {
             event.preventDefault();
             event.stopImmediatePropagation();
             addCommentToComment(event);
