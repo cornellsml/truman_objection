@@ -195,7 +195,11 @@ app.use('/profile_pictures', express.static(path.join(__dirname, 'profile_pictur
 /**
  * Primary app routes.
  */
-app.get('/', passportConfig.isAuthenticated, scriptController.getScript);
+app.get('/', function(req, res) {
+    res.render('info', {
+        title: 'User Docs'
+    })
+});
 
 app.get('/newsfeed/:caseId', scriptController.getScriptFeed);
 
@@ -242,13 +246,13 @@ app.get('/com', function(req, res) {
     });
 });
 
-app.get('/info', passportConfig.isAuthenticated, function(req, res) {
-    res.render('info', {
+app.get('/info', function(req, res) {
+    res.render('info copy', {
         title: 'User Docs'
     });
 });
 
-app.get('/profile_info', passportConfig.isAuthenticated, function(req, res) {
+app.get('/profile_info', function(req, res) {
     res.render('profile_info', {
         title: 'Profile Introductions'
     });

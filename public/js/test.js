@@ -11,21 +11,21 @@ function showMoreLess(e) {
 };
 
 const viewCount = {
-    3000: 7,
-    10000: 8,
-    11000: 9,
-    20000: 8,
-    40000: 7,
-    60000: 6,
-    68000: 7,
-    80000: 5,
-    83000: 6,
-    90000: 7,
-    99000: 8,
-    100000: 7,
-    140000: 6,
-    180000: 5,
-    200000: 6,
+    3000: 7, // 0: 3 seconds
+    10000: 8, // 1: 10 seconds
+    15000: 9, // 2: 15 seconds
+    20000: 8, // 3: 20 seconds
+    40000: 7, // 4: 40 seconds
+    60000: 6, // 5: 60 seconds
+    68000: 7, // 6: 68 seconds
+    80000: 5, // 7: 80 seconds
+    83000: 6, // 8: 83 seconds
+    90000: 7, // 9: 90 seconds
+    97000: 8, // 10: 97 seconds
+    100000: 7, // 11: 100 seconds
+    140000: 6, // 12: 140 seconds
+    180000: 5, // 13: 180 seconds
+    200000: 6, // 14: 200 seconds
 }
 
 const times = Object.keys(viewCount);
@@ -35,16 +35,18 @@ const length = counts.length;
 $(window).on("load", function() {
     $('a.showMoreLess').click(showMoreLess);
 
-    for (var i = 0; i < times.length * 5; i++) {
+    for (var i = 0; i < times.length * 20; i++) {
         (function(ind) {
-            const mult = (ind / length);
-            const num = ind % length;
-            console.log(mult);
-            console.log(num);
+            const mult = Math.floor(ind / length); // 0, 1, 2, 3, etc. 
+            const num = ind % length; // 0, 1, 2, 3, etc.
             setTimeout(function() {
-                console.log(counts[num]);
-                $("span.viewCount").text(counts[num] + " ");
+                // console.log(((200000 * mult) + parseInt(times[num])) / 1000);
+                $(".viewCount").transition('slide up').text(" " + counts[num] + " ").transition('slide up').transition('glow');
             }, (200000 * mult) + parseInt(times[num]));
         })(i);
     }
+
+    setTimeout(function() {
+        $(".incomingComment").transition('slide down').transition('glow');
+    }, (25000));
 });

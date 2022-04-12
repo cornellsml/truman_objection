@@ -13,11 +13,10 @@ block content
       .content
         .description
           h2 FDA granted full approval to the Pfizer vaccine 
-          p 
+          .viewCount-div 
             i.icon.user
-            span.viewCount 
-              | 8 
-            |watching &#183; Aug 29, 2021
+            p watching &#183; Aug 29, 2021
+            p.viewCount &#32;8&#32;
           p.description.short
             b Description: 
             | This week, the FDA granted full approval to the Pfizer vaccine. Will that make a difference for vaccine-hesitant Americans? Dr. Irwin Redlener, founding director of the National Center for Disaster Preparedness at Columbia University and a MSNBC Public Health Analyst, joined NBC’s Joshua Johnson to discuss the process behind full FDA approval and its possible impact on vaccination rates.
@@ -61,6 +60,28 @@ block content
         //-       | Comment
         //-   .ui.cancel.basic.blue.button.replyToVideo
         //-       | Cancel
+        .comment.incomingComment.hidden
+          a.avatar
+            img(src='/profile_pictures/15.png')
+          .content
+            a.author Sarah P.
+            .metadata
+              span.date Just now
+            .text
+              | That is interesting
+            .actions
+              a.upvote
+                i.icon.thumbs.up
+                span.num 0
+              a.downvote
+                i.icon.thumbs.down
+                span.num 0
+              a.reply 
+                | Reply
+              a.flag 
+                | Flag
+              a.share 
+                | Share
         .comment
           a.avatar
             img(src='/profile_pictures/3.jpg')
@@ -73,10 +94,10 @@ block content
             .actions
               a.upvote
                 i.icon.thumbs.up
-                span.num 2
+                span.num 1
               a.downvote
                 i.icon.thumbs.down
-                span.num 4
+                span.num 2
               a.reply 
                 | Reply
               a.flag 
@@ -121,7 +142,7 @@ block content
                     span.num 2
                   a.downvote
                     i.icon.thumbs.down
-                    span.num 4
+                    span.num 3
                   a.reply 
                     | Reply
                   a.flag 
@@ -140,10 +161,10 @@ block content
             .actions
               a.upvote
                 i.icon.thumbs.up
-                | 2
+                | 1
               a.downvote
                 i.icon.thumbs.down
-                | 4
+                | 0
               a.reply 
                 | Reply
               a.flag 
