@@ -81,8 +81,7 @@ $(window).on("load", function() {
         'overlayOpacity': 0,
         'hidePrev': true,
         'showBullets': false,
-        'scrollToElement': true,
-        'scrollPadding': 130
+        // 'scrollPadding': 100
     });
     intro.onexit(function() {
         $(".ui.big.labeled.icon.button").addClass("green")[0].scrollIntoView({ behavior: "smooth" });
