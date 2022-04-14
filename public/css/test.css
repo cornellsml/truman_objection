@@ -123,17 +123,23 @@ textarea {
 
 /* https://stackoverflow.com/questions/26421274/css-circular-cropping-of-rectangle-image */
 
+.ui.info.message {
+    background-color: #ffffff;
+    box-shadow: 0 1px 10px #2B8490 !important;
+}
+
 .ui.sticky.notificationPopup .label {
     overflow: hidden;
     width: 3em;
     height: 3em;
 }
 
-img.popupNotificationImage {
+.ui.feed>.event>.label img.popupNotificationImage {
     width: 100%;
     height: 100%;
     display: inline;
     margin: 0 auto;
+    border-radius: .25rem !important;
 }
 
 #desktopPopup,
@@ -143,4 +149,8 @@ img.popupNotificationImage {
     padding-right: 1em;
     display: none;
     cursor: pointer;
+}
+
+.three.wide.column.centered {
+    margin-left: 0;
 }

@@ -17,7 +17,7 @@ const viewCount = {
     20000: 8, // 3: 20 seconds
     40000: 7, // 4: 40 seconds
     60000: 6, // 5: 60 seconds
-    68000: 7, // 6: 68 seconds
+    75000: 7, // 6: 75 seconds
     80000: 5, // 7: 80 seconds
     83000: 6, // 8: 83 seconds
     90000: 7, // 9: 90 seconds
@@ -34,6 +34,12 @@ const length = counts.length;
 
 $(window).on("load", function() {
     $('a.showMoreLess').click(showMoreLess);
+    $('.message .close')
+        .on('click', function() {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
 
     for (var i = 0; i < times.length * 20; i++) {
         (function(ind) {
@@ -41,12 +47,35 @@ $(window).on("load", function() {
             const num = ind % length; // 0, 1, 2, 3, etc.
             setTimeout(function() {
                 // console.log(((200000 * mult) + parseInt(times[num])) / 1000);
-                $(".viewCount").transition('slide up').text(" " + counts[num] + " ").transition('slide up').transition('glow');
+                $(".viewCount").transition('slide up').text(" " + counts[num] + " ").css("color", "red").transition('slide up').transition('glow');
+                setTimeout(function() {
+                    $(".viewCount").css("color", "rgba(0,0,0,.68)")
+                }, 1200);
             }, (200000 * mult) + parseInt(times[num]));
         })(i);
     }
 
     setTimeout(function() {
         $(".incomingComment").transition('slide down').transition('glow');
-    }, (25000));
+        //if in a mobile view, put popup in the middle
+
+        $("#desktopPopup").show();
+        $("#desktopPopup").transition("pulse");
+
+
+        setTimeout(function() {
+            if ($("#desktopPopup").is(':visible')) {
+                $("#desktopPopup").transition("fade");
+            }
+        }, 5000);
+    }, (20000));
+
+    // scroll to appropriate post when notification popup is clicked
+    $('.notificationPopup').on('click', function(event) {
+        if ($(event.target).hasClass('close')) {
+            return false;
+        }
+
+        $(".incomingComment")[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+    });
 });

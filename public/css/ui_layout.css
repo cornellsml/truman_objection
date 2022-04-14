@@ -8,7 +8,9 @@ body {
     z-index: 10000005;
 }
 
-.eleven.wide.column.centered {
+.eleven.wide.column.centered,
+.eight.wide.column.centered,
+.three.wide.column.centered {
     margin-top: 125px;
     margin-bottom: 25px;
 }
