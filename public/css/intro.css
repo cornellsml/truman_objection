@@ -39,7 +39,7 @@
 /* customizing the back, next, and done buttons on steps */
 
 .introjs-button.introjs-nextbutton.introjs-donebutton,
-.introjs-button.introjs-nextbutton.introjs-donebutton {
+.introjs-button.introjs-nextbutton.introjs-donebutton:hover {
     height: 22px;
     line-height: 22px !important;
     visibility: visible;
