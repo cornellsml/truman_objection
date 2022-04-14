@@ -92,8 +92,10 @@ app.use(express.session());
 /**
  * Connect to MongoDB.
  */
-mongoose.Promise = global.Promise;
-
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useUnifiedTopology', true);
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI, { useNewUrlParser: true });
 mongoose.connection.on('error', (err) => {
     console.error(err);
@@ -197,7 +199,7 @@ app.use('/profile_pictures', express.static(path.join(__dirname, 'profile_pictur
  */
 app.get('/', function(req, res) {
     res.render('info', {
-        title: 'User Docs'
+        title: 'Welcome'
     })
 });
 
@@ -269,7 +271,7 @@ app.get('/notifications', passportConfig.isAuthenticated, notificationController
 // Test Pages
 app.get('/test_misinformation', function(req, res) {
     res.render('test_misinformation', {
-        title: 'Test Misinformation'
+        title: 'Feed'
     });
 });
 app.get('/test_harassment', function(req, res) {

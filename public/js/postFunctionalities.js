@@ -106,7 +106,9 @@ function flagPost(e) {
 };
 
 function sharePost() {
-    $('.ui.small.basic.share.modal').modal('show');
+    const pathname = window.location.href;
+    $(".pathname").html(pathname);
+    $('.ui.small.shareVideo.modal').modal('show');
 };
 
 // ****** actions on comment *******
@@ -164,7 +166,11 @@ function flagComment(e) {
         `);
 }
 
-function shareComment(e) {}
+function shareComment(e) {
+    const pathname = window.location.href;
+    $(".pathname").html(pathname + "?commentID=" + Math.floor(Math.random() * 31) + 50);
+    $('.ui.small.shareComment.modal').modal('show');
+}
 
 function openCommentReply(e) {
     let target = $(e.target).parents('.content');
@@ -327,6 +333,9 @@ $(window).on("load", function() {
 
     // flag COMMENT
     $("a.flag").click(flagComment);
+
+    // share COMMENT
+    $("a.share").click(shareComment);
 
     // Open comment reply box 
     $("a.reply").click(openCommentReply);

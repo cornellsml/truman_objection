@@ -3,6 +3,16 @@ body {
     padding: 0em;
 }
 
+.ui.borderless.fixed.menu {
+    background-color: #ffffff;
+    z-index: 10000005;
+}
+
+.eleven.wide.column.centered {
+    margin-top: 125px;
+    margin-bottom: 25px;
+}
+
 .hidden {
     display: none;
 }
@@ -58,8 +68,4 @@ button {
 .ui.three.column.grid.pro .column img {
     margin-top: 8px;
     vertical-align: middle;
-}
-
-.demo {
-    /* width: 80%; */
 }

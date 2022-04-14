@@ -11,15 +11,17 @@ html
     meta(name="mobile-web-app-capable" content="yes")
     meta(name="msapplication-tap-highlight" content="no")
     meta(name="content-language" content="en_US")
-    title #{title} - Unknown Title
-    link(rel='shortcut icon', href='/public/favicon.ico')
+    title #{title} - VidShare
+    link(rel='shortcut icon', href='/public/favicon.svg')
     link(rel='manifest', href='/public/manifest.json')
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css')
+    link(rel='stylesheet', href='https://unpkg.com/intro.js/minified/introjs.min.css')
     link(type='text/css', rel='stylesheet', href='/public/css/ui_layout.css')
     block styles
       
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js')
+  script(src='https://unpkg.com/intro.js/minified/intro.min.js')
   script(src='/public/js/lib/humanized_time_span.js')
   block scripts
   //- script(src='/public/js/main.js')
@@ -27,7 +29,6 @@ html
   body
     .ui.vertically.padded.grid.container
       include partials/ui_header
-      include partials/ui_flash
       block content
 
     //- include partials/ui_footer

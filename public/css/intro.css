@@ -1,0 +1,82 @@
+/* removes a gray overlay that covers everything but the selected element */
+
+.introjs-overlay {
+    visibility: hidden;
+}
+
+
+/* the box highlighting the selected element */
+
+.introjs-helperLayer {
+    border: 1px solid #2B8490;
+    box-shadow: 0 2px 20px #2B8490 !important;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+
+/* customizing the tutorial box*/
+
+.introjs-tooltipReferenceLayer,
+.introjs-tooltip {
+    z-index: 10000003;
+}
+
+.introjs-tooltip-header {
+    display: none;
+}
+
+.introjs-tooltipReferenceLayer * {
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 1.14285714rem;
+    /* color: rgba(0, 0, 0, .87); */
+}
+
+.introjs-tooltiptext {
+    padding-bottom: 0;
+}
+
+
+/* customizing the back, next, and done buttons on steps */
+
+.introjs-button.introjs-nextbutton.introjs-donebutton,
+.introjs-button.introjs-nextbutton.introjs-donebutton {
+    height: 22px;
+    line-height: 22px !important;
+    visibility: visible;
+    float: right;
+    border-radius: 5px;
+    color: rgba(255, 255, 255, .9);
+    background-image: linear-gradient(#adb954, #adb954);
+    text-shadow: 0px 0px 0 #fff;
+    margin-left: 5px;
+    border: 0px solid #d4d4d4;
+    font: 16px sans-serif;
+}
+
+.introjs-button.introjs-nextbutton,
+.introjs-button.introjs-nextbutton:hover {
+    height: 22px;
+    line-height: 22px !important;
+    border-radius: 5px;
+    visibility: visible;
+    color: rgba(255, 255, 255, .9);
+    background-image: linear-gradient(#54adb9, #54adb9);
+    text-shadow: 0px 0px 0 #fff;
+    margin-left: 5px;
+    border: 0px solid #d4d4d4;
+    font: 16px sans-serif;
+}
+
+.introjs-button.introjs-prevbutton,
+.introjs-button.introjs-prevbutton:hover {
+    height: 22px;
+    line-height: 22px !important;
+    border-radius: 5px;
+    visibility: visible;
+    color: rgba(255, 255, 255, .9);
+    background-image: linear-gradient(#54adb9, #54adb9);
+    text-shadow: 0px 0px 0 #fff;
+    margin-left: 5px;
+    border: 0px solid #d4d4d4;
+    font: 16px sans-serif;
+}

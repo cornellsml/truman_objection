@@ -23,22 +23,22 @@ block content
           a.showMoreLess SHOW MORE
       .ui.five.bottom.attached.buttons
         .ui.labeled.button
-          .ui.upvote.button(tabindex='0')
+          .ui.upvote.button(tabindex='0', data-tooltip="I like this", data-position="bottom center", data-variation="mini")
             i.thumbs.up.icon
             | Upvote
           a.ui.basic.green.left.pointing.label 2
         .ui.labeled.button
-          .ui.downvote.button(tabindex='0')
+          .ui.downvote.button(tabindex='0', data-tooltip="I dislike this", data-position="bottom center", data-variation="mini")
             i.thumbs.down.icon
             | Downvote
           a.ui.basic.red.left.pointing.label 4
-        .ui.reply.button(tabindex='0')
+        .ui.reply.button
             i.comment.icon
             | Comment
-        .ui.flag.button
+        .ui.flag.button(tabindex='0', data-tooltip="Report", data-position="bottom center", data-variation="mini")
           i.flag.icon
           | Flag
-        .ui.share.button(tabindex='0')
+        .ui.share.button(tabindex='0', data-tooltip="Share", data-position="bottom center", data-variation="mini")
           i.share.icon
           | Share
     .ui.form
@@ -171,14 +171,47 @@ block content
                 | Flag
               a.share 
                 | Share
-    .ui.small.basic.share.modal
+    .ui.small.shareVideo.modal
       .ui.icon.header
         i.share.icon
         |     You have shared this video!
-      .actions(style='text-align:center;')   
+      .content(style='text-align:center;')
+        h3(style='text-align:left;') Note: The "Copy Link" feature is currently disabled. 
+        h4(style='text-align:left;') However, we keep track of all the links you would like to share, and at the end of the study, we will give you a list of those links so you can share them. 
+        .ui.left.labeled.button.large.centered
+          .ui.basic.label.pathname
+        .ui.icon.button(data-tooltip="Copy Link (DISABLED)", data-position="bottom center", data-variation="mini")
+          i.copy.icon
+      .actions   
         .ui.green.ok.inverted.button
           i.checkmark.icon
           |   Done
+    .ui.small.shareComment.modal
+      .ui.icon.header
+        i.share.icon
+        |     You have shared this comment!
+      .content(style='text-align:center;')
+        h3(style='text-align:left;') Note: The "Copy Link" feature is currently disabled. 
+        h4(style='text-align:left;') However, we keep track of all the links you would like to share, and at the end of the study, we will give you a list of those links so you can share them. 
+        .ui.left.labeled.button.large.centered
+          .ui.basic.label.pathname
+        .ui.icon.button(data-tooltip="Copy Link (DISABLED)", data-position="bottom center", data-variation="mini")
+          i.copy.icon
+      .actions   
+        .ui.green.ok.inverted.button
+          i.checkmark.icon
+          |   Done
+  //-notification popup
+  //- .computer.only.tablet.only.four.wide.column 
+  //-   .ui.fixed.bottom.sticky.notificationPopup.hidden#desktopPopup
+  //-   .ui.info.message
+  //-     i.close.icon
+  //-     .ui.feed
+  //-       .event
+  //-         .label
+  //-           img.popupNotificationImage(src='/profile_pictures/15.png')
+  //-         .content
+  //-           .summary Sarah P. commented "That is interesting"
 
 block scripts
   script(src='/public/js/lib/jquery.highlight-within-textarea.js')

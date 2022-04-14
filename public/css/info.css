@@ -1,28 +1,57 @@
+.eleven.wide.column.centered {
+    padding: 0px;
+}
+
+.title {
+    color: #2B8490;
+}
+
+.demo {
+    width: 95%;
+    border-style: solid;
+    border-color: #2B8490;
+    padding: 40px;
+    margin: 30px auto 50px auto;
+}
+
+
 /* ---- VIDEO CSS ---- */
+
+.ui.fluid.card>.content>.description>p,
+.ui.fluid.card>.content>.description>.viewCount-div>p {
+    font-size: 0.95em;
+}
 
 .viewCount-div {
     display: inline-block;
 }
 
+.viewCount-string {
+    float: left;
+}
+
 i.icon.user {
     float: left;
-    margin: 0.11rem 0 0 0;
+    margin: -0.11em 0em;
+    font-size: 0.95em;
 }
 
-.viewCount-div>p {
+p.viewCount,
+p.watching {
+    float: left;
+    white-space: pre-wrap;
+    margin: 0px !important;
+}
+
+p.date {
     white-space: pre-wrap;
     float: right
-}
-
-p.description.short {
-    overflow: hidden;
-    height: 3em;
 }
 
 
 /* ---- VIDEO FUNCTIONALIIES CSS ---- */
 
-.ui.five.bottom.attached.buttons.large {
+.ui.five.bottom.attached.buttons {
     background-color: #e0e1e2;
 }
 
@@ -31,15 +60,20 @@ p.description.short {
 .ui.reply.button,
 .ui.flag.button,
 .ui.share.button {
-    -webkit-transition: all 0.25s ease;
+    /* -webkit-transition: all 0.25s ease;
     -moz-transition: all 0.25s ease;
     -o-transition: all 0.25s ease;
-    transition: all 0.25s ease;
+    transition: all 0.25s ease; */
+    font-size: 0.95rem;
+    background-color: #e0e1e2;
+    color: rgba(0, 0, 0, .6);
+    cursor: default;
 }
 
 .pointing.label {
     border-top-right-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
+    cursor: default !important;
 }
 
 .ui.downvote.button {
@@ -70,6 +104,7 @@ p.description.short {
 
 textarea {
     font-size: 1.1em !important;
+    cursor: default !important;
 }
 
 .ui.button.replyToVideo {
@@ -96,7 +131,7 @@ textarea {
 
 .ui.comments,
 .ui.comments>h3 {
-    font-size: 1.25em;
+    font-size: 1.1em;
 }
 
 .ui.comments>form.ui.reply.form {
@@ -106,4 +141,40 @@ textarea {
 .comment>.comments {
     padding-left: 3em !important;
     padding-bottom: 0em !important;
+}
+
+a.author,
+a.author:hover {
+    color: rgba(0, 0, 0, .87)!important;
+    cursor: default !important;
+}
+
+.actions>a,
+.actions>a:hover {
+    color: rgba(0, 0, 0, .4) !important;
+    cursor: default !important;
+}
+
+a.avatar,
+a.avatar:hover {
+    cursor: default !important;
+}
+
+
+/* ---- CONTINUE BUTTON ---- */
+
+.ui.big.labeled.icon.button {
+    margin-bottom: 40px;
+}
+
+.ui.big.labeled.icon.button.green {
+    background-color: #aeb955;
+}
+
+.ui.big.labeled.icon.button.green:hover {
+    background-color: rgb(179, 191, 88);
+}
+
+.ui.big.labeled.icon.button.green:active {
+    background-color: rgb(162, 173, 80);
 }
