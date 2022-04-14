@@ -81,7 +81,21 @@ $(window).on("load", function() {
         'overlayOpacity': 0,
         'hidePrev': true,
         'showBullets': false,
-        // 'scrollPadding': 100
+        'scrollToElement': false
+            // 'scrollPadding': 100
+    });
+    intro.onbeforechange(function() {
+        if (this._currentStep > 0) {
+            intro.setOption('scrollToElement', true);
+        }
+        if (this._currentStep == 0 || this._currentStep == 11) {
+            intro.setOption('scrollToElement', false);
+            $(".demo-text")[0].scrollIntoView({
+                behavior: "smooth",
+                block: "center", // defines vertical alignment
+                inline: "nearest" // defines horizontal alignment
+            });
+        }
     });
     intro.onexit(function() {
         $(".ui.big.labeled.icon.button").addClass("green")[0].scrollIntoView({ behavior: "smooth" });
