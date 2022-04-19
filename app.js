@@ -274,14 +274,9 @@ app.get('/test_misinformation', function(req, res) {
         title: 'Feed'
     });
 });
-app.get('/test_harassment', function(req, res) {
-    res.render('test_harassment', {
-        title: 'Test Harassment'
-    });
-});
-app.get('/test_hatespeech', function(req, res) {
-    res.render('test_hatespeech', {
-        title: 'Test Hate Speech'
+app.get('/test2', function(req, res) {
+    res.render('test2', {
+        title: 'Test'
     });
 });
 
