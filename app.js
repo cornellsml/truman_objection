@@ -260,6 +260,12 @@ app.get('/profile_info', function(req, res) {
     });
 });
 
+app.get('/profile', function(req, res) {
+    res.render('Profile', {
+        title: 'Create Profile'
+    });
+});
+
 
 //User's Page
 app.get('/me', passportConfig.isAuthenticated, userController.getMe);
