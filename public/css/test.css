@@ -154,3 +154,29 @@ textarea {
 .three.wide.column.centered {
     margin-left: 0;
 }
+
+
+/** when page width < 1250px **/
+
+@media (max-width: 1250px) {
+    .largeScreen {
+        transition: 0.8s all ease;
+        display: none;
+        /** to hide/show the navbar items **/
+    }
+    .mediumScreen {
+        transition: 0.8s all ease;
+        display: inline;
+        /** to hide/show the navbar icon**/
+    }
+    .ui.attached.buttons {
+        margin-top: 0px;
+    }
+    .ui.reply.button,
+    .ui.flag.button,
+    .ui.share.button {
+        border-style: solid;
+        border-color: rgba(0, 0, 0, .3);
+        border-width: 0.1px 0.1px 0 0;
+    }
+}
