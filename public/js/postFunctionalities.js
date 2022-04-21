@@ -60,7 +60,7 @@ function addCommentToVideo(e) {
                     <img src="/profile_pictures/genericphoto1.png"> 
                 </a>
                 <div class="content">
-                    <a class="author">${username !== undefined ? username : "Guest"}</a>
+                    <a class="author">${username !== null ? username : "Guest783"}</a>
                     <div class="metadata">
                         <span class="date">Just now</span>
                     </div>
@@ -256,7 +256,7 @@ function addCommentToComment(e) {
                     <img src="/profile_pictures/genericphoto1.png"> 
                 </a>
                 <div class="content">
-                    <a class="author">${username !== undefined ? username : "Guest"}</a>
+                    <a class="author">${username !== null ? username : "Guest783"}</a>
                     <div class="metadata">
                         <span class="date">Just now</span>
                     </div>
