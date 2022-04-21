@@ -56,12 +56,45 @@ $(window).on("load", function() {
     }
 
     setTimeout(function() {
-        $(".incomingComment").transition('slide down').transition('glow');
-        //if in a mobile view, put popup in the middle
+        const mess =
+            `<div class="comment incomingComment hidden">
+                <a class="avatar"> 
+                    <img src="/profile_pictures/genericphoto5.png"> 
+                </a>
+                <div class="content">
+                    <a class="author">Small Potato</a>
+                <div class="metadata">
+                    <span class="date">Just now</span>
+                </div>
+                <div class="text">That is interesting</div>
+                <div class="actions">
+                    <a class="upvote" onClick="likeComment(event)">
+                        <i class="icon thumbs up"/>
+                        <span class="num">0</span>
+                    </a>
+                    <a class="downvote" onClick="dislikeComment(event)">
+                        <i class="icon thumbs down"/>
+                        <span class="num">0</span>
+                    </a>
+                    <a class="reply" onClick="openCommentReply(event)">
+                        Reply
+                    </a>
+                    <a class="flag" onClick="flagComment(event)">
+                        Flag
+                    </a>
+                    <a class="share" onClick="shareComment(event)">
+                        Share
+                    </a>
+                </div>
+            </div>
+        </div>`;
 
+        $(".ui.comments").prepend(mess);
+        $(".incomingComment").transition('slide down').transition('glow');
+
+        //if in a mobile view, put popup in the middle
         $("#desktopPopup").show();
         $("#desktopPopup").transition("pulse");
-
 
         setTimeout(function() {
             if ($("#desktopPopup").is(':visible')) {

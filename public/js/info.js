@@ -103,7 +103,7 @@ $(window).on("load", function() {
     intro.start(); //start the intro
     $(".ui.big.labeled.icon.button").on('click', function() {
         if ($(this).hasClass("green")) {
-            window.location.href = '/test_misinformation';
+            window.location.href = '/profile';
         }
     });
 });

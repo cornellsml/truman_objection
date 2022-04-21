@@ -1,0 +1,26 @@
+.ui.form .fields,
+.ui.form h3,
+.ui.form h2,
+.ui.form h4 {
+    justify-content: center;
+    text-align: center
+}
+
+h2.username {
+    color: #2B8490;
+    margin: 0 0 0 20px;
+}
+
+h3 {
+    margin-bottom: 0px;
+}
+
+h4 {
+    margin-top: 0px;
+}
+
+.inline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

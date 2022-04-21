@@ -1,81 +1,52 @@
 extends ui_layout
 
 block styles 
-  
+    link(type='text/css', rel='stylesheet', href='/public/css/profile.css')
 
 block content
+    -var initials = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
     .computer.only.tablet.only.three.wide.column.centered
     .eight.wide.column.centered
-        h3 Before testing the prototype, we want you to create a username. Please type your initials below, and we will generate a random name based on your initials to keep your identity anonymous.
+        .inline 
+            h2 Create a Username
+        h3 Before testing the prototype, we want you to create a username. 
+        h3 Please type your initials below, and we will generate a random username for you based on your initials to keep your identity anonymous.
         br
-        .ui.equal.width.form
+        br
+        br
+        .ui.form
             .fields
-                .field
+                .field.four.wide
                     label 
                         h3 First Name Initial: 
-                    select.ui.search.dropdown
+                    select.ui.search.dropdown.fluid(name="firstInitial")
                         option(value='') Select Initial
-                        option(value='A') A
-                        option(value='B') B
-                        option(value='C') C
-                        option(value='D') D
-                        option(value='E') E
-                        option(value='F') F
-                        option(value='G') G
-                        option(value='H') H
-                        option(value='I') I
-                        option(value='J') J
-                        option(value='K') K
-                        option(value='L') L
-                        option(value='M') M
-                        option(value='N') N
-                        option(value='O') O
-                        option(value='P') P
-                        option(value='Q') Q
-                        option(value='R') R
-                        option(value='S') S
-                        option(value='T') T
-                        option(value='U') U
-                        option(value='V') V
-                        option(value='W') W
-                        option(value='X') X
-                        option(value='Y') Y
-                        option(value='Z') Z
-                
-                .field
+                        each letter in initials
+                            option(value=letter) #{letter}   
+                .field.four.wide
                     label 
                         h3 Last Name Initial: 
-                    select.ui.search.dropdown
+                    select.ui.search.dropdown.fluid(name="lastInitial")
                         option(value='') Select Initial
-                        option(value='A') A
-                        option(value='B') B
-                        option(value='C') C
-                        option(value='D') D
-                        option(value='E') E
-                        option(value='F') F
-                        option(value='G') G
-                        option(value='H') H
-                        option(value='I') I
-                        option(value='J') J
-                        option(value='K') K
-                        option(value='L') L
-                        option(value='M') M
-                        option(value='N') N
-                        option(value='O') O
-                        option(value='P') P
-                        option(value='Q') Q
-                        option(value='R') R
-                        option(value='S') S
-                        option(value='T') T
-                        option(value='U') U
-                        option(value='V') V
-                        option(value='W') W
-                        option(value='X') X
-                        option(value='Y') Y
-                        option(value='Z') Z
-
-                    
+                        each letter in initials
+                            option(value=letter) #{letter}
+            h3 This will be your Username:
+            h4 (and photo)
+            .inline
+                img.ui.image.rounded(src='/profile_pictures/genericphoto1.png')
+                h2.username
+                    span.firstName ######### 
+                    | &nbsp;
+                    span.lastName #########
+        br
+        br
+        br
+        .ui.big.labeled.icon.button
+          i.right.arrow.icon
+          |   Continue
+       
 
     .computer.only.tablet.only.three.wide.column.centered
 
-
+block scripts
+    script(src='/public/js/profile.js')

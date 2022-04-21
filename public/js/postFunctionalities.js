@@ -49,6 +49,7 @@ function dislikePost(e) {
 };
 
 function addCommentToVideo(e) {
+    const username = window.sessionStorage.getItem('Username');
     let target = $(e.target);
     const form = target.parents(".ui.form");
     const text = form.find("textarea.replyToVideo").val();
@@ -59,7 +60,7 @@ function addCommentToVideo(e) {
                     <img src="/profile_pictures/genericphoto1.png"> 
                 </a>
                 <div class="content">
-                    <a class="author">Guest</a>
+                    <a class="author">${username !== undefined ? username : "Guest"}</a>
                     <div class="metadata">
                         <span class="date">Just now</span>
                     </div>
@@ -219,6 +220,7 @@ function openCommentReply(e) {
 }
 
 function addCommentToComment(e) {
+    const username = window.sessionStorage.getItem('Username');
     let target = $(e.target);
     const form = target.parents(".ui.form");
     if (!form.children(".ui.submit.button").hasClass("blue")) {
@@ -254,7 +256,7 @@ function addCommentToComment(e) {
                     <img src="/profile_pictures/genericphoto1.png"> 
                 </a>
                 <div class="content">
-                    <a class="author">Guest</a>
+                    <a class="author">${username !== undefined ? username : "Guest"}</a>
                     <div class="metadata">
                         <span class="date">Just now</span>
                     </div>
