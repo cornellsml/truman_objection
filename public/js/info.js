@@ -98,7 +98,7 @@ $(window).on("load", function() {
         }
     });
     intro.onexit(function() {
-        $(".ui.big.labeled.icon.button").addClass("green")[0].scrollIntoView({ behavior: "smooth" });
+        $(".ui.big.button").addClass("green")[0].scrollIntoView({ behavior: "smooth" });
     });
     intro.start(); //start the intro
     $(".ui.big.labeled.icon.button").on('click', function() {

@@ -3,6 +3,9 @@ body {
     padding: 0em;
 }
 
+
+/* Header CSS*/
+
 .ui.borderless.fixed.menu {
     background-color: #ffffff;
     z-index: 10000005;
@@ -12,10 +15,16 @@ body {
     justify-content: center
 }
 
+
+/* Layout  CSS*/
+
 .wide.column.centered {
     margin-top: 125px;
     margin-bottom: 25px;
 }
+
+
+/* General CSS */
 
 .hidden {
     display: none;
@@ -72,4 +81,28 @@ button {
 .ui.three.column.grid.pro .column img {
     margin-top: 8px;
     vertical-align: middle;
+}
+
+
+/* ---- CONTINUE TO NEXT PAGE BUTTON ---- */
+
+.ui.labeled.icon.button>.icon {
+    font-size: 25px;
+    width: 50px;
+}
+
+.ui.labeled.icon.button {
+    margin-bottom: 40px;
+}
+
+.ui.big.green.button {
+    background-color: rgb(43, 144, 90);
+}
+
+.ui.big.green.button:hover {
+    background-color: rgb(52, 154, 100);
+}
+
+.ui.big.green.button:active {
+    background-color: #278552;
 }

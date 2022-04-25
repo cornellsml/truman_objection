@@ -204,8 +204,14 @@ app.get('/', function(req, res) {
 });
 
 app.get('/profile', function(req, res) {
-    res.render('profile1', {
-        title: 'Create Username'
+    res.render('profile', {
+        title: 'Create Username and Photo'
+    });
+});
+
+app.get('/test_misinformation', function(req, res) {
+    res.render('test_misinformation', {
+        title: 'Feed'
     });
 });
 
@@ -239,7 +245,6 @@ app.get('/newsfeed/des_60_community_injunctive', scriptController.getScriptFeed)
 app.get('/newsfeed/des_5_injunctive_platform', scriptController.getScriptFeed);
 app.get('/newsfeed/des_30_injunctive_platform', scriptController.getScriptFeed);
 app.get('/newsfeed/des_60_injunctive_platform', scriptController.getScriptFeed);
-
 
 
 app.get('/tos', function(req, res) {

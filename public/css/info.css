@@ -2,6 +2,10 @@
     padding: 0px;
 }
 
+h1 {
+    text-align: center;
+}
+
 .title {
     color: #2B8490;
 }
@@ -12,6 +16,11 @@
     border-color: #2B8490;
     padding: 40px;
     margin: 30px auto 50px auto;
+}
+
+div.button {
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -158,23 +167,4 @@ a.author:hover {
 a.avatar,
 a.avatar:hover {
     cursor: default !important;
-}
-
-
-/* ---- CONTINUE BUTTON ---- */
-
-.ui.big.labeled.icon.button {
-    margin-bottom: 40px;
-}
-
-.ui.big.labeled.icon.button.green {
-    background-color: #aeb955;
-}
-
-.ui.big.labeled.icon.button.green:hover {
-    background-color: rgb(179, 191, 88);
-}
-
-.ui.big.labeled.icon.button.green:active {
-    background-color: rgb(162, 173, 80);
 }

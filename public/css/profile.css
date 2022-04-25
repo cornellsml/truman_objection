@@ -1,26 +1,50 @@
+h2 {
+    text-align: center;
+}
+
+.ui.form {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.ui.form,
 .ui.form .fields,
-.ui.form h3,
-.ui.form h2,
-.ui.form h4 {
+.ui.form h3 {
     justify-content: center;
     text-align: center
 }
 
 h2.username {
-    color: #2B8490;
-    margin: 0 0 0 20px;
+    color: #000000;
+    margin: 0px;
 }
 
-h3 {
-    margin-bottom: 0px;
+.ui.basic.buttons .button {
+    min-width: 400px;
+    min-height: 60px;
+    background-color: #ffffff !important;
 }
 
-h4 {
-    margin-top: 0px;
+.ui.basic.buttons .button:hover,
+.ui.basic.buttons .button:active {
+    background-color: #fefefe !important;
 }
 
-.inline {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.ui.basic.buttons .green.button {
+    background-color: #fefefe !important;
+    border: solid 4px;
+    border-color: #2b905a;
+}
+
+.ui.basic.vertical.buttons .green.button:first-child {
+    border-top-width: 4px;
+}
+
+i.icon.green {
+    float: right;
+}
+
+i.icon.green.hidden {
+    visibility: hidden;
+    float: left
 }
