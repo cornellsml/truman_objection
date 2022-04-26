@@ -59,7 +59,7 @@ $(window).on("load", function() {
         const mess =
             `<div class="comment incomingComment hidden">
                 <a class="avatar"> 
-                    <img src="/profile_pictures/genericphoto5.png"> 
+                    <img src="/profile_pictures/animals-2/lion_mis.svg"> 
                 </a>
                 <div class="content">
                     <a class="author">Small Potato</a>

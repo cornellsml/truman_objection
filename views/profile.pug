@@ -5,6 +5,7 @@ block styles
 
 block content
     -var initials = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
+    -var photos = ['/profile_pictures/animals-2/bear1.svg', '/profile_pictures/animals-2/bird2.svg','/profile_pictures/animals-2/buffalo3.svg','/profile_pictures/animals-2/cat4.svg','/profile_pictures/animals-2/cow5.svg','/profile_pictures/animals-2/deer6.svg','/profile_pictures/animals-2/dog7.svg','/profile_pictures/animals-2/elephant8.svg','/profile_pictures/animals-2/fox9.svg','/profile_pictures/animals-2/husky10.svg']
     .computer.only.tablet.only.three.wide.column.centered
     .eight.wide.column.centered
         h2 Create a Username
@@ -17,8 +18,8 @@ block content
                         h3 First Name Initial: 
                     select.ui.search.dropdown.fluid(name="firstInitial")
                         option(value='') Select Initial
-                        each letter in initials
-                            option(value=letter) #{letter}   
+                        each item in initials
+                            option(value=item) #{item}   
                 .field.four.wide
                     label 
                         h3 Last Name Initial: 
@@ -39,36 +40,10 @@ block content
         h3 We also want you to choose a profile photo. Choose a profile photo from below to use.
         .ui.form
             .images
-                a.avatar
-                    img(src='/profile_pictures/accordion.svg')
-                    i.icon.green.check.hidden
-                a.avatar
-                    img(src='/profile_pictures/airplane.svg')
-                    i.icon.green.check.hidden
-                a.avatar
-                    img(src='/profile_pictures/alarm_clock.svg')
-                    i.icon.green.check.hidden
-                a.avatar
-                    img(src='/profile_pictures/apple.svg')
-                    i.icon.green.check.hidden
-                a.avatar
-                    img(src='/profile_pictures/chocolate.svg')
-                    i.icon.green.check.hidden
-                a.avatar
-                    img(src='/profile_pictures/cookie.svg')
-                    i.icon.green.check.hidden
-                a.avatar
-                    img(src='/profile_pictures/donut.svg')
-                    i.icon.green.check.hidden
-                a.avatar
-                    img(src='/profile_pictures/burger.svg')
-                    i.icon.green.check.hidden
-                a.avatar
-                    img(src='/profile_pictures/football.svg')
-                    i.icon.green.check.hidden
-                a.avatar
-                    img(src='/profile_pictures/fishcake.svg' )
-                    i.icon.green.check.hidden
+                each filename in photos
+                    a.avatar
+                        img(src=filename)
+                        i.icon.green.check.hidden
         .ui.big.labeled.icon.button
           i.arrow.alternate.circle.right.icon
           | Continue
