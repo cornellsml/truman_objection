@@ -215,6 +215,12 @@ app.get('/test_misinformation', function(req, res) {
     });
 });
 
+app.get('/test2', function(req, res) {
+    res.render('test_script', {
+        title: 'Feed'
+    });
+});
+
 app.get('/newsfeed/:caseId', scriptController.getScriptFeed);
 
 app.post('/post/new', userpostupload.single('picinput'), check, scriptController.newPost);

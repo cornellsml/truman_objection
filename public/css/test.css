@@ -117,6 +117,10 @@ textarea {
     padding-bottom: 0em !important;
 }
 
+a.avatar>img {
+    color: #2B8490;
+}
+
 
 /* notification popups */
 
