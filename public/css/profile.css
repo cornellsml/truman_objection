@@ -1,6 +1,11 @@
+/**Title*/
+
 h2 {
     text-align: center;
 }
+
+
+/**Username Form*/
 
 .ui.form {
     margin-top: 50px;
@@ -47,4 +52,37 @@ i.icon.green {
 i.icon.green.hidden {
     visibility: hidden;
     float: left
+}
+
+
+/**Photo*/
+
+div.images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+a.avatar {
+    width: 20%;
+}
+
+a.avatar img {
+    width: 120px;
+    margin: 5px;
+    padding: 10px;
+}
+
+a.avatar img.green {
+    background-color: #fefefe !important;
+    border: solid 4px;
+    border-color: #2b905a;
+    border-radius: 1em;
+}
+
+a.avatar i.icon.green.check {
+    position: relative;
+    right: 18px;
+    top: -36px;
+    font-size: 1.71428571rem;
 }

@@ -59,6 +59,7 @@ $(window).on("load", async function() {
         }
     });
 
+    // Click a username
     $('button.ui.button').on('click', function() {
         // only allow selection if there are values loaded into the buttons
         if ($(this).find("h2") && $(this).find("h2").text().trim() == '') {
@@ -66,10 +67,22 @@ $(window).on("load", async function() {
             return;
         }
         $('button.ui.button').removeClass("green");
-        $('i.check.icon.green').remove();
+        $('button.ui.button h2 i.check.icon.green').remove();
         $(this).addClass("green");
         $(this).find("h2").prepend('<i class="check icon green hidden"></i>');
         $(this).find("h2").append('<i class="check icon green"></i>');
+    })
+
+    // Click a photo
+    $('a.avatar').on('click', function() {
+        // clear any photos selected 
+        $("a.avatar i.icon.green.check").addClass("hidden");
+        // $("a.avatar i.icon.green.check").remove();
+        $('img').removeClass("green");
+
+        $(this).find('img').addClass("green");
+        $(this).find('i.icon').removeClass("hidden");
+        // $(this).append('<i class="check icon green"></i>');
     })
 
     $(".ui.big.labeled.icon.button").on('click', function() {
