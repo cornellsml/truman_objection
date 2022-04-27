@@ -9,6 +9,9 @@ block content
     .computer.only.tablet.only.three.wide.column.centered
     .eight.wide.column.centered
         h2 Create a Username
+        .ui.warning.message.hidden.username
+            i.close.icon 
+            .header Don't forget to create and choose a username!
         h3 Before testing the prototype, we want you to create a username. 
         h3 Please type your initials below, and we will generate 3 random available usernames based on your initials to keep your identity anonymous. Then, choose one username you would like to use.
         .ui.form
@@ -18,8 +21,8 @@ block content
                         h3 First Name Initial: 
                     select.ui.search.dropdown.fluid(name="firstInitial")
                         option(value='') Select Initial
-                        each item in initials
-                            option(value=item) #{item}   
+                        each letter in initials
+                            option(value=letter) #{letter}   
                 .field.four.wide
                     label 
                         h3 Last Name Initial: 
@@ -37,6 +40,9 @@ block content
                     h2.username_3.username &nbsp;
         .ui.divider
         h2 Choose a Profile Photo
+        .ui.warning.message.hidden.photo
+            i.close.icon 
+            .header Don't forget to choose a profile picture!
         h3 We also want you to choose a profile photo. Choose a profile photo from below to use.
         .ui.form
             .images
