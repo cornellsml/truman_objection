@@ -75,6 +75,9 @@ p.description.short {
     max-width: 43.75px !important;
     width: 43.75px;
     height: 43.75px;
+    background-color: #b7c9c8;
+    border-radius: 50% !important;
+    padding: 1%;
 }
 
 textarea {
@@ -118,9 +121,9 @@ textarea {
 }
 
 a.avatar>img {
-    background-color: #e5e5e5;
+    background-color: #b7c9c8;
     border-radius: 50% !important;
-    width: 90%;
+    width: 120%;
     padding: 10%;
 }
 
@@ -146,7 +149,9 @@ a.avatar>img {
     height: 100%;
     display: inline;
     margin: 0 auto;
-    border-radius: .25rem !important;
+    border-radius: 50% !important;
+    background-color: #b7c9c8;
+    padding: 10%;
 }
 
 #desktopPopup,

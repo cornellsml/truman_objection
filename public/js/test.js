@@ -33,6 +33,8 @@ const counts = Object.values(viewCount);
 const length = counts.length;
 
 $(window).on("load", function() {
+    const photo = window.sessionStorage.getItem("Photo");
+    $("#replaceOnLoad").attr("src", photo);
     $('a.showMoreLess').click(showMoreLess);
     $('.message .close')
         .on('click', function() {

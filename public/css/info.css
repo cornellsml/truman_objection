@@ -1,5 +1,6 @@
-.eleven.wide.column.centered {
-    padding: 0px;
+.eight.wide.column.centered {
+    font-size: 1.14285714rem;
+    line-height: 1.5;
 }
 
 h1 {
@@ -16,11 +17,6 @@ h1 {
     border-color: #2B8490;
     padding: 40px;
     margin: 30px auto 50px auto;
-}
-
-div.button {
-    display: flex;
-    justify-content: center;
 }
 
 
@@ -167,4 +163,78 @@ a.author:hover {
 a.avatar,
 a.avatar:hover {
     cursor: default !important;
+}
+
+.largeScreen {
+    display: inline;
+}
+
+.mediumScreen {
+    display: none;
+}
+
+.smallScreen {
+    display: none;
+}
+
+
+/** when page width < 1250px **/
+
+@media (max-width: 1432px) {
+    .largeScreen {
+        transition: 0.8s all ease;
+        display: none;
+    }
+    .mediumScreen {
+        transition: 0.8s all ease;
+        display: inline;
+    }
+    .smallScreen {
+        transition: 0.8s all ease;
+        display: none;
+    }
+    .ui.attached.buttons {
+        margin-top: 0px;
+    }
+    .ui.reply.button,
+    .ui.flag.button {
+        border-style: solid;
+        border-color: rgba(0, 0, 0, .3);
+        border-width: 0.1px 0.1px 0 0 !important;
+    }
+    .ui.reply.button,
+    .ui.flag.button,
+    .ui.share.button {
+        border-style: solid;
+        border-color: rgba(0, 0, 0, .3);
+        border-width: 0.1px 0 0 0;
+    }
+}
+
+
+/** when page width < 1250px **/
+
+@media (max-width: 862px) {
+    .largeScreen {
+        transition: 0.8s all ease;
+        display: none;
+    }
+    .mediumScreen {
+        transition: 0.8s all ease;
+        display: none;
+    }
+    .smallScreen {
+        transition: 0.8s all ease;
+        display: inline;
+    }
+    .ui.attached.buttons {
+        margin-top: 0px;
+    }
+    .ui.bottom.attached.buttons,
+    .ui.flag.button,
+    .ui.share.button {
+        border-style: solid;
+        border-color: rgba(0, 0, 0, .3);
+        border-width: 0.1px 0 0 0 !important;
+    }
 }

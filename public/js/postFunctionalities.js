@@ -50,6 +50,7 @@ function dislikePost(e) {
 
 function addCommentToVideo(e) {
     const username = window.sessionStorage.getItem('Username');
+    const photo = window.sessionStorage.getItem('Photo');
     let target = $(e.target);
     const form = target.parents(".ui.form");
     const text = form.find("textarea.replyToVideo").val();
@@ -57,7 +58,7 @@ function addCommentToVideo(e) {
         const mess =
             `<div class="comment">
                 <a class="avatar"> 
-                    <img src="/profile_pictures/genericphoto1.png"> 
+                    <img src=${photo}> 
                 </a>
                 <div class="content">
                     <a class="author">${username !== null ? username+" (me)" : "Guest783"}</a>
@@ -174,6 +175,7 @@ function shareComment(e) {
 }
 
 function openCommentReply(e) {
+    const photo = window.sessionStorage.getItem('Photo');
     let target = $(e.target).parents('.content');
     const reply_to = target.children('a.author').text();
     const form = target.children('.ui.form');
@@ -185,7 +187,7 @@ function openCommentReply(e) {
         const comment_area = (
             `<div class="ui form">
                 <div class="inline field">
-                    <img class="ui image rounded" src="/profile_pictures/genericphoto1.png"/>
+                    <img class="ui image rounded" src=${photo}>
                     <textarea class="replyToComment" type="text" placeholder="Add a Reply..." rows="1" onInput="changeColor(event${comment_level==2 ? ", '@"+reply_to +"'": ""})">${(comment_level == 2) ? "@"+reply_to+" " : ""}</textarea>
                 </div>
                 <div class="ui submit button replyToComment" onClick="addCommentToComment(event)">
@@ -221,6 +223,7 @@ function openCommentReply(e) {
 
 function addCommentToComment(e) {
     const username = window.sessionStorage.getItem('Username');
+    const photo = window.sessionStorage.getItem('Photo');
     let target = $(e.target);
     const form = target.parents(".ui.form");
     if (!form.children(".ui.submit.button").hasClass("blue")) {
@@ -253,7 +256,7 @@ function addCommentToComment(e) {
         const mess =
             `<div class="comment">
                 <a class="avatar"> 
-                    <img src="/profile_pictures/genericphoto1.png"> 
+                    <img src=${photo}> 
                 </a>
                 <div class="content">
                     <a class="author">${username !== null ? username+" (me)" : "Guest783"}</a>

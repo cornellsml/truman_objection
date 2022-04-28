@@ -65,12 +65,16 @@ div.images {
 
 a.avatar {
     width: 20%;
+    min-width: 140px;
+    position: relative;
 }
 
 a.avatar img {
-    width: 120px;
-    margin: 5px;
+    width: 93%;
+    min-width: 120px;
+    margin: auto;
     padding: 10px;
+    /* display: block; */
 }
 
 a.avatar img.green {
@@ -81,8 +85,8 @@ a.avatar img.green {
 }
 
 a.avatar i.icon.green.check {
-    position: relative;
-    right: 18px;
-    top: -40px;
+    position: absolute;
+    right: 8%;
+    bottom: 10%;
     font-size: 1.71428571rem;
 }

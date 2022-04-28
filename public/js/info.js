@@ -28,7 +28,7 @@ let stepsList = [{
                 <li><b>Share the Video</b>: If you want to share the video</li>
             </ul> 
         `,
-        element: '.ui.bottom.attached.buttons'
+        element: '.video_buttons'
     },
     {
         intro: `<b>Note:</b> You will receive the video link to share<b> at the end of study</b> when you click share.
@@ -101,9 +101,12 @@ $(window).on("load", function() {
         $(".ui.big.button").addClass("green")[0].scrollIntoView({ behavior: "smooth" });
     });
     intro.start(); //start the intro
+
     $(".ui.big.labeled.icon.button").on('click', function() {
         if ($(this).hasClass("green")) {
             window.location.href = '/profile';
+        } else {
+            $(".introjs-tooltip")[0].scrollIntoView({ behavior: "smooth", block: "center" });
         }
     });
 });

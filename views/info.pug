@@ -6,12 +6,11 @@ block styles
   link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
 
 block content
-  .eleven.wide.column.centered
-    .ui.text.container
+  .eight.wide.column.centered 
       h1 Welcome to 
         span.title VidShare
         | !
-      //- img(src='/public/homepage_3.png', width="50%")
+        //- img(src='/public/homepage_2.jpg', width="50%")
       h3 We are a new video-based social media platform, and we welcome you to join us and other users to try out our initial prototype.
       h3 Here's what you can do on the site:
       ul
@@ -35,29 +34,76 @@ block content
               p.description.short
                 b Description: 
                 | check out my dope basketball shots
-          .ui.bottom.attached.buttons
-            .ui.labeled.button
-              .ui.upvote.button(tabindex='0')
-                i.thumbs.up.icon
-                | Upvote
-              a.ui.basic.green.left.pointing.label 0
-            .ui.labeled.button
-              .ui.downvote.button(tabindex='0')
-                i.thumbs.down.icon
-                | Downvote
-              a.ui.basic.red.left.pointing.label 0
-            .ui.reply.button(tabindex='0')
-                i.comment.icon
-                | Comment
-            .ui.flag.button(tabindex='0')
-              i.flag.icon
-              | Flag
-            .ui.share.button(tabindex='0')
-              i.share.icon
-              | Share
+          .video_buttons
+            .largeScreen
+              .ui.bottom.attached.buttons
+                .ui.labeled.button
+                  .ui.upvote.button(tabindex='0')
+                    i.thumbs.up.icon
+                    | Upvote
+                  a.ui.basic.green.left.pointing.label 0
+                .ui.labeled.button
+                  .ui.downvote.button(tabindex='0')
+                    i.thumbs.down.icon
+                    | Downvote
+                  a.ui.basic.red.left.pointing.label 0
+                .ui.reply.button(tabindex='0')
+                    i.comment.icon
+                    | Comment
+                .ui.flag.button(tabindex='0')
+                  i.flag.icon
+                  | Flag
+                .ui.share.button(tabindex='0')
+                  i.share.icon
+                  | Share
+            .mediumScreen
+              .ui.bottom.attached.buttons
+                .ui.labeled.button
+                  .ui.upvote.button(tabindex='0')
+                    i.thumbs.up.icon
+                    | Upvote
+                  a.ui.basic.green.left.pointing.label 2
+                .ui.labeled.button
+                  .ui.downvote.button(tabindex='0')
+                    i.thumbs.down.icon
+                    | Downvote
+                  a.ui.basic.red.left.pointing.label 4
+              .ui.bottom.attached.buttons
+                .ui.reply.button
+                    i.comment.icon
+                    | Comment
+                .ui.flag.button(tabindex='0')
+                  i.flag.icon
+                  | Flag
+                .ui.share.button(tabindex='0')
+                  i.share.icon
+                  | Share
+            .smallScreen
+              .ui.bottom.attached.buttons
+                .ui.labeled.button
+                  .ui.upvote.button(tabindex='0')
+                    i.thumbs.up.icon
+                    | Upvote
+                  a.ui.basic.green.left.pointing.label 2
+              .ui.bottom.attached.buttons
+                .ui.labeled.button
+                  .ui.downvote.button(tabindex='0')
+                    i.thumbs.down.icon
+                    | Downvote
+                  a.ui.basic.red.left.pointing.label 4
+              .ui.bottom.attached.buttons.vertical.fluid
+                .ui.reply.button
+                    i.comment.icon
+                    | Comment
+                .ui.flag.button(tabindex='0')
+                  i.flag.icon
+                  | Flag
+                .ui.share.button(tabindex='0')
+                  i.share.icon
+                  | Share
         .ui.form
           .inline.field
-            img.ui.image.rounded(src='/profile_pictures/genericphoto1.png')
+            img.ui.image.rounded(src='/profile_pictures/avatar-icon.svg')
             textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1' readonly)
           .ui.submit.button.replyToVideo
               | Comment
@@ -110,10 +156,9 @@ block content
                       a.share 
                         | Share
       h3 After completing the tutorial and becoming comfortable with the features of the site, go to the prototype by clicking the "Let's Go!" button.
-      div.button
-        .ui.big.labeled.icon.button
-          i.arrow.alternate.circle.right.icon
-          | Let's Go!
+      .ui.big.labeled.icon.button
+        i.arrow.alternate.circle.right.icon
+        | Let's Go!
 
 block scripts
   script(src='/public/js/lib/jquery.highlight-within-textarea.js')
