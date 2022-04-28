@@ -58,7 +58,7 @@ function addCommentToVideo(e) {
         const mess =
             `<div class="comment">
                 <a class="avatar"> 
-                    <img src=${photo}> 
+                    <img src=${photo} class="user_img"> 
                 </a>
                 <div class="content">
                     <a class="author">${username !== null ? username+" (me)" : "Guest783"}</a>
@@ -177,7 +177,7 @@ function shareComment(e) {
 function openCommentReply(e) {
     const photo = window.sessionStorage.getItem('Photo');
     let target = $(e.target).parents('.content');
-    const reply_to = target.children('a.author').text();
+    const reply_to = target.children('a.author').text().replace(" (me)", "");
     const form = target.children('.ui.form');
     if (form.length !== 0) {
         form.hide(function() { $(this).remove(); });
@@ -256,7 +256,7 @@ function addCommentToComment(e) {
         const mess =
             `<div class="comment">
                 <a class="avatar"> 
-                    <img src=${photo}> 
+                    <img src=${photo} class="user_img"> 
                 </a>
                 <div class="content">
                     <a class="author">${username !== null ? username+" (me)" : "Guest783"}</a>

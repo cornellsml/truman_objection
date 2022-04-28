@@ -75,9 +75,9 @@ p.description.short {
     max-width: 43.75px !important;
     width: 43.75px;
     height: 43.75px;
-    background-color: #b7c9c8;
+    background-color: #a6a488;
     border-radius: 50% !important;
-    padding: 1%;
+    padding: 0.7%;
 }
 
 textarea {
@@ -125,6 +125,10 @@ a.avatar>img {
     border-radius: 50% !important;
     width: 120%;
     padding: 10%;
+}
+
+a.avatar>img.user_img {
+    background-color: #a6a488;
 }
 
 

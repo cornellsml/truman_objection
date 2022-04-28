@@ -5,6 +5,7 @@ block styles
   link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
 
 block content
+  -var colors = ["#a6888a", "#8999a2", "#a69588", "#93ae9f"]
   .computer.only.tablet.only.three.wide.column.centered
   .eight.wide.column.centered
     .ui.fluid.card      
@@ -108,7 +109,7 @@ block content
         //-         | Share
         .comment
           a.avatar
-            img(src='/profile_pictures/animals-2/giraffe_mis.svg')
+            img(src='/profile_pictures/animals-2/giraffe_mis.svg', style=`background-color:${colors[0]}`)
           .content
             a.author Major Raincoat
             .metadata
@@ -130,7 +131,7 @@ block content
                 | Share
         .comment
           a.avatar
-            img(src='/profile_pictures/animals-2/goat_mis.svg')
+            img(src='/profile_pictures/animals-2/goat_mis.svg', style=`background-color:${colors[1]}`)
           .content
             a.author Excited Fountain
             .metadata
@@ -153,7 +154,7 @@ block content
           .comments
             .comment
               a.avatar
-                img(src='/profile_pictures/animals-2/gorilla_mis.svg')
+                img(src='/profile_pictures/animals-2/gorilla_mis.svg', style=`background-color:${colors[2]}`)
               .content
                 a.author Just Helmet
                 .metadata
@@ -175,7 +176,7 @@ block content
                     | Share
         .comment
           a.avatar
-            img(src='/profile_pictures/animals-2/horse_mis.svg')
+            img(src='/profile_pictures/animals-2/horse_mis.svg', style=`background-color:${colors[3]}`)
           .content
             a.author Hungry Insect
             .metadata
