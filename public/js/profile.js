@@ -122,7 +122,7 @@ $(window).on("load", async function() {
         const src = $('a.avatar img.green').attr('src');
         window.sessionStorage.setItem('Photo', src);
         if ($(this).hasClass("green")) {
-            window.location.href = '/test_misinformation';
+            window.location.href = '/feed';
         } else {
             if (username === undefined || username.trim() === '') {
                 if ($('.ui.warning.message.username').is(":hidden")) {

@@ -71,11 +71,7 @@ dotenv.config({ path: '.env' });
 /**
  * Controllers (route handlers).
  */
-const actorsController = require('./controllers/actors');
-const scriptController = require('./controllers/script');
-const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
-const notificationController = require('./controllers/notification');
 
 /**
  * API keys and Passport configuration.
@@ -209,122 +205,18 @@ app.get('/profile', function(req, res) {
     });
 });
 
-app.get('/test_misinformation', function(req, res) {
-    res.render('test_misinformation', {
+app.get('/feed', function(req, res) {
+    res.render('feed', {
         title: 'Feed'
     });
 });
 
+// Test Pages
 app.get('/test2', function(req, res) {
     res.render('test_script', {
         title: 'Feed'
     });
 });
-
-app.get('/newsfeed/:caseId', scriptController.getScriptFeed);
-
-app.post('/post/new', userpostupload.single('picinput'), check, scriptController.newPost);
-
-app.post('/account/profile', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, userController.postUpdateProfile);
-//app.post('/api/upload', upload.single('myFile'), apiController.postFileUpload);
-
-// Zhila
-// for the pilot
-//can we specify the condition in the URL .. now that the user doesn't have an account, where do we set their group?
-// app.get('/p_r5', scriptController.getScriptPilot); 
-app.get('/newsfeed/r5', scriptController.getScriptFeed);
-app.get('/newsfeed/r30', scriptController.getScriptFeed);
-app.get('/newsfeed/r60', scriptController.getScriptFeed);
-
-// app.get('/newsfeed/r40', scriptController.getScriptFeed);
-
-//        
-app.get('/newsfeed/r5_rules_noCommunity', scriptController.getScriptFeed);
-app.get('/newsfeed/r30_rules_noCommunity', scriptController.getScriptFeed);
-app.get('/newsfeed/r60_rules_noCommunity', scriptController.getScriptFeed);
-
-app.get('/newsfeed/des_5_community_injunctive', scriptController.getScriptFeed);
-app.get('/newsfeed/des_30_community_injunctive', scriptController.getScriptFeed);
-app.get('/newsfeed/des_60_community_injunctive', scriptController.getScriptFeed);
-
-// app.get('/newsfeed/des_80', scriptController.getScriptFeed);
-app.get('/newsfeed/des_5_injunctive_platform', scriptController.getScriptFeed);
-app.get('/newsfeed/des_30_injunctive_platform', scriptController.getScriptFeed);
-app.get('/newsfeed/des_60_injunctive_platform', scriptController.getScriptFeed);
-
-
-app.get('/tos', function(req, res) {
-    res.render('tos', {
-        title: 'TOS'
-    });
-})
-
-app.get('/com', function(req, res) {
-    res.render('com', {
-        title: 'Community Rules'
-    });
-});
-
-app.get('/info', function(req, res) {
-    res.render('info copy', {
-        title: 'User Docs'
-    });
-});
-
-app.get('/profile_info', function(req, res) {
-    res.render('profile_info', {
-        title: 'Profile Introductions'
-    });
-});
-
-//User's Page
-app.get('/me', passportConfig.isAuthenticated, userController.getMe);
-
-app.get('/completed', passportConfig.isAuthenticated, userController.userTestResults);
-
-app.get('/notifications', passportConfig.isAuthenticated, notificationController.getNotifications);
-
-// Test Pages
-app.get('/test_misinformation', function(req, res) {
-    res.render('test_misinformation', {
-        title: 'Feed'
-    });
-});
-app.get('/test2', function(req, res) {
-    res.render('test2', {
-        title: 'Test'
-    });
-});
-
-app.get('/login', userController.getLogin);
-app.post('/login', userController.postLogin);
-app.get('/logout', userController.logout);
-app.get('/forgot', userController.getForgot);
-app.post('/forgot', userController.postForgot);
-app.get('/reset/:token', userController.getReset);
-app.post('/reset/:token', userController.postReset);
-app.get('/signup', userController.getSignup);
-app.post('/signup', userController.postSignup);
-
-app.get('/account/signup_info', passportConfig.isAuthenticated, userController.getSignupInfo);
-app.post('/account/signup_info_post', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, userController.postSignupInfo);
-
-app.post('/account/profile', passportConfig.isAuthenticated, useravatarupload.single('picinput'), check, userController.postUpdateProfile);
-
-
-app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
-app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
-
-app.get('/user/:userId', passportConfig.isAuthenticated, actorsController.getActor);
-app.post('/user', passportConfig.isAuthenticated, actorsController.postBlockOrReport);
-
-app.get('/bell', passportConfig.isAuthenticated, userController.checkBell);
-
-//getScript
-app.get('/feed', passportConfig.isAuthenticated, scriptController.getScript);
-app.post('/feed', passportConfig.isAuthenticated, scriptController.postUpdateFeedAction);
-app.post('/pro_feed', passportConfig.isAuthenticated, scriptController.postUpdateProFeedAction);
-app.post('/userPost_feed', passportConfig.isAuthenticated, scriptController.postUpdateUserPostFeedAction);
 
 /**
  * Error Handler.

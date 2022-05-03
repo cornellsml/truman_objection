@@ -1,0 +1,113 @@
+{
+    "misinformation": {
+        "0": {
+            "id": "#actor1",
+            "src": "/profile_pictures/animals/mis_dolphin.svg",
+            "name": "mr219",
+            "color": "#a6888a",
+            "time": "Today at 5:42PM",
+            "likes": "1",
+            "dislikes": "2"
+        },
+        "2": {
+            "id": "#actor2",
+            "src": "/profile_pictures/animals/mis_elephant.svg",
+            "name": "ef039",
+            "color": "#8999a2",
+            "time": "Yesterday at 12:30AM",
+            "likes": "2",
+            "dislikes": "4"
+        },
+        "3": {
+            "id": "#actor3",
+            "src": "/profile_pictures/animals/mis_fish.svg",
+            "name": "jh120",
+            "color": "#a69588",
+            "time": "30 minutes ago",
+            "likes": "2",
+            "dislikes": "3"
+        },
+        "4": {
+            "id": "#actor4",
+            "src": "/profile_pictures/animals/mis_mouse.svg",
+            "name": "hp092",
+            "color": "#93ae9f",
+            "likes": "0",
+            "dislikes": "1"
+        }
+    },
+    "harassment": {
+        "0": {
+            "id": "#actor1",
+            "src": "/profile_pictures/animals/harass_fox.svg",
+            "name": "wh394",
+            "color": "#a6888a",
+            "time": "Today at 5:42PM",
+            "likes": "1",
+            "dislikes": "2"
+        },
+        "2": {
+            "id": "#actor2",
+            "src": "/profile_pictures/animals/harass_frog.svg",
+            "name": "vi909",
+            "color": "#8999a2",
+            "time": "Yesterday at 12:30AM",
+            "likes": "2",
+            "dislikes": "4"
+        },
+        "3": {
+            "id": "#actor3",
+            "src": "/profile_pictures/animals/harass_hawk.svg",
+            "name": "eh552",
+            "color": "#a69588",
+            "time": "30 minutes ago",
+            "likes": "2",
+            "dislikes": "3"
+        },
+        "4": {
+            "id": "#actor4",
+            "src": "/profile_pictures/animals/harass_jellyfish.svg",
+            "name": "ad213",
+            "color": "#93ae9f",
+            "likes": "0",
+            "dislikes": "1"
+        }
+    },
+    "hate_speech": {
+        "0": {
+            "id": "#actor1",
+            "src": "/profile_pictures/animals/hate_octopus.svg",
+            "name": "ck883",
+            "color": "#a6888a",
+            "time": "Today at 5:42PM",
+            "likes": "1",
+            "dislikes": "2"
+        },
+        "2": {
+            "id": "#actor2",
+            "src": "/profile_pictures/animals/hate_turtle.svg",
+            "name": "oc732",
+            "color": "#8999a2",
+            "time": "Yesterday at 12:30AM",
+            "likes": "2",
+            "dislikes": "4"
+        },
+        "3": {
+            "id": "#actor3",
+            "src": "/profile_pictures/animals/hate_sealion.svg",
+            "name": "lj382",
+            "color": "#a69588",
+            "time": "30 minutes ago",
+            "likes": "2",
+            "dislikes": "3"
+        },
+        "4": {
+            "id": "#actor4",
+            "src": "/profile_pictures/animals/hate_pig.svg",
+            "name": "pg372",
+            "color": "#93ae9f",
+            "likes": "0",
+            "dislikes": "1"
+        }
+    }
+}

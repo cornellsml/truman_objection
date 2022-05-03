@@ -1,143 +1,244 @@
-extends ui_layout_no
-  
+extends ui_layout
+
+block styles 
+  link(type='text/css', rel='stylesheet', href='/public/css/test.css')
+  link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
+
 block content
-
-  
-  // -var cdn = "https://eatsnaplove.nyc3.cdn.digitaloceanspaces.com";
-  -var cdn = "https://normalizationtruman.s3.us-east-2.amazonaws.com";
-  //- -var cdn = "";
-  .computer.only.tablet.only.four.wide.column 
-    
-
-  #content.eight.wide.computer.ten.wide.tablet.sixteen.wide.mobile.column(style='display: none;')
-    //-.ui.active.dimmer.feed
-      .ui.large.text.loader Loading
-    //- Input for creating new post at top of feed
-  
-    each val in script
-      
-      
-      .ui.fluid.card.dim()
-        //- dimmer DIV for flagging
-        .ui.dimmer.flag
-              .content
-                .center
-                  h2.ui.inverted.icon.header
-                    i.red.flag.icon
-                    |  You&apos;ve flagged this!
-                    h3.ui.inverted.header
-                      span="The admins will review this post further. We are sorry you had this experience."
-        //- Normal Base Post
-        .content
-          .right.floated.time.meta= (1547752372994 + val.time)
-          |  
-          a(href='#')
-            if val.actor[namefilter] == "yes"
-              img.ui.avatar.image(src=cdn+'/profile_pictures/'+val.actor.profile.picture)
-            else
-              img.ui.avatar.image(src=val.actor.profile.fakepic)
-            span=val.actor.profile.name
-        //-div(style="position: relative; z-index: 1;")
-          img(src="image.png" style="position: absolute; z-index: 2;")
-          span#overlay_text(style="position: relative; top: -10px; z-index: 3;") OVERLAY
-        .image
-          img.post(src=cdn+"/post_pictures/"+val.picture)
-        .content
-          .description=val.body
-        .three.ui.bottom.attached.icon.buttons
-          .ui.reply.button(tabindex='0')
-            i.reply.icon
-            |  Reply
-          .ui.flag.button(tabindex='0')
-            i.flag.icon
-            |  Flag
-          if val.like
-            .ui.labeled.button(tabindex='0')
-              .ui.red.like.button
-                i.heart.icon
-                |  Like
-              a.ui.basic.red.left.pointing.label=val.likes
-          else
-            .ui.labeled.button(tabindex='0')
-              .ui.like.button
-                i.heart.icon
-                |  Like
-              a.ui.basic.red.left.pointing.label.count=val.likes
-        if val.comments.length > 0
-          .content
-            .ui.comments
-              each comment in val.comments
-                //-IF this comment is USER made, do this
-                
-                  
-                .comment(commentID=comment.id)
-                  a.avatar(href='#')
-                    if comment.actor[namefilter] == "yes"
-                      img(src='/profile_pictures/'+comment.actor.profile.picture)
-                    else
-                      img(src=comment.actor.profile.fakepic)
-                  .content
-                    a.author(href='#')=comment.actor.profile.name
-                    .metadata
-                      span.date=(1547752372994 + val.time +comment.time)
-                      .rating
-                        if comment.liked
-                          i.red.heart.icon
-                          span=comment.likes
-                          |  Likes 
-                        else
-                          i.heart.icon
-                          span.num=comment.likes
-                          |  Likes
-                    .text=comment.body
-                    .actions
-                      a.like.comment Like
-                      a.flag.comment Flag
-        .extra.content
-          .ui.fluid.left.labeled.right.icon.input
-            .ui.label
-              img.ui.avatar.image(src='/profile_pictures/genericphoto6.png', name="Nick Johnson")           
-            input.newcomment(type='text', placeholder='Write a Comment')
-            i.big.send.link.icon
-
-    .ui.fluid.card
+  -var colors = ["#a6888a", "#8999a2", "#a69588", "#93ae9f"]
+  .computer.only.tablet.only.three.wide.column.centered
+  .eight.wide.column.centered
+    .ui.fluid.card      
+      //- .image
+        //- iframe(width='100%' height='568' src='https://www.youtube.com/embed/0bXmNBl9Xbg' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
+      video(src='/post_pictures/Objection_Video.mp4' width='100%' controls type='video/mp4')
       .content
         .description
-        |  End of Posts
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    br
-    
+          h2 FDA granted full approval to the Pfizer vaccine 
+          .viewCount-div 
+            i.icon.user
+            p watching &#183; Aug 29, 2021
+            p.viewCount &#32;8&#32;
+          p.description.short
+            b Description: 
+            | This week, the FDA granted full approval to the Pfizer vaccine. Will that make a difference for vaccine-hesitant Americans? Dr. Irwin Redlener, founding director of the National Center for Disaster Preparedness at Columbia University and a MSNBC Public Health Analyst, joined NBC’s Joshua Johnson to discuss the process behind full FDA approval and its possible impact on vaccination rates.
+          a.showMoreLess SHOW MORE
+      .largeScreen
+        .ui.bottom.attached.buttons
+          .ui.labeled.button
+            .ui.upvote.button(tabindex='0', data-tooltip="I like this", data-position="bottom center", data-variation="mini")
+              i.thumbs.up.icon
+              | Upvote
+            a.ui.basic.green.left.pointing.label 2
+          .ui.labeled.button
+            .ui.downvote.button(tabindex='0', data-tooltip="I dislike this", data-position="bottom center", data-variation="mini")
+              i.thumbs.down.icon
+              | Downvote
+            a.ui.basic.red.left.pointing.label 4
+          .ui.reply.button
+              i.comment.icon
+              | Comment
+          .ui.flag.button(tabindex='0', data-tooltip="Report", data-position="bottom center", data-variation="mini")
+            i.flag.icon
+            | Flag
+          .ui.share.button(tabindex='0', data-tooltip="Share", data-position="bottom center", data-variation="mini")
+            i.share.icon
+            | Share
+      .mediumScreen.hidden
+        .ui.bottom.attached.buttons
+          .ui.labeled.button
+            .ui.upvote.button(tabindex='0', data-tooltip="I like this", data-position="bottom center", data-variation="mini")
+              i.thumbs.up.icon
+              | Upvote
+            a.ui.basic.green.left.pointing.label 2
+          .ui.labeled.button
+            .ui.downvote.button(tabindex='0', data-tooltip="I dislike this", data-position="bottom center", data-variation="mini")
+              i.thumbs.down.icon
+              | Downvote
+            a.ui.basic.red.left.pointing.label 4
+        .ui.bottom.attached.buttons
+          .ui.reply.button
+              i.comment.icon
+              | Comment
+          .ui.flag.button(tabindex='0', data-tooltip="Report", data-position="bottom center", data-variation="mini")
+            i.flag.icon
+            | Flag
+          .ui.share.button(tabindex='0', data-tooltip="Share", data-position="bottom center", data-variation="mini")
+            i.share.icon
+            | Share
+    .ui.form
+      .inline.field
+        img.ui.image.rounded#replaceOnLoad
+        textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1')
+      .ui.submit.button.replyToVideo
+          | Comment
+      .ui.cancel.basic.blue.button.replyToVideo
+          | Cancel
+    .ui.comments
+        //- h3.ui.dividing.header Comments
+        //- .ui.form
+        //-   .inline.field
+        //-     a.avatar
+        //-       img.ui.image.rounded.replyToVideo(src='/profile_pictures/genericphoto1.png')
+        //-     textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1')
+        //-   .ui.submit.button.replyToVideo
+        //-       | Comment
+        //-   .ui.cancel.basic.blue.button.replyToVideo
+        //-       | Cancel
+        //- .comment.incomingComment.hidden
+        //-   a.avatar
+        //-     img(src='/profile_pictures/15.png')
+        //-   .content
+        //-     a.author Sarah P.
+        //-     .metadata
+        //-       span.date Just now
+        //-     .text
+        //-       | That is interesting
+        //-     .actions
+        //-       a.upvote
+        //-         i.icon.thumbs.up
+        //-         span.num 0
+        //-       a.downvote
+        //-         i.icon.thumbs.down
+        //-         span.num 0
+        //-       a.reply 
+        //-         | Reply
+        //-       a.flag 
+        //-         | Flag
+        //-       a.share 
+        //-         | Share
+        .comment#actor1
+          a.avatar
+            img
+          .content
+            a.author
+            .metadata
+              span.date
+            .text
+              | That's great
+            .actions
+              a.upvote
+                i.icon.thumbs.up
+                span.num
+              a.downvote
+                i.icon.thumbs.down
+                span.num
+              a.reply 
+                | Reply
+              a.flag 
+                | Flag
+              a.share 
+                | Share
+        .comment#actor2
+          a.avatar
+            img
+          .content
+            a.author
+            .metadata
+              span.date
+            .text
+              p It means many more will die...That’s what it means
+            .actions
+              a.upvote
+                i.icon.thumbs.up
+                span.num
+              a.downvote
+                i.icon.thumbs.down
+                span.num
+              a.reply 
+                | Reply
+              a.flag 
+                | Flag
+              a.share
+                | Share
+          .comments
+            .comment#actor3
+              a.avatar
+                img
+              .content
+                a.author
+                .metadata
+                  span.date
+                .text
+                  | It doesn’t matter if you’re afraid of the vaccine or not. The pandemic has never been about you. It has always been about the people around you.
+                .actions
+                  a.upvote
+                    i.icon.thumbs.up
+                    span.num
+                  a.downvote
+                    i.icon.thumbs.down
+                    span.num
+                  a.reply 
+                    | Reply
+                  a.flag 
+                    | Flag
+                  a.share 
+                    | Share
+        .comment#actor4
+          a.avatar
+            img
+          .content
+            a.author
+            .metadata
+              span.date
+            .text
+              | Ah so sweet, the tears of the unvaccinated
+            .actions
+              a.upvote
+                i.icon.thumbs.up
+                span.num
+              a.downvote
+                i.icon.thumbs.down
+                span.num
+              a.reply 
+                | Reply
+              a.flag 
+                | Flag
+              a.share 
+                | Share
+    .ui.small.shareVideo.modal
+      .ui.icon.header
+        i.share.icon
+        |     You have shared this video!
+      .content(style='text-align:center;')
+        h3(style='text-align:left;') Note: The "Copy Link" feature is currently disabled. 
+        h4(style='text-align:left;') However, we keep track of all the links you would like to share, and at the end of the study, we will give you a list of those links so you can share them. 
+        .ui.left.labeled.button.large.centered
+          .ui.basic.label.pathname
+        .ui.icon.button(data-tooltip="Copy Link (DISABLED)", data-position="bottom center", data-variation="mini")
+          i.copy.icon
+      .actions   
+        .ui.green.ok.inverted.button
+          i.checkmark.icon
+          |   Done
+    .ui.small.shareComment.modal
+      .ui.icon.header
+        i.share.icon
+        |     You have shared this comment!
+      .content(style='text-align:center;')
+        h3(style='text-align:left;') Note: The "Copy Link" feature is currently disabled. 
+        h4(style='text-align:left;') However, we keep track of all the links you would like to share, and at the end of the study, we will give you a list of those links so you can share them. 
+        .ui.left.labeled.button.large.centered
+          .ui.basic.label.pathname
+        .ui.icon.button(data-tooltip="Copy Link (DISABLED)", data-position="bottom center", data-variation="mini")
+          i.copy.icon
+      .actions   
+        .ui.green.ok.inverted.button
+          i.checkmark.icon
+          |   Done
+  .computer.only.tablet.only.three.wide.column.centered
+    .ui.fixed.bottom.sticky.notificationPopup.hidden#desktopPopup(correspondingpost=0)
+     .ui.info.message
+       i.close.icon
+       .ui.feed
+        .event
+          .label
+            img.popupNotificationImage(src='/profile_pictures/animals-2/lion_mis.svg')
+          .content
+            .summary Small Potato commented on the video: "That is interesting".
+
+
+block scripts
+  script(src='/public/js/lib/jquery.highlight-within-textarea.js')
+  script(src='/public/js/postFunctionalities.js')
+  script(src='/public/js/feed.js')

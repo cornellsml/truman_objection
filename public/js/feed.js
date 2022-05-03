@@ -32,7 +32,18 @@ const times = Object.keys(viewCount);
 const counts = Object.values(viewCount);
 const length = counts.length;
 
-$(window).on("load", function() {
+$(window).on("load", async function() {
+    let searchParams = (new URL(document.location)).searchParams;
+    console.log(searchParams.get("off_id"));
+    console.log(searchParams.get("objt_id"));
+    console.log(searchParams.get("objm_id"));
+
+    const offense = searchParams.get("off_id");
+    let jsonPath = '/json/advancedlit_articleData.json';
+
+    await $.getJSON('/public/jsons/actor_profiles.json', function(actorData) {
+        console.log(actorData);
+    });
     const photo = window.sessionStorage.getItem("Photo");
     $("#replaceOnLoad").attr("src", photo);
     $('a.showMoreLess').click(showMoreLess);
