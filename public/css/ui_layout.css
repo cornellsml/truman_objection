@@ -96,11 +96,11 @@ button {
 }
 
 .ui.big.green.button {
-    background-color: rgb(43, 144, 90);
+    background-color: #2b905a;
 }
 
 .ui.big.green.button:hover {
-    background-color: rgb(52, 154, 100);
+    background-color: #349a64;
 }
 
 .ui.big.green.button:active {
