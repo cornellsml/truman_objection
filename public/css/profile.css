@@ -63,30 +63,42 @@ div.images {
     flex-wrap: wrap;
 }
 
-a.avatar {
+.image {
     width: 20%;
     min-width: 140px;
+    height: 140px;
     position: relative;
 }
 
-a.avatar img {
-    width: 93%;
-    min-width: 120px;
-    margin: auto;
-    padding: 10px;
-    /* display: block; */
-}
-
-a.avatar img.green {
+.image.green {
     background-color: #fefefe !important;
     border: solid 4px;
     border-color: #2b905a;
     border-radius: 1em;
 }
 
-a.avatar i.icon.green.check {
+a.avatar {
+    /* border-radius: 50% !important;
+    background-color: #b7c9c8;
+    width: 86%;
+    height: 86%;
+    margin: 7%; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+a.avatar img {
+    /* width: 65%; */
+    width: 60%;
+}
+
+div.image i.icon.green.check {
     position: absolute;
-    right: 8%;
-    bottom: 10%;
+    right: 2%;
+    bottom: 2%;
     font-size: 1.71428571rem;
 }

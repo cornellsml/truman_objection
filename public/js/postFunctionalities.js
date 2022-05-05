@@ -57,9 +57,11 @@ function addCommentToVideo(e) {
     if (text.trim() !== "") {
         const mess =
             `<div class="comment">
-                <a class="avatar"> 
-                    <img src=${photo} class="user_img"> 
-                </a>
+                <div class="image user_img">
+                    <a class="avatar"> 
+                        <img src=${photo}> 
+                    </a>
+                </div>
                 <div class="content">
                     <a class="author">${username !== null ? username+" (me)" : "Guest783"}</a>
                     <div class="metadata">
@@ -187,8 +189,10 @@ function openCommentReply(e) {
         const comment_area = (
             `<div class="ui form">
                 <div class="inline field">
-                    <img class="ui image rounded" src=${photo}>
-                    <textarea class="replyToComment" type="text" placeholder="Add a Reply..." rows="1" onInput="changeColor(event${comment_level==2 ? ", '@"+reply_to +"'": ""})">${(comment_level == 2) ? "@"+reply_to+" " : ""}</textarea>
+                    <div class="image">
+                        <img class="ui image rounded" src=${photo}>
+                    </div>
+                        <textarea class="replyToComment" type="text" placeholder="Add a Reply..." rows="1" onInput="changeColor(event${comment_level==2 ? ", '@"+reply_to +"'": ""})">${(comment_level == 2) ? "@"+reply_to+" " : ""}</textarea>
                 </div>
                 <div class="ui submit button replyToComment" onClick="addCommentToComment(event)">
                     Reply to ${reply_to}
@@ -255,9 +259,11 @@ function addCommentToComment(e) {
         }
         const mess =
             `<div class="comment">
-                <a class="avatar"> 
-                    <img src=${photo} class="user_img"> 
-                </a>
+                <div class="image user_img">
+                    <a class="avatar"> 
+                        <img src=${photo}> 
+                    </a>
+                </div>
                 <div class="content">
                     <a class="author">${username !== null ? username+" (me)" : "Guest783"}</a>
                     <div class="metadata">

@@ -42,7 +42,8 @@ let stepsList = [{
     {
         intro: `You can view comments left by other people.`,
         element: '.ui.comments'
-    }, {
+    },
+    {
         intro: `Replies to comments will appear indented.`,
         element: '.sampleReply'
     },

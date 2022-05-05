@@ -1,11 +1,10 @@
 extends ui_layout
 
 block styles 
-  link(type='text/css', rel='stylesheet', href='/public/css/test.css')
+  link(type='text/css', rel='stylesheet', href='/public/css/feed.css')
   link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
 
 block content
-  -var colors = ["#a6888a", "#8999a2", "#a69588", "#93ae9f"]
   .computer.only.tablet.only.three.wide.column.centered
   .eight.wide.column.centered
     .ui.fluid.card      
@@ -68,48 +67,18 @@ block content
             | Share
     .ui.form
       .inline.field
-        img.ui.image.rounded#replaceOnLoad
+        .image
+          img.ui.image.rounded#replaceOnLoad
         textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1')
       .ui.submit.button.replyToVideo
           | Comment
       .ui.cancel.basic.blue.button.replyToVideo
           | Cancel
     .ui.comments
-        //- h3.ui.dividing.header Comments
-        //- .ui.form
-        //-   .inline.field
-        //-     a.avatar
-        //-       img.ui.image.rounded.replyToVideo(src='/profile_pictures/genericphoto1.png')
-        //-     textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1')
-        //-   .ui.submit.button.replyToVideo
-        //-       | Comment
-        //-   .ui.cancel.basic.blue.button.replyToVideo
-        //-       | Cancel
-        //- .comment.incomingComment.hidden
-        //-   a.avatar
-        //-     img(src='/profile_pictures/15.png')
-        //-   .content
-        //-     a.author Sarah P.
-        //-     .metadata
-        //-       span.date Just now
-        //-     .text
-        //-       | That is interesting
-        //-     .actions
-        //-       a.upvote
-        //-         i.icon.thumbs.up
-        //-         span.num 0
-        //-       a.downvote
-        //-         i.icon.thumbs.down
-        //-         span.num 0
-        //-       a.reply 
-        //-         | Reply
-        //-       a.flag 
-        //-         | Flag
-        //-       a.share 
-        //-         | Share
         .comment#actor1
-          a.avatar
-            img
+          .image
+            a.avatar
+              img
           .content
             a.author
             .metadata
@@ -130,14 +99,15 @@ block content
               a.share 
                 | Share
         .comment#actor2
-          a.avatar
-            img
+          .image
+            a.avatar
+              img
           .content
             a.author
             .metadata
               span.date
             .text
-              p It means many more will die...That’s what it means
+              p#offense
             .actions
               a.upvote
                 i.icon.thumbs.up
@@ -153,14 +123,14 @@ block content
                 | Share
           .comments
             .comment#actor3
-              a.avatar
-                img
+              .image
+                a.avatar
+                  img
               .content
                 a.author
                 .metadata
                   span.date
-                .text
-                  | It doesn’t matter if you’re afraid of the vaccine or not. The pandemic has never been about you. It has always been about the people around you.
+                .text#objection
                 .actions
                   a.upvote
                     i.icon.thumbs.up
@@ -175,8 +145,9 @@ block content
                   a.share 
                     | Share
         .comment#actor4
-          a.avatar
-            img
+          .image
+            a.avatar
+              img
           .content
             a.author
             .metadata
@@ -228,14 +199,16 @@ block content
           |   Done
   .computer.only.tablet.only.three.wide.column.centered
     .ui.fixed.bottom.sticky.notificationPopup.hidden#desktopPopup(correspondingpost=0)
-     .ui.info.message
+     .ui.info.message#actor5
        i.close.icon
        .ui.feed
         .event
           .label
-            img.popupNotificationImage(src='/profile_pictures/animals-2/lion_mis.svg')
+            img.popupNotificationImage
           .content
-            .summary Small Potato commented on the video: "That is interesting".
+            .summary 
+              span.author
+              | commented on the video: "That is interesting".
 
 
 block scripts

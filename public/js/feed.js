@@ -34,19 +34,105 @@ const length = counts.length;
 
 $(window).on("load", async function() {
     let searchParams = (new URL(document.location)).searchParams;
-    console.log(searchParams.get("off_id"));
-    console.log(searchParams.get("objt_id"));
-    console.log(searchParams.get("objm_id"));
 
-    const offense = searchParams.get("off_id");
-    let jsonPath = '/json/advancedlit_articleData.json';
+    const off_id = searchParams.get("off_id") || 0; // 0=misinformation, 1=hate_speech, 2=misinformation
+    const obj_t_id = searchParams.get("obj_t_id") || 0; // 0=Dismissal-Objectionable Comment, 1=Imploring-Conscientious Appeal, 2=Imploring-Logical Appeal, 3=Threatening-Reputational Attack, 4=Threatening-Violent Warning, 5=Preserving-Personal Abstinence, 6=Preserving-Group Maintenance
+    const obj_m_id = parseInt(searchParams.get("obj_m_id")) || 0; // 0=1st message, 1=2nd message
 
-    await $.getJSON('/public/jsons/actor_profiles.json', function(actorData) {
-        console.log(actorData);
-    });
+    await $.when(
+            $.getJSON('/public/jsons/actor_profiles.json'),
+            $.getJSON('/public/jsons/offense_messages.json'),
+            $.getJSON('/public/jsons/objection_messages.json'))
+        .done(function(actorData, offenseMessageData, objectionMessageData) {
+            actorData = actorData[0];
+            offenseMessageData = offenseMessageData[0];
+            objectionMessageData = objectionMessageData[0];
+
+            const offense = ["misinformation", "harassment", "hate_speech"][off_id];
+            const actors = actorData[offense];
+            for (const actor of actors) {
+                const element_id = actor["id"];
+
+                // ----- Future actor -----
+                if (element_id === "#actor5") {
+                    $("#actor5 img.popupNotificationImage").attr("src", actor["src"]);
+                    $("#actor5 .label").css("background-color", actor["color"]);
+                    $("#actor5 span.author").html(actor["name"] + " ");
+
+                    setTimeout(function() {
+                        const mess =
+                            `<div class="comment incomingComment hidden">
+                                <div class="image" style="background-color:${actor["color"]}">
+                                    <a class="avatar"> 
+                                        <img src=${actor["src"]}> 
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <a class="author">${actor["name"]}</a>
+                                <div class="metadata">
+                                    <span class="date">${actor["time"]}</span>
+                                </div>
+                                <div class="text">That is interesting</div>
+                                <div class="actions">
+                                    <a class="upvote" onClick="likeComment(event)">
+                                        <i class="icon thumbs up"/>
+                                        <span class="num">${actor["likes"]}</span>
+                                    </a>
+                                    <a class="downvote" onClick="dislikeComment(event)">
+                                        <i class="icon thumbs down"/>
+                                        <span class="num">${actor["dislikes"]}</span>
+                                    </a>
+                                    <a class="reply" onClick="openCommentReply(event)">
+                                        Reply
+                                    </a>
+                                    <a class="flag" onClick="flagComment(event)">
+                                        Flag
+                                    </a>
+                                    <a class="share" onClick="shareComment(event)">
+                                        Share
+                                    </a>
+                                </div>
+                            </div>
+                        </div>`;
+
+                        $(".ui.comments").prepend(mess);
+                        $(".incomingComment").transition('slide down').transition('glow');
+
+                        //if in a mobile view, put popup in the middle
+                        $("#desktopPopup").show();
+                        $("#desktopPopup").transition("pulse");
+
+                        setTimeout(function() {
+                            if ($("#desktopPopup").is(':visible')) {
+                                $("#desktopPopup").transition("fade");
+                            }
+                        }, 5000);
+                    }, (20000));
+
+                    continue;
+                }
+
+                // ----- Existing actors -----
+                const comment_element = $(`.comment${element_id}`);
+                // Change Profile Picture
+                comment_element.find('.image a.avatar img').attr("src", actor["src"]);
+                comment_element.find('.image').css("background-color", actor["color"]);
+                // Change Name
+                comment_element.find('.content a.author').html(actor["name"]);
+                // Change Time
+                comment_element.find('.content .metadata span.date').html(actor["time"]);
+                // Change Likes/ Dislikes
+                comment_element.find('.content .actions a.upvote span.num').html(actor["likes"]);
+                comment_element.find('.content .actions a.downvote span.num').html(actor["dislikes"]);
+            }
+            $("#offense").html(offenseMessageData[offense]);
+            $("#objection").html(objectionMessageData[offense][obj_t_id][obj_m_id].replace(/\n/g, "<br />"));
+        });
+
     const photo = window.sessionStorage.getItem("Photo");
     $("#replaceOnLoad").attr("src", photo);
     $('a.showMoreLess').click(showMoreLess);
+
     $('.message .close')
         .on('click', function() {
             $(this)
@@ -67,54 +153,6 @@ $(window).on("load", async function() {
             }, (200000 * mult) + parseInt(times[num]));
         })(i);
     }
-
-    setTimeout(function() {
-        const mess =
-            `<div class="comment incomingComment hidden">
-                <a class="avatar"> 
-                    <img src="/profile_pictures/animals-2/lion_mis.svg"> 
-                </a>
-                <div class="content">
-                    <a class="author">Small Potato</a>
-                <div class="metadata">
-                    <span class="date">Just now</span>
-                </div>
-                <div class="text">That is interesting</div>
-                <div class="actions">
-                    <a class="upvote" onClick="likeComment(event)">
-                        <i class="icon thumbs up"/>
-                        <span class="num">0</span>
-                    </a>
-                    <a class="downvote" onClick="dislikeComment(event)">
-                        <i class="icon thumbs down"/>
-                        <span class="num">0</span>
-                    </a>
-                    <a class="reply" onClick="openCommentReply(event)">
-                        Reply
-                    </a>
-                    <a class="flag" onClick="flagComment(event)">
-                        Flag
-                    </a>
-                    <a class="share" onClick="shareComment(event)">
-                        Share
-                    </a>
-                </div>
-            </div>
-        </div>`;
-
-        $(".ui.comments").prepend(mess);
-        $(".incomingComment").transition('slide down').transition('glow');
-
-        //if in a mobile view, put popup in the middle
-        $("#desktopPopup").show();
-        $("#desktopPopup").transition("pulse");
-
-        setTimeout(function() {
-            if ($("#desktopPopup").is(':visible')) {
-                $("#desktopPopup").transition("fade");
-            }
-        }, 5000);
-    }, (20000));
 
     // scroll to appropriate post when notification popup is clicked
     $('.notificationPopup').on('click', function(event) {

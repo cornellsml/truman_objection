@@ -18,7 +18,7 @@ function getRandomInt(min, max) {
 
 function canContinue() {
     const hasUsername = $('button.ui.button.green').length > 0;
-    const hasPicture = $('a.avatar img.green').length > 0;
+    const hasPicture = $('.image.green').length > 0;
     if (hasUsername && hasPicture) {
         $(".ui.big.labeled.icon.button").addClass("green")[0].scrollIntoView({ behavior: "smooth" });
     } else {
@@ -34,14 +34,6 @@ function canContinue() {
 
 $(window).on("load", async function() {
     let timeout;
-    let adjectiveArray = {};
-    let nounArray = {};
-    await $.getJSON('/public/jsons/adjectives.json', function(data) {
-        adjectiveArray = arrayToAlphabetDictionary(data);
-    });
-    await $.getJSON('/public/jsons/nouns.json', function(data) {
-        nounArray = arrayToAlphabetDictionary(data);
-    });
 
     // Choose an initial
     $('.ui.dropdown').dropdown({
@@ -58,11 +50,8 @@ $(window).on("load", async function() {
                 $('button.ui.button').addClass("loading");
                 const randomNames = [];
                 while (randomNames.length < 3) {
-                    const adjectives = adjectiveArray[firstInitial];
-                    const adjective = adjectives[getRandomInt(0, adjectives.length)];
-                    const nouns = nounArray[lastInitial];
-                    const noun = nouns[getRandomInt(0, nouns.length)];
-                    const randomName = `${adjective} ${noun}`;
+                    const randomNumber = String(getRandomInt(1, 999)).padStart(3, '0');
+                    const randomName = `${firstInitial.toLowerCase()}${lastInitial.toLowerCase()}${randomNumber}`;
                     if (!randomNames.includes(randomName)) {
                         randomNames.push(randomName);
                     }
@@ -102,11 +91,11 @@ $(window).on("load", async function() {
     // Click a photo
     $('a.avatar').on('click', function() {
         // clear any photos selected 
-        $('img').removeClass("green");
-        $("a.avatar i.icon.green.check").addClass("hidden");
+        $('.image').removeClass("green");
+        $(".image i.icon.green.check").addClass("hidden");
 
-        $(this).find('img').addClass("green");
-        $(this).find('i.icon').removeClass("hidden");
+        $(this).parent('.image').addClass("green");
+        $(this).siblings('i.icon').removeClass("hidden");
 
         canContinue();
 
@@ -119,10 +108,10 @@ $(window).on("load", async function() {
         const username = $('button.ui.button.green h2').text();
         window.sessionStorage.setItem('Username', username);
 
-        const src = $('a.avatar img.green').attr('src');
+        const src = $('.image.green a.avatar img').attr('src');
         window.sessionStorage.setItem('Photo', src);
         if ($(this).hasClass("green")) {
-            window.location.href = '/feed';
+            window.location.href = '/feed?off_id=2&obj_t_id=2&obj_m_id=0';
         } else {
             if (username === undefined || username.trim() === '') {
                 if ($('.ui.warning.message.username').is(":hidden")) {
