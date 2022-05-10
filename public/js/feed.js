@@ -34,8 +34,9 @@ const length = counts.length;
 
 $(window).on("load", async function() {
     let searchParams = (new URL(document.location)).searchParams;
+    // console.log(searchParams);
 
-    const off_id = searchParams.get("off_id") || 0; // 0=misinformation, 1=hate_speech, 2=misinformation
+    const off_id = searchParams.get("off_id") || 0; // 0=misinformation, 1=harassment, 2=hate_speech
     const obj_t_id = searchParams.get("obj_t_id") || 0; // 0=Dismissal-Objectionable Comment, 1=Imploring-Conscientious Appeal, 2=Imploring-Logical Appeal, 3=Threatening-Reputational Attack, 4=Threatening-Violent Warning, 5=Preserving-Personal Abstinence, 6=Preserving-Group Maintenance
     const obj_m_id = parseInt(searchParams.get("obj_m_id")) || 0; // 0=1st message, 1=2nd message
 
@@ -58,6 +59,7 @@ $(window).on("load", async function() {
                     $("#actor5 img.popupNotificationImage").attr("src", actor["src"]);
                     $("#actor5 .label").css("background-color", actor["color"]);
                     $("#actor5 span.author").html(actor["name"] + " ");
+                    $("#actor5 span.text").html(actor["message"]);
 
                     setTimeout(function() {
                         const mess =
@@ -72,7 +74,7 @@ $(window).on("load", async function() {
                                 <div class="metadata">
                                     <span class="date">${actor["time"]}</span>
                                 </div>
-                                <div class="text">That is interesting</div>
+                                <div class="text">${actor["message"]}</div>
                                 <div class="actions">
                                     <a class="upvote" onClick="likeComment(event)">
                                         <i class="icon thumbs up"/>
@@ -124,6 +126,8 @@ $(window).on("load", async function() {
                 // Change Likes/ Dislikes
                 comment_element.find('.content .actions a.upvote span.num').html(actor["likes"]);
                 comment_element.find('.content .actions a.downvote span.num').html(actor["dislikes"]);
+                // Add message
+                comment_element.find('.content .text').html(actor["message"]);
             }
             $("#offense").html(offenseMessageData[offense]);
             $("#objection").html(objectionMessageData[offense][obj_t_id][obj_m_id].replace(/\n/g, "<br />"));
