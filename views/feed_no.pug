@@ -1,7 +1,7 @@
 extends ui_layout
 
 block styles 
-  link(type='text/css', rel='stylesheet', href='/public/css/feed.css')
+  link(type='text/css', rel='stylesheet', href='/public/css/feed_no.css')
   link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
 
 block content
@@ -25,33 +25,33 @@ block content
       .largeScreen
         .ui.bottom.attached.buttons
           .ui.labeled.button
-            .ui.upvote.button(tabindex='0', data-tooltip="I like this", data-position="bottom center", data-variation="mini")
+            .ui.upvote.button(tabindex='0')
               i.thumbs.up.icon
               | Upvote
             a.ui.basic.green.left.pointing.label 2
           .ui.labeled.button
-            .ui.downvote.button(tabindex='0', data-tooltip="I dislike this", data-position="bottom center", data-variation="mini")
+            .ui.downvote.button(tabindex='0')
               i.thumbs.down.icon
               | Downvote
             a.ui.basic.red.left.pointing.label 2
           .ui.reply.button
               i.comment.icon
               | Comment
-          .ui.flag.button(tabindex='0', data-tooltip="Report", data-position="bottom center", data-variation="mini")
+          .ui.flag.button(tabindex='0')
             i.flag.icon
             | Flag
-          .ui.share.button(tabindex='0', data-tooltip="Share", data-position="bottom center", data-variation="mini")
+          .ui.share.button(tabindex='0')
             i.share.icon
             | Share
       .mediumScreen.hidden
         .ui.bottom.attached.buttons
           .ui.labeled.button
-            .ui.upvote.button(tabindex='0', data-tooltip="I like this", data-position="bottom center", data-variation="mini")
+            .ui.upvote.button(tabindex='0')
               i.thumbs.up.icon
               | Upvote
             a.ui.basic.green.left.pointing.label 2
           .ui.labeled.button
-            .ui.downvote.button(tabindex='0', data-tooltip="I dislike this", data-position="bottom center", data-variation="mini")
+            .ui.downvote.button(tabindex='0')
               i.thumbs.down.icon
               | Downvote
             a.ui.basic.red.left.pointing.label 2
@@ -59,38 +59,38 @@ block content
           .ui.reply.button
               i.comment.icon
               | Comment
-          .ui.flag.button(tabindex='0', data-tooltip="Report", data-position="bottom center", data-variation="mini")
+          .ui.flag.button(tabindex='0')
             i.flag.icon
             | Flag
-          .ui.share.button(tabindex='0', data-tooltip="Share", data-position="bottom center", data-variation="mini")
+          .ui.share.button(tabindex='0')
             i.share.icon
             | Share
     .ui.form
       .inline.field
         .image
-          img.ui.image.rounded#replaceOnLoad
-        textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1')
+          img.ui.image.rounded(src="/profile_pictures/animals/4_cat.svg")
+        textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1' readonly)
       .ui.submit.button.replyToVideo
           | Comment
       .ui.cancel.basic.blue.button.replyToVideo
           | Cancel
     .ui.comments
         .comment#actor1
-          .image
+          .image(style="background-color:#9BBCD6")
             a.avatar
-              img
+              img(src="/profile_pictures/animals/harass_jellyfish.svg")
           .content
-            a.author
+            a.author ad213
             .metadata
-              span.date
-            .text
+              span.date Yesterday at 12:30AM
+            .text What great news
             .actions
               a.upvote
                 i.icon.thumbs.up
-                span.num
+                span.num 1
               a.downvote
                 i.icon.thumbs.down
-                span.num
+                span.num 0
               a.reply 
                 | Reply
               a.flag 
@@ -98,21 +98,21 @@ block content
               a.share 
                 | Share
         .comment#actor2
-          .image
+          .image(style="background-color:#8FC1BE")
             a.avatar
-              img
+              img(src="/profile_pictures/animals/hate_sealion.svg")
           .content
-            a.author
+            a.author oc732
             .metadata
-              span.date
+              span.date 2 days ago
             .text#offense
             .actions
               a.upvote
                 i.icon.thumbs.up
-                span.num
+                span.num 1
               a.downvote
                 i.icon.thumbs.down
-                span.num
+                span.num 1
               a.reply 
                 | Reply
               a.flag 
@@ -121,21 +121,21 @@ block content
                 | Share
           .comments
             .comment#actor3
-              .image
+              .image(style="background-color:#A7A9AC")
                 a.avatar
-                  img
+                  img(src="/profile_pictures/animals/hate_frog.svg")
               .content
-                a.author
+                a.author lj382
                 .metadata
-                  span.date
+                  span.date Yesterday at 9:32PM
                 .text#objection
                 .actions
                   a.upvote
                     i.icon.thumbs.up
-                    span.num
+                    span.num 1
                   a.downvote
                     i.icon.thumbs.down
-                    span.num
+                    span.num 1
                   a.reply 
                     | Reply
                   a.flag 
@@ -143,74 +143,28 @@ block content
                   a.share 
                     | Share
         .comment#actor4
-          .image
+          .image(style="background-color:#a69588;")
             a.avatar
-              img
+              img(src="/profile_pictures/animals/mis_elephant.svg")
           .content
-            a.author
+            a.author ef039
             .metadata
-              span.date
-            .text
+              span.date 4 days ago
+            .text That's great
             .actions
               a.upvote
                 i.icon.thumbs.up
-                span.num
+                span.num 0
               a.downvote
                 i.icon.thumbs.down
-                span.num
+                span.num 0
               a.reply 
                 | Reply
               a.flag 
                 | Flag
               a.share 
                 | Share
-    .ui.small.shareVideo.modal
-      .ui.icon.header
-        i.share.icon
-        |     You have shared this video!
-      .content(style='text-align:center;')
-        h3(style='text-align:left;') Note: The "Copy Link" feature is currently disabled. 
-        h4(style='text-align:left;') However, we keep track of all the links you would like to share, and at the end of the study, we will give you a list of those links so you can share them. 
-        .ui.left.labeled.button.large.centered
-          .ui.basic.label.pathname
-        .ui.icon.button(data-tooltip="Copy Link (DISABLED)", data-position="bottom center", data-variation="mini")
-          i.copy.icon
-      .actions   
-        .ui.green.ok.inverted.button
-          i.checkmark.icon
-          |   Done
-    .ui.small.shareComment.modal
-      .ui.icon.header
-        i.share.icon
-        |     You have shared this comment!
-      .content(style='text-align:center;')
-        h3(style='text-align:left;') Note: The "Copy Link" feature is currently disabled. 
-        h4(style='text-align:left;') However, we keep track of all the links you would like to share, and at the end of the study, we will give you a list of those links so you can share them. 
-        .ui.left.labeled.button.large.centered
-          .ui.basic.label.pathname
-        .ui.icon.button(data-tooltip="Copy Link (DISABLED)", data-position="bottom center", data-variation="mini")
-          i.copy.icon
-      .actions   
-        .ui.green.ok.inverted.button
-          i.checkmark.icon
-          |   Done
   .computer.only.tablet.only.three.wide.column.centered
-    .ui.fixed.bottom.sticky.notificationPopup.hidden#desktopPopup(correspondingpost=0)
-     .ui.info.message#actor5
-       i.close.icon
-       .ui.feed
-        .event
-          .label
-            img.popupNotificationImage
-          .content
-            .summary 
-              span.author
-              | commented on the video: 
-              span.text
-
-
+  
 block scripts
-  script(src='/public/js/lib/jquery.highlight-within-textarea.js')
-  script(src='/public/js/postFunctionalities.js')
   script(src='/public/js/feed_no.js')
-  script(src='/public/js/feed.js')

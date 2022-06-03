@@ -4,92 +4,76 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
-    mturkID: { type: String, unique: true },
-    guestID: { type: String, unique: true },
+    r_id: { type: String, unique: true },
 
     offense: Array,
     objection_type: Array,
     objection_message: Array,
 
-    posts: [new Schema({
+    feedAction: [new Schema({
         offense_id: Number,
-        liked: { type: Boolean, default: false }, // did the user like the video?
-        disliked: { type: Boolean, default: false }, // did the user dislike the video?
-        flagged: { type: Boolean, default: false }, // did the user flag the video?
-        shared: { type: Boolean, default: false }, // did the user share the video?
-        type: String, //post, reply, actorReply
+        objection_type_id: Number,
+        objection_message_id: Number,
 
-        // comment made to video
-        comments: [new Schema({
-            //class: String, //Bully, Marginal, normal, etc
-            actor: { type: Schema.ObjectId, ref: 'Actor' },
-            body: { type: String, default: '', trim: true }, //body of post or reply
-            commentID: Number, //ID of the comment
-            time: Number, //millisecons
-            absTime: Number, //millisecons
+        // should only be one
+        videoAction: [new Schema({
+            liked: [new Schema({
+                action: Boolean,
+                absTime: Date
+            }, { _id: false, versionKey: false })], // did the user like the video?
+            disliked: [new Schema({
+                action: Boolean,
+                absTime: Date
+            }, { _id: false, versionKey: false })], // did the user dislike the video?
+            flagged: [new Schema({
+                action: Boolean,
+                absTime: Date
+            }, { _id: false, versionKey: false })], // did the user flag the video?
+            shared: [new Schema({
+                    action: Boolean,
+                    absTime: Date
+                }, { _id: false, versionKey: false })] // did the user share the video?
+        }, { _id: false, versionKey: false })],
+
+        // one for each comment: whether fake or user's
+        commentAction: [new Schema({
+            comment_id: Number, // 1, 2, 3, 4, 5
+            // comment_type: String, // user, normal, offense, objection
+            liked: new Schema({
+                action: Boolean,
+                absTime: Date
+            }, { _id: false, versionKey: false }),
+            disliked: new Schema({
+                action: Boolean,
+                absTime: Date
+            }, { _id: false, versionKey: false }),
+            flagged: new Schema({
+                action: Boolean,
+                absTime: Date
+            }, { _id: false, versionKey: false }),
+            shared: new Schema({
+                action: Boolean,
+                absTime: Date
+            }, { _id: false, versionKey: false }),
+            comment_body: String, //Original Body of User Post
+
             new_comment: { type: Boolean, default: false }, //is new comment
-            isUser: { type: Boolean, default: false }, //is this a comment on own post
-            liked: { type: Boolean, default: false }, //has the user liked it? 
-            flagged: { type: Boolean, default: false }, //is Flagged?
-            likes: Number
-        }, { versionKey: false })],
-
-        replyID: Number, //use this for User Replies
-        reply: { type: Schema.ObjectId, ref: 'Script' }, //Actor Post reply is to =>
-
-        actorReplyID: Number, //An Actor reply to a User Post
-        actorReplyOBody: String, //Original Body of User Post
-        actorReplyOPicture: String, //Original Picture of User Post
-        actorReplyORelativeTime: Number,
-        actorAuthor: { type: Schema.ObjectId, ref: 'Actor' },
-
-        absTime: Date,
-        relativeTime: { type: Number }
+            new_comment_id: Number, //ID for comment
+            new_comment_time: { type: Number },
+        }, { _id: true, versionKey: false })],
     })],
 
-    log: [new Schema({
-        time: Date,
-        userAgent: String,
-        ipAddress: String
-    })],
+    profile: {
+        username: String,
+        photo: String,
+    },
 
     pageLog: [new Schema({
         time: Date,
         page: String
     })],
 
-    feedAction: [new Schema({
-        post: { type: Schema.ObjectId, ref: 'Script' },
-        //add in object to see which comments were linked and flagged
-        postClass: String,
-        rereadTimes: Number, //number of times post has been viewed by user
-        startTime: { type: Number, default: 0 }, //always the newest startTime (full date in ms)
-        liked: { type: Boolean, default: false },
-        readTime: [Number],
-        flagTime: [Number],
-        likeTime: [Number],
-        replyTime: [Number],
-
-        comments: [new Schema({
-            comment: { type: Schema.ObjectId }, //ID Reference for Script post comment
-            liked: { type: Boolean, default: false }, //is liked?
-            flagged: { type: Boolean, default: false }, //is Flagged?
-            flagTime: [Number], //array of flag times
-            likeTime: [Number], //array of like times
-
-            new_comment: { type: Boolean, default: false }, //is new comment
-            new_comment_id: Number, //ID for comment
-            comment_body: String, //Original Body of User Post
-            absTime: Date,
-            commentTime: { type: Number },
-            time: { type: Number }
-        }, { _id: true, versionKey: false })]
-    }, { _id: true, versionKey: false })],
-
-    profile: {
-        username: String,
-        photo: String,
-    }
+    lastNotifyVisit: Date
 }, { timestamps: true, versionKey: false });
 
 /**

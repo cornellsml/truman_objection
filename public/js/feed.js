@@ -1,15 +1,3 @@
-function showMoreLess(e) {
-    const target = $(e.target);
-    const description = target.siblings('p.description');
-    if (description.hasClass("short")) {
-        description.removeClass("short");
-        target.html("SHOW LESS");
-    } else {
-        description.addClass("short");
-        target.html("SHOW MORE");
-    }
-};
-
 const viewCount = {
     3000: 7, // 0: 3 seconds
     10000: 8, // 1: 10 seconds
@@ -34,11 +22,11 @@ const length = counts.length;
 
 $(window).on("load", async function() {
     let searchParams = (new URL(document.location)).searchParams;
-    // console.log(searchParams);
 
     const off_id = searchParams.get("off_id") || 0; // 0=misinformation, 1=harassment, 2=hate_speech
     const obj_t_id = searchParams.get("obj_t_id") || 0; // 0=Dismissal-Objectionable Comment, 1=Imploring-Conscientious Appeal, 2=Imploring-Logical Appeal, 3=Threatening-Reputational Attack, 4=Threatening-Violent Warning, 5=Preserving-Personal Abstinence, 6=Preserving-Group Maintenance
     const obj_m_id = parseInt(searchParams.get("obj_m_id")) || 0; // 0=1st message, 1=2nd message
+    const r_id = searchParams.get("r_id");
 
     await $.when(
             $.getJSON('/public/jsons/actor_profiles.json'),
@@ -130,13 +118,14 @@ $(window).on("load", async function() {
                 comment_element.find('.content .text').html(actor["message"]);
             }
             $("#offense").html(offenseMessageData[offense]);
-            $("#objection").html(objectionMessageData[offense][obj_t_id][obj_m_id].replace(/\n/g, "<br />"));
+            if (obj_t_id === "none") {
+                $("#actor3").parent().remove();
+            } else {
+                $("#objection").html(objectionMessageData[offense][obj_t_id][obj_m_id].replace(/\n/g, "<br />"));
+            }
         });
 
-    const photo = window.sessionStorage.getItem("Photo");
-    $("#replaceOnLoad").attr("src", photo);
-    $('a.showMoreLess').click(showMoreLess);
-
+    // Close notification
     $('.message .close')
         .on('click', function() {
             $(this)
@@ -144,6 +133,7 @@ $(window).on("load", async function() {
                 .transition('fade');
         });
 
+    // Update view count
     for (var i = 0; i < times.length * 20; i++) {
         (function(ind) {
             const mult = Math.floor(ind / length); // 0, 1, 2, 3, etc. 
@@ -163,7 +153,6 @@ $(window).on("load", async function() {
         if ($(event.target).hasClass('close')) {
             return false;
         }
-
         $(".incomingComment")[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     });
 });

@@ -1,12 +1,3 @@
-function arrayToAlphabetDictionary(data) {
-    return data.reduce((obj, item) => {
-        var key = item[0].toUpperCase(); // take first character, uppercase
-        obj[key] = obj[key] || []; // create array if not exists
-        obj[key].push(item); // push item
-        return obj
-    }, {});
-}
-
 // Function copied directly from the MDN web docs:
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 // The maximum is exclusive and the minimum is inclusive
@@ -35,8 +26,8 @@ function canContinue() {
 $(window).on("load", async function() {
     let timeout;
 
-    // Choose an initial
     $('.ui.dropdown').dropdown({
+        // Choose an initial
         onChange: function(value, text, $selectedItem) {
             // clear any usernames waiting to be loaded
             clearTimeout(timeout);
@@ -106,12 +97,23 @@ $(window).on("load", async function() {
 
     $(".ui.big.labeled.icon.button").on('click', function() {
         const username = $('button.ui.button.green h2').text();
-        window.sessionStorage.setItem('Username', username);
-
         const src = $('.image.green a.avatar img').attr('src');
-        window.sessionStorage.setItem('Photo', src);
+        const userID = (new URL(document.location)).searchParams.get("r_id"); // null or Response ID from Qualtrics Survey
+        console.log(userID);
         if ($(this).hasClass("green")) {
-            window.location.href = '/feed?off_id=2&obj_t_id=2&obj_m_id=0';
+            $.post(`/profile?r_id=${userID}`, {
+                    username: username,
+                    photo: src,
+                    _csrf: $('meta[name="csrf-token"]').attr('content')
+                })
+                .done(function(json) {
+                    if (json["result"] === "success") {
+                        window.location.href = '/'; // TOOD: Change link to redirect back to qualtrics link 
+                    } else {
+                        const query_string = (!userID) ? "/" : '/?r_id=' + userID;
+                        window.location.href = query_string;
+                    }
+                });
         } else {
             if (username === undefined || username.trim() === '') {
                 if ($('.ui.warning.message.username').is(":hidden")) {

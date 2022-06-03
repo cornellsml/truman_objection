@@ -19,49 +19,6 @@ const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
 
-// see if we can check their status several times a day? every 3 or 4 hours..
-// emails.. create a user.. run the schedule function...
-var schedule = require('node-schedule');
-
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-
-
-const multer = require('multer');
-//Math.random().toString(36)+'00000000000000000').slice(2, 10) + Date.now()
-
-var m_options = multer.diskStorage({
-    destination: path.join(__dirname, 'uploads'),
-    filename: function(req, file, cb) {
-        var prefix = req.user.id + Math.random().toString(36).slice(2, 10);
-        cb(null, prefix + file.originalname.replace(/[^A-Z0-9]+/ig, "_"));
-    }
-});
-
-var userpost_options = multer.diskStorage({
-    destination: path.join(__dirname, 'uploads/user_post'),
-    filename: function(req, file, cb) {
-        var lastsix = req.user.id.substr(req.user.id.length - 6);
-        var prefix = lastsix + Math.random().toString(36).slice(2, 10);
-        cb(null, prefix + file.originalname.replace(/[^A-Z0-9]+/ig, "_"));
-    }
-});
-
-var useravatar_options = multer.diskStorage({
-    destination: path.join(__dirname, 'uploads/user_post'),
-    filename: function(req, file, cb) {
-        var prefix = req.user.id + Math.random().toString(36).slice(2, 10);
-        cb(null, prefix + file.originalname.replace(/[^A-Z0-9]+/ig, "_"));
-    }
-});
-
-//const upload = multer({ dest: path.join(__dirname, 'uploads') });
-const upload = multer({ storage: m_options });
-const userpostupload = multer({ storage: userpost_options });
-const useravatarupload = multer({ storage: useravatar_options });
-
-
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
@@ -111,6 +68,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
+// Define our session
 app.use(session({
     resave: true,
     saveUninitialized: true,
@@ -122,17 +80,18 @@ app.use(session({
         maxAge: 7200000
     },
     secret: process.env.SESSION_SECRET,
+    // using store session on MongoDB using express-session + connect
     store: new MongoStore({
         url: process.env.MONGODB_URI || process.env.MONGOLAB_URI,
         autoReconnect: true,
         clear_interval: 3600
     })
 }));
+// Init passport authentication 
 app.use(passport.initialize());
+// persistent login sessions 
 app.use(passport.session());
 app.use(flash());
-
-
 
 // app.use((req, res, next) => {
 //   if ((req.path === '/api/upload') || (req.path === '/post/new') || (req.path === '/account/profile') || (req.path === '/account/signup_info_post')) {
@@ -184,9 +143,9 @@ function check(req, res, next) {
     next();
 }
 
+// All of our static files that express will automatically serve for us.
 app.use('/public', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 app.use('/semantic', express.static(path.join(__dirname, 'semantic'), { maxAge: 31557600000 }));
-app.use(express.static(path.join(__dirname, 'uploads'), { maxAge: 31557600000 }));
 app.use('/post_pictures', express.static(path.join(__dirname, 'post_pictures'), { maxAge: 31557600000 }));
 app.use('/profile_pictures', express.static(path.join(__dirname, 'profile_pictures'), { maxAge: 31557600000 }));
 
@@ -194,7 +153,7 @@ app.use('/profile_pictures', express.static(path.join(__dirname, 'profile_pictur
  * Primary app routes.
  */
 app.get('/', function(req, res) {
-    res.render('info', {
+    res.render('home', {
         title: 'Welcome'
     })
 });
@@ -211,12 +170,25 @@ app.get('/feed', function(req, res) {
     });
 });
 
+app.get('/feed_no', function(req, res) {
+    res.render('feed_no', {
+        title: 'Feed'
+    });
+});
+
 // Test Pages
 app.get('/test2', function(req, res) {
     res.render('test_script', {
         title: 'Feed'
     });
 });
+
+// Create a new guest account
+app.get('/guest', userController.getGuest);
+// Update profile picture and username
+app.post('/profile', userController.postUpdateProfile);
+// Record action in feed 
+app.post('/feed')
 
 /**
  * Error Handler.

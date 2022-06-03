@@ -36,11 +36,19 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
 /**
  * Login Required middleware.
  */
+
 exports.isAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()) {
         return next();
+    } else {
+        console.log(`Not authenticated for the following path: ${req.path}`);
+        let query_string = "/";
+        if (req.query.r_id !== "null") {
+            query_string += `?r_id=${req.query.r_id}`;
+        }
+        console.log(query_string);
+        res.redirect(query_string);
     }
-    res.redirect('/login');
 };
 
 /**

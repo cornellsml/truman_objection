@@ -115,6 +115,31 @@ p.date {
 textarea {
     font-size: 1.1em !important;
     cursor: default !important;
+    resize: none !important;
+}
+
+textarea:focus {
+    box-shadow: none !important;
+    border: 1px solid rgba(34, 36, 38, .15) !important;
+    /* color: rgba(34, 36, 38, .15) !important; */
+}
+
+::-webkit-input-placeholder {
+    color: rgba(34, 36, 38, .15) !important;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: rgba(34, 36, 38, .15) !important;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba(34, 36, 38, .15) !important;
+}
+
+:-ms-input-placeholder {
+    color: rgba(34, 36, 38, .15) !important;
 }
 
 .ui.button.replyToVideo {

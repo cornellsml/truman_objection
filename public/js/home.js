@@ -89,6 +89,7 @@ $(window).on("load", function() {
         if (this._currentStep > 0) {
             intro.setOption('scrollToElement', true);
         }
+        // Scrolling is a little weird for first and last step, so manually scroll to the top of the demo box
         if (this._currentStep == 0 || this._currentStep == 11) {
             intro.setOption('scrollToElement', false);
             $(".demo-text")[0].scrollIntoView({
@@ -104,8 +105,10 @@ $(window).on("load", function() {
     intro.start(); //start the intro
 
     $(".ui.big.labeled.icon.button").on('click', function() {
+        // let userID = window.location.pathname.split('/')[1];
+        const userID = (new URL(document.location)).searchParams.get("r_id"); // value is null or Response ID from Qualtrics Survey
         if ($(this).hasClass("green")) {
-            window.location.href = '/profile';
+            window.location.href = '/guest?r_id=' + userID;
         } else {
             $(".introjs-tooltip")[0].scrollIntoView({ behavior: "smooth", block: "center" });
         }
