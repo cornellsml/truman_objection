@@ -1,83 +1,92 @@
 {
     "misinformation": {
-        "0": ["This is false!"],
+        "0": [
+            "This is false!",
+            "This is misinformation!"
+        ],
         "1": [
-            "This is false! It doesn't matter if you're afraid of the vaccine or not. The pandemic has never been about you. It has always been about the people around you.",
-            "This is false! You should feel better about getting it but still need to get doctor input based on your history. It is also still your choice. Hope and pray for everyone to see the light and do the right things for everyone, not just themselves."
+            "This is false! You should feel better about getting it but still need to get doctor input based on your history. It is also still your choice. Hope and pray for everyone to see the light and do the right things for everyone, not just themselves.",
+            "This is misinformation!  It doesn't matter if you're afraid of the vaccine or not. The pandemic has never been about you. It has always been about the people around you."
         ],
         "2": [
             "This is false! There's really little downside to getting the vaccine, at any rate. We have vaccines just sitting on shelves because anti-vaxxers refuse to take them and follow the science in the first place. CDC scientists are looking at risk/reward ratios, not pragmatic policy.  And by that, I mean risk being almost nil, not that vaccines are risky in any way.",
-            "This is false! I am a social worker who is vaccinated and have been in hundreds of homes since the beginning of Covid and guess what...not once have I gotten Covid."
+            "This is misinformation! I am a social worker who is vaccinated and have been in hundreds of homes since the beginning of Covid and guess what...not once have I gotten Covid."
         ],
         "3": [
-            "This is false! People not getting vaccinated are prolonging a pandemic that should have already ended because they can't pass 8th grade bio when their lives actually depend on it. Get back on the short bus.",
-            "This is false! All of the information is there for you to look at, compare, and understand. Your statement shows you haven't done any research."
+            "This is false! All of the information is there for you to look at, compare, and understand. Your statement shows you haven't done any research.",
+            "This is misinformation! People not getting vaccinated are prolonging a pandemic that should have already ended because they can't pass 8th grade bio when their lives actually depend on it. Get back on the short bus."
         ],
         "4": [
-            "This is false! You should be hanged!",
-            "This is false! Can we just burn you at the stake?"
+            "This is false! Can we just burn you at the stake?",
+            "This is misinformation! You should be hanged!"
         ],
         "5": [
-            "This is false! I am done listening to your lies.",
-            "This is false! I am done talking to you."
+            "This is false! I am done talking to you.",
+            "This is misinformation! I am done listening to your lies."
         ],
         "6": [
             "This is false! You should just delete your comment.",
-            "This is false! Go away."
+            "This is misinformation! Go away."
         ]
     },
     "harassment": {
-        "0": ["This is wrong!"],
+        "0": [
+            "This is wrong!",
+            "This is harassment!"
+        ],
         "1": [
-            "This is wrong! All I've been hearing lately is people insulting each other's groups. Dems this, republicans that, \"vaxxers\" this \"anti - vaxxers that\"...it's the most childish thing you'll ever see.Is everyone so insecure that they just want to hide behind groups instead of providing arguments for a civilized discussion between individuals ? \n\nWhen kids behave like that, you tell them to grow up and you explain to them why they should try to get along despite their differences.I guess some grew up without getting that lesson..\n\nIn any case, I identify as a citizen of planet Earth and I 'm not a part of any groups, political or otherwise. So go ahead and insult me based on my \" political\" views. lol",
-            "This is wrong! I'm anti vax and I respect ones who want to get the vax that's their choice I'm for honest republicans and I respect ones who are for dems I don't agree with them but will not disrespect them for it"
+            "This is wrong! All I've been hearing lately is people insulting each other's groups. Dems this, republicans that, \"vaxxers\" this \"anti-vaxxers that\"... it's the most childish thing you'll ever see. Is everyone so insecure that they just want to hide behind groups instead of providing arguments for a civilized discussion between individuals?\n\nWhen kids behave like that, you tell them to grow up and you explain to them why they should try to get along despite their differences. I guess some grew up without getting that lesson..\n\nIany case, I identify as a citizen of planet Earth and I'm not a part of any groups, political or otherwise. So go ahead and insult me based on my \"political\" views. lol",
+            "This is harassment! I'm anti vax and I respect ones who want to get the vax that's their choice I'm for honest republicans and I respect ones who are for dems I don't agree with them but will not disrespect them for it"
         ],
         "2": [
-            "This is wrong! Who's vaccinated? Donald Trump and every other living president. All fifty governors both R and D. Nearly 100% of Congress. 96% of American physicians 75-80% of the military. Soon to be 100%. \n\nWho's not vaccinated? 99.2% of people die of Covid.",
-            "This is wrong! \n\nWe're fighting two wars — One against Covid, the other against stupidity.\" -Dr. Joseph Varon, the Chief of Critical Care at United Memorial Medical Center on the front line of the Coronavirus pandemic. \n\nThe problem with this virus is that it' s highly contagious, so if we cannot contain it by getting the vaccine, it will infect about 70 % of the population before it runs itself dead on its own.If 5 % of the infected don' t recover it will mean that 3.5 % of the population don' t recover.Do you know how many 3.5 % of the U.S.population is ? About 11 million people."
+            "This is wrong!\n\nWe're fighting two wars — One against Covid, the other against stupidity.\" -Dr. Joseph Varon, the Chief of Critical Care at United Memorial Medical Center on the front line of the Coronavirus pandemic. \n\nThe problem with this virus is that it's highly contagious, so if we cannot contain it by getting the vaccine, it will infect about 70% of the population before it runs itself dead on its own. If 5% of the infected don't recover it will mean that 3.5% of the population don't recover. Do you know how many 3.5% of the U.S. population is? About 11 million people.",
+            "This is harassment! Who's vaccinated? Donald Trump and every other living president. All fifty governors both R and D. Nearly 100% of Congress. 96% of American physicians 75-80% of the military. Soon to be 100%.\n\nWho's not vaccinated? 99.2% of people die of Covid."
         ],
         "3": [
             "This is wrong! Spoken like someone who truly doesn't know shit about pretty much anything.",
-            "This is wrong! I can’t even tell you to “do some research” cuz you’ve been brainwashed to think that is dumb as sh!t too."
+            "This is harassment! I can't even tell you to “do some research” cuz you've been brainwashed to think that is dumb as sh!t too."
         ],
         "4": [
-            "This is wrong! You should be hanged!",
-            "This is wrong! Can we just burn you at the stake?"
+            "This is wrong! Can we just burn you at the stake?",
+            "This is harassment! You should be hanged!"
         ],
         "5": [
             "This is wrong! I am done with you.",
-            "This is wrong! I am done talking to you."
+            "This is harassment! I am done talking to you."
         ],
         "6": [
-            "This is wrong! You should just delete your comment.",
-            "This is wrong! Go away."
+            "This is wrong! Go away.",
+            "This is harassment! You should just delete your comment."
         ]
     },
     "hate_speech": {
-        "0": ["That’s racist!"],
+        "0": [
+            "That's racist!",
+            "This is hate speech!"
+        ],
         "1": [
             "That’s racist! I'm an Asian, I'm a Filipino. The virus is no one's fault, we all didn't see it coming. Let's help each other and unite because nothing will happen if we just hate each other.",
-            "That’s racist! Hate against any human being is terrible. Parents need to do better with what they teach their kids at home. In the end we all bleed red and that's all that matters."
+            "This is hate speech! Hate against any human being is terrible. Parents need to do better with what they teach their kids at home. In the end we all bleed red and that's all that matters."
         ],
         "2": [
             "That’s racist! Just because it happened in China doesn't mean Asians should get deported.",
-            "That’s racist! Well, the people who fear the most on what the result of the pandemic are the most vulnerable people who have lost reasoning and logic. These people who attack asians are the people who feared the most that brought them to anxiety and do this unreasonable events 😔😔😔 hope they come to their senses that blaming other people for what's happening to the world won't do good but add more grief to more people."
+            "This is hate speech! Well, the people who fear the most about the result of the pandemic are the most vulnerable people who have lost reasoning and logic. These people who attack asians are the people who feared the most that brought them to anxiety and do this unreasonable events 😔😔😔 hope they come to their senses that blaming other people for what's happening to the world won't do good but add more grief to more people."
         ],
         "3": [
-            "That’s racist! You're very ignorant aren’t you?",
-            "That’s racist! Go feel guilty about your prejudice."
+            "That’s racist! Go feel guilty about your prejudice.",
+            "This is hate speech! You're very ignorant aren’t you?"
         ],
         "4": [
-            "That’s racist! Can we just burn you at the stake?",
-            "That’s racist! You should be hanged!"
+            "That’s racist! You should be hanged!",
+            "This is hate speech! Can we just burn you at the stake?"
         ],
         "5": [
             "That’s racist! I am done with you.",
-            "That’s racist! I am done talking to you."
+            "This is hate speech! I am done talking to you."
         ],
         "6": [
             "That’s racist! You should just delete your comment.",
-            "That’s racist! Go away."
+            "This is hate speech! Go away."
         ]
     }
 }
