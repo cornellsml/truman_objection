@@ -7,159 +7,158 @@ block styles
 
 block content
   .eight.wide.column.centered 
-      h1 Welcome to 
-        span.title VidShare
-        | !
-        //- img(src='/public/homepage_2.jpg', width="50%")
-      h3 We are a new video-based social media platform, and we welcome you to join us and other users to try out our initial prototype.
-      h3 Here's what you can do on the site:
-      ul
-        li View videos
-        li Upvote, Downvote, Comment on, Share, and Flag videos
-        li View comments left by other users
-        li Upvote, Downvote, Reply to, Share, and Flag comments left by other users 
-      h3.demo-text Below is a walkthrough of our site interface and features before you proceed to the prototype.
-      .demo
-        .ui.fluid.card.centered   
-          video(src='' width='100%' controls type='video/mp4' poster='/public/howto-image.jpg')
+    h1 Welcome to 
+      span.title VidShare
+      | !
+      //- img(src='/public/homepage_2.jpg', width="50%")
+    h3 We are a new video-based social media platform, and we welcome you to join us and other users to try out our initial prototype.
+    h3 Here's what you can do on the site:
+    ul
+      li View videos
+      li Upvote, Downvote, Comment on, Share, and Flag videos
+      li View comments left by other users
+      li Upvote, Downvote, Reply to, Share, and Flag comments left by other users 
+    h3.demo-text Below is a walkthrough of our site interface and features before you proceed to the prototype.
+    .demo
+      .ui.fluid.card.centered   
+        video(src='' width='100%' controls type='video/mp4' poster='/public/howto-image.jpg')
+        .content
+          .description
+            h2 Basketball Trick SHOTS!! 
+            .viewCount-div
+              .viewCount-string 
+                i.icon.user
+                p.viewCount &#32;20
+                p.watching &#32;watching 
+              p.date &#183; April 8, 2022
+            p.description.short
+              b Description: 
+              | check out my dope basketball shots
+        .video_buttons
+          .largeScreen
+            .ui.bottom.attached.buttons
+              .ui.labeled.button
+                .ui.upvote.button(tabindex='0')
+                  i.thumbs.up.icon
+                  | Upvote
+                a.ui.basic.green.left.pointing.label 0
+              .ui.labeled.button
+                .ui.downvote.button(tabindex='0')
+                  i.thumbs.down.icon
+                  | Downvote
+                a.ui.basic.red.left.pointing.label 0
+              .ui.reply.button(tabindex='0')
+                  i.comment.icon
+                  | Comment
+              .ui.flag.button(tabindex='0')
+                i.flag.icon
+                | Flag
+              .ui.share.button(tabindex='0')
+                i.share.icon
+                | Share
+          .mediumScreen
+            .ui.bottom.attached.buttons
+              .ui.labeled.button
+                .ui.upvote.button(tabindex='0')
+                  i.thumbs.up.icon
+                  | Upvote
+                a.ui.basic.green.left.pointing.label 2
+              .ui.labeled.button
+                .ui.downvote.button(tabindex='0')
+                  i.thumbs.down.icon
+                  | Downvote
+                a.ui.basic.red.left.pointing.label 4
+            .ui.bottom.attached.buttons
+              .ui.reply.button
+                  i.comment.icon
+                  | Comment
+              .ui.flag.button(tabindex='0')
+                i.flag.icon
+                | Flag
+              .ui.share.button(tabindex='0')
+                i.share.icon
+                | Share
+          .smallScreen
+            .ui.bottom.attached.buttons
+              .ui.labeled.button
+                .ui.upvote.button(tabindex='0')
+                  i.thumbs.up.icon
+                  | Upvote
+                a.ui.basic.green.left.pointing.label 2
+            .ui.bottom.attached.buttons
+              .ui.labeled.button
+                .ui.downvote.button(tabindex='0')
+                  i.thumbs.down.icon
+                  | Downvote
+                a.ui.basic.red.left.pointing.label 4
+            .ui.bottom.attached.buttons.vertical.fluid
+              .ui.reply.button
+                  i.comment.icon
+                  | Comment
+              .ui.flag.button(tabindex='0')
+                i.flag.icon
+                | Flag
+              .ui.share.button(tabindex='0')
+                i.share.icon
+                | Share
+      .ui.form
+        .inline.field
+          img.ui.image.rounded(src='/profile_pictures/avatar-icon.svg')
+          textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1' readonly)
+        .ui.submit.button.replyToVideo
+            | Comment
+        .ui.cancel.basic.blue.button.replyToVideo
+            | Cancel
+      .ui.comments
+        .comment
+          a.avatar
+            img(src='/profile_pictures/avatar-icon.svg')
           .content
-            .description
-              h2 Basketball Trick SHOTS!! 
-              .viewCount-div
-                .viewCount-string 
-                  i.icon.user
-                  p.viewCount &#32;20
-                  p.watching &#32;watching 
-                p.date &#183; April 8, 2022
-              p.description.short
-                b Description: 
-                | check out my dope basketball shots
-          .video_buttons
-            .largeScreen
-              .ui.bottom.attached.buttons
-                .ui.labeled.button
-                  .ui.upvote.button(tabindex='0')
-                    i.thumbs.up.icon
-                    | Upvote
-                  a.ui.basic.green.left.pointing.label 0
-                .ui.labeled.button
-                  .ui.downvote.button(tabindex='0')
-                    i.thumbs.down.icon
-                    | Downvote
-                  a.ui.basic.red.left.pointing.label 0
-                .ui.reply.button(tabindex='0')
-                    i.comment.icon
-                    | Comment
-                .ui.flag.button(tabindex='0')
-                  i.flag.icon
-                  | Flag
-                .ui.share.button(tabindex='0')
-                  i.share.icon
-                  | Share
-            .mediumScreen
-              .ui.bottom.attached.buttons
-                .ui.labeled.button
-                  .ui.upvote.button(tabindex='0')
-                    i.thumbs.up.icon
-                    | Upvote
-                  a.ui.basic.green.left.pointing.label 2
-                .ui.labeled.button
-                  .ui.downvote.button(tabindex='0')
-                    i.thumbs.down.icon
-                    | Downvote
-                  a.ui.basic.red.left.pointing.label 4
-              .ui.bottom.attached.buttons
-                .ui.reply.button
-                    i.comment.icon
-                    | Comment
-                .ui.flag.button(tabindex='0')
-                  i.flag.icon
-                  | Flag
-                .ui.share.button(tabindex='0')
-                  i.share.icon
-                  | Share
-            .smallScreen
-              .ui.bottom.attached.buttons
-                .ui.labeled.button
-                  .ui.upvote.button(tabindex='0')
-                    i.thumbs.up.icon
-                    | Upvote
-                  a.ui.basic.green.left.pointing.label 2
-              .ui.bottom.attached.buttons
-                .ui.labeled.button
-                  .ui.downvote.button(tabindex='0')
-                    i.thumbs.down.icon
-                    | Downvote
-                  a.ui.basic.red.left.pointing.label 4
-              .ui.bottom.attached.buttons.vertical.fluid
-                .ui.reply.button
-                    i.comment.icon
-                    | Comment
-                .ui.flag.button(tabindex='0')
-                  i.flag.icon
-                  | Flag
-                .ui.share.button(tabindex='0')
-                  i.share.icon
-                  | Share
-        .ui.form
-          .inline.field
-            img.ui.image.rounded(src='/profile_pictures/avatar-icon.svg')
-            textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1' readonly)
-          .ui.submit.button.replyToVideo
-              | Comment
-          .ui.cancel.basic.blue.button.replyToVideo
-              | Cancel
-        .ui.comments
-          .comment
-            a.avatar
-              img(src='/profile_pictures/avatar-icon.svg')
-            .content
-              a.author John Smith
-              .metadata
-                span.date 2 minutes ago
-              .text
-                | Cool
-              .actions.sampleComment
-                a.upvote
-                  i.icon.thumbs.up
-                  span.num 0
-                a.downvote
-                  i.icon.thumbs.down
-                  span.num 0
-                a.reply 
-                  | Reply
-                a.flag 
-                  | Flag
-                a.share 
-                  | Share
-              .comments
-                .comment.sampleReply
-                  a.avatar
-                    img(src='/profile_pictures/avatar-icon.svg')
-                  .content
-                    a.author Jane Doe
-                    .metadata
-                      span.date Just now
-                    .text
-                      | This is a reply!
-                    .actions
-                      a.upvote
-                        i.icon.thumbs.up
-                        span.num 0
-                      a.downvote
-                        i.icon.thumbs.down
-                        span.num 0
-                      a.reply 
-                        | Reply
-                      a.flag 
-                        | Flag
-                      a.share 
-                        | Share
-      h3 After completing the tutorial and becoming comfortable with the features of the site, go to the prototype by clicking the "Let's Go!" button.
-      .ui.big.labeled.icon.button
-        i.arrow.alternate.circle.right.icon
-        | Let's Go!
+            a.author John Smith
+            .metadata
+              span.date 2 minutes ago
+            .text
+              | Cool
+            .actions.sampleComment
+              a.upvote
+                i.icon.thumbs.up
+                span.num 0
+              a.downvote
+                i.icon.thumbs.down
+                span.num 0
+              a.reply 
+                | Reply
+              a.flag 
+                | Flag
+              a.share 
+                | Share
+            .comments
+              .comment.sampleReply
+                a.avatar
+                  img(src='/profile_pictures/avatar-icon.svg')
+                .content
+                  a.author Jane Doe
+                  .metadata
+                    span.date Just now
+                  .text
+                    | This is a reply!
+                  .actions
+                    a.upvote
+                      i.icon.thumbs.up
+                      span.num 0
+                    a.downvote
+                      i.icon.thumbs.down
+                      span.num 0
+                    a.reply 
+                      | Reply
+                    a.flag 
+                      | Flag
+                    a.share 
+                      | Share
+    h3 After completing the tutorial and becoming comfortable with the features of the site, go to the prototype by clicking the "Let's Go!" button.
+    .ui.big.labeled.icon.button
+      i.arrow.alternate.circle.right.icon
+      | Let's Go!
 
 block scripts
-  script(src='/public/js/lib/jquery.highlight-within-textarea.js')
   script(src='/public/js/home.js')

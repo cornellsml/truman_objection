@@ -99,7 +99,7 @@ $(window).on("load", async function() {
         const username = $('button.ui.button.green h2').text();
         const src = $('.image.green a.avatar img').attr('src');
         const userID = (new URL(document.location)).searchParams.get("r_id"); // null or Response ID from Qualtrics Survey
-        console.log(userID);
+
         if ($(this).hasClass("green")) {
             $.post(`/profile?r_id=${userID}`, {
                     username: username,
@@ -110,6 +110,7 @@ $(window).on("load", async function() {
                     if (json["result"] === "success") {
                         window.location.href = '/'; // TOOD: Change link to redirect back to qualtrics link 
                     } else {
+                        // Should never happen, but if it does
                         const query_string = (!userID) ? "/" : '/?r_id=' + userID;
                         window.location.href = query_string;
                     }

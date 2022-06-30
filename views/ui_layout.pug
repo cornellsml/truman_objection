@@ -25,6 +25,16 @@ html
   //- script(src='/public/js/lib/humanized_time_span.js')
   block scripts
   //- script(src='/public/js/main.js')
+  script.
+    let page = window.location.pathname.split('/')[1];
+    let search = window.location.search;
+    let searchParameters = (new URL(document.location)).searchParams;
+    const r_id_val = searchParameters.get("r_id");
+    $.post(`/pageLog?r_id=${r_id_val}`, {
+        page: page,
+        search: search,
+        _csrf: $('meta[name="csrf-token"]').attr('content')
+    });
 
   body
     .ui.vertically.padded.grid

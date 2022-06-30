@@ -20,14 +20,9 @@ const times = Object.keys(viewCount);
 const counts = Object.values(viewCount);
 const length = counts.length;
 
+const r_id = searchParams.get("r_id");
+
 $(window).on("load", async function() {
-    let searchParams = (new URL(document.location)).searchParams;
-
-    const off_id = searchParams.get("off_id") || 0; // 0=misinformation, 1=harassment, 2=hate_speech
-    const obj_t_id = searchParams.get("obj_t_id") || 0; // 0=Dismissal-Objectionable Comment, 1=Imploring-Conscientious Appeal, 2=Imploring-Logical Appeal, 3=Threatening-Reputational Attack, 4=Threatening-Violent Warning, 5=Preserving-Personal Abstinence, 6=Preserving-Group Maintenance
-    const obj_m_id = parseInt(searchParams.get("obj_m_id")) || 0; // 0=1st message, 1=2nd message
-    const r_id = searchParams.get("r_id");
-
     await $.when(
             $.getJSON('/public/jsons/actor_profiles.json'),
             $.getJSON('/public/jsons/offense_messages.json'),
@@ -51,7 +46,7 @@ $(window).on("load", async function() {
 
                     setTimeout(function() {
                         const mess =
-                            `<div class="comment incomingComment hidden">
+                            `<div class="comment incomingComment hidden" id="actor5">
                                 <div class="image" style="background-color:${actor["color"]}">
                                     <a class="avatar"> 
                                         <img src=${actor["src"]}> 
@@ -88,7 +83,8 @@ $(window).on("load", async function() {
                         $(".ui.comments").prepend(mess);
                         $(".incomingComment").transition('slide down').transition('glow');
 
-                        //if in a mobile view, put popup in the middle
+                        // if in a mobile view, put popup in the middle
+                        // TO DO: mobile + desktop popup
                         $("#desktopPopup").show();
                         $("#desktopPopup").transition("pulse");
 
@@ -98,7 +94,6 @@ $(window).on("load", async function() {
                             }
                         }, 5000);
                     }, (20000));
-
                     continue;
                 }
 
@@ -126,12 +121,19 @@ $(window).on("load", async function() {
         });
 
     // Close notification
-    $('.message .close')
-        .on('click', function() {
-            $(this)
-                .closest('.message')
-                .transition('fade');
-        });
+    $('.message .close').on('click', function() {
+        $(this)
+            .closest('.message')
+            .transition('fade');
+    });
+
+    // scroll to appropriate post when notification popup is clicked
+    $('.notificationPopup').on('click', function(event) {
+        if ($(event.target).hasClass('close')) {
+            return false;
+        }
+        $(".incomingComment")[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
+    });
 
     // Update view count
     for (var i = 0; i < times.length * 20; i++) {
@@ -147,12 +149,4 @@ $(window).on("load", async function() {
             }, (200000 * mult) + parseInt(times[num]));
         })(i);
     }
-
-    // scroll to appropriate post when notification popup is clicked
-    $('.notificationPopup').on('click', function(event) {
-        if ($(event.target).hasClass('close')) {
-            return false;
-        }
-        $(".incomingComment")[0].scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
-    });
 });

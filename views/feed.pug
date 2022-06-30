@@ -68,7 +68,7 @@ block content
     .ui.form
       .inline.field
         .image
-          img.ui.image.rounded#replaceOnLoad
+          img.ui.image.rounded(src=user.profile.photo)
         textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1')
       .ui.submit.button.replyToVideo
           | Comment
@@ -210,7 +210,9 @@ block content
 
 
 block scripts
+  script.
+    let user = !{JSON.stringify(user)};
   script(src='/public/js/lib/jquery.highlight-within-textarea.js')
-  script(src='/public/js/postFunctionalities.js')
   script(src='/public/js/feed_no.js')
   script(src='/public/js/feed.js')
+  script(src='/public/js/postFunctionalities.js')

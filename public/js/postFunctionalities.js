@@ -14,6 +14,17 @@ function likePost(e) {
         target.removeClass("green");
         const label = target.siblings("a.ui.basic.green.left.pointing.label");
         label.html(function(i, val) { return val * 1 - 1 });
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'liked',
+            actionValue: false,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     } else {
         target.addClass("green");
         var label = target.siblings("a.ui.basic.green.left.pointing.label");
@@ -25,6 +36,17 @@ function likePost(e) {
             var label = dislike.siblings("a.ui.basic.red.left.pointing.label");
             label.html(function(i, val) { return val * 1 - 1 });
         }
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'liked',
+            actionValue: true,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     }
 };
 
@@ -34,6 +56,17 @@ function dislikePost(e) {
         target.removeClass("red");
         const label = target.siblings("a.ui.basic.red.left.pointing.label");
         label.html(function(i, val) { return val * 1 - 1 });
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'disliked',
+            actionValue: false,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     } else {
         target.addClass("red");
         var label = target.siblings("a.ui.basic.red.left.pointing.label");
@@ -45,25 +78,36 @@ function dislikePost(e) {
             var label = like.siblings("a.ui.basic.green.left.pointing.label");
             label.html(function(i, val) { return val * 1 - 1 });
         }
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'disliked',
+            actionValue: true,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     }
 };
 
 function addCommentToVideo(e) {
-    const username = window.sessionStorage.getItem('Username');
-    const photo = window.sessionStorage.getItem('Photo');
+    const username = user.profile.username;
+    const photo = user.profile.photo;
     let target = $(e.target);
     const form = target.parents(".ui.form");
     const text = form.find("textarea.replyToVideo").val();
     if (text.trim() !== "") {
         const mess =
-            `<div class="comment">
+            `<div class="comment" id=${user.numComments+6}>
                 <div class="image user_img">
                     <a class="avatar"> 
                         <img src=${photo}> 
                     </a>
                 </div>
                 <div class="content">
-                    <a class="author">${username !== null ? username+" (me)" : "Guest783"}</a>
+                    <a class="author">${username+" (me)"}</a>
                     <div class="metadata">
                         <span class="date">Just now</span>
                     </div>
@@ -95,6 +139,19 @@ function addCommentToVideo(e) {
         $("textarea.replyToVideo").blur();
         $(".ui.comments").prepend(mess);
         $(".ui.comments")[0].scrollIntoView({ block: 'start', behavior: 'smooth' });
+
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            // actionType: 'comment',
+            new_comment: true,
+            comment_body: text,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     } else {
         $("textarea.replyToVideo").focus();
     }
@@ -104,8 +161,30 @@ function flagPost(e) {
     let target = $(e.target).closest('.ui.flag.button');
     if (target.hasClass("orange")) {
         target.removeClass("orange");
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'flagged',
+            actionValue: false,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     } else {
         target.addClass("orange");
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'flagged',
+            actionValue: true,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     }
 };
 
@@ -113,15 +192,41 @@ function sharePost() {
     const pathname = window.location.href;
     $(".pathname").html(pathname);
     $('.ui.small.shareVideo.modal').modal('show');
+    $.post("/feed", {
+        off_id: off_id,
+        obj_t_id: obj_t_id,
+        obj_m_id: obj_m_id,
+        r_id: r_id,
+        actionType: 'shared',
+        actionValue: true,
+        _csrf: $('meta[name="csrf-token"]').attr('content')
+    }).done(function(json) {
+        user = json["updated_user"];
+        console.log("done")
+    });
 };
 
 // ****** actions on comment *******
 function likeComment(e) {
     let target = $(e.target).closest('a.upvote').children('i.icon.thumbs.up');
+    let commentID = $(e.target).closest(".comment").attr('id').replace('actor', '');
     if (target.hasClass("green")) {
         target.removeClass("green");
         const label = target.siblings("span.num");
         label.html(function(i, val) { return val * 1 - 1 });
+
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'liked',
+            actionValue: false,
+            commentID: commentID,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     } else {
         target.addClass("green");
         var label = target.siblings("span.num");
@@ -133,15 +238,42 @@ function likeComment(e) {
             var label = dislike.siblings("span.num");
             label.html(function(i, val) { return val * 1 - 1 });
         }
+
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'liked',
+            actionValue: true,
+            commentID: commentID,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     }
 };
 
 function dislikeComment(e) {
     let target = $(e.target).closest('a.downvote').children('i.icon.thumbs.down');
+    let commentID = $(e.target).closest(".comment").attr('id').replace('actor', '');
     if (target.hasClass("red")) {
         target.removeClass("red");
         const label = target.siblings("span.num");
         label.html(function(i, val) { return val * 1 - 1 });
+
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'disliked',
+            actionValue: false,
+            commentID: commentID,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     } else {
         target.addClass("red");
         var label = target.siblings("span.num");
@@ -153,12 +285,25 @@ function dislikeComment(e) {
             var label = like.siblings("span.num");
             label.html(function(i, val) { return val * 1 - 1 });
         }
+
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            actionType: 'disliked',
+            actionValue: true,
+            commentID: commentID,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     }
 };
 
 function flagComment(e) {
+    let commentID = $(e.target).closest(".comment").attr('id').replace('actor', '');
     let target = $(e.target).closest('.comment').find('.text').first();
-    console.log(target)
     target.replaceWith(
         `<div class = 'text'>
             <h5 class='ui inverted header' style='background-color:black;color:white; margin-top: 10px'>
@@ -168,16 +313,43 @@ function flagComment(e) {
             </h5>
         </div>
         `);
+
+    $.post("/feed", {
+        off_id: off_id,
+        obj_t_id: obj_t_id,
+        obj_m_id: obj_m_id,
+        r_id: r_id,
+        actionType: 'flagged',
+        actionValue: true,
+        commentID: commentID,
+        _csrf: $('meta[name="csrf-token"]').attr('content')
+    }).done(function(json) {
+        user = json["updated_user"];
+    });
 }
 
 function shareComment(e) {
     const pathname = window.location.href;
-    $(".pathname").html(pathname + "?commentID=" + Math.floor(Math.random() * 31) + 50);
+    $(".pathname").html(pathname + "?c=" + Math.floor(Math.random() * 31) + 50);
     $('.ui.small.shareComment.modal').modal('show');
+    let commentID = $(e.target).closest(".comment").attr('id').replace('actor', '');
+
+    $.post("/feed", {
+        off_id: off_id,
+        obj_t_id: obj_t_id,
+        obj_m_id: obj_m_id,
+        r_id: r_id,
+        actionType: 'shared',
+        actionValue: true,
+        commentID: commentID,
+        _csrf: $('meta[name="csrf-token"]').attr('content')
+    }).done(function(json) {
+        user = json["updated_user"];
+    });
 }
 
 function openCommentReply(e) {
-    const photo = window.sessionStorage.getItem('Photo');
+    const photo = user.profile.photo;
     let target = $(e.target).parents('.content');
     const reply_to = target.children('a.author').text().replace(" (me)", "");
     const form = target.children('.ui.form');
@@ -226,8 +398,8 @@ function openCommentReply(e) {
 }
 
 function addCommentToComment(e) {
-    const username = window.sessionStorage.getItem('Username');
-    const photo = window.sessionStorage.getItem('Photo');
+    const username = user.profile.username;
+    const photo = user.profile.photo;
     let target = $(e.target);
     const form = target.parents(".ui.form");
     if (!form.children(".ui.submit.button").hasClass("blue")) {
@@ -235,7 +407,7 @@ function addCommentToComment(e) {
     }
     let text = form.find("textarea.replyToComment").val();
     let orig_comment = form.closest(".comment");
-    let comment_level = form.parents(".comment").length; // = 1 if 1st level, =2 if 2nd level
+    let comment_level = form.parents(".comment").length; // = 1 if 1st level, = 2 if 2nd level
     if (comment_level == 1) {
         if (!orig_comment.children('.comments').length) {
             orig_comment.append('<div class="comments">');
@@ -258,14 +430,14 @@ function addCommentToComment(e) {
             }
         }
         const mess =
-            `<div class="comment">
+            `<div class="comment" id=${user.numComments+6}>
                 <div class="image user_img">
                     <a class="avatar"> 
                         <img src=${photo}> 
                     </a>
                 </div>
                 <div class="content">
-                    <a class="author">${username !== null ? username+" (me)" : "Guest783"}</a>
+                    <a class="author">${username+" (me)"}</a>
                     <div class="metadata">
                         <span class="date">Just now</span>
                     </div>
@@ -296,6 +468,21 @@ function addCommentToComment(e) {
         form.remove();
         comments.append(mess);
         $(comments).last()[0].scrollIntoView({ block: 'start', behavior: 'smooth' });
+
+        const reply_to = orig_comment.attr('id').replace('actor', '');
+        $.post("/feed", {
+            off_id: off_id,
+            obj_t_id: obj_t_id,
+            obj_m_id: obj_m_id,
+            r_id: r_id,
+            // actionType: 'comment',
+            new_comment: true,
+            comment_body: text,
+            reply_to: reply_to,
+            _csrf: $('meta[name="csrf-token"]').attr('content')
+        }).done(function(json) {
+            user = json["updated_user"];
+        });
     }
 }
 

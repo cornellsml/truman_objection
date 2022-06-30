@@ -2,8 +2,6 @@
  * Module dependencies.
  */
 const express = require('express');
-const _ = require('lodash');
-const compression = require('compression');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
@@ -18,11 +16,12 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
+const _ = require('lodash');
+const compression = require('compression');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-//dotenv.config({ path: '.env.example' });
 dotenv.config({ path: '.env' });
 
 /**
@@ -110,38 +109,38 @@ app.use(flash());
 //app.use(lusca.xframe('allow-from https://cornell.qualtrics.com/'));
 app.use(lusca.xssProtection(true));
 
-app.use((req, res, next) => {
-    res.locals.user = req.user;
-    next();
-});
+// app.use((req, res, next) => {
+//     res.locals.user = req.user;
+//     next();
+// });
 
-app.use((req, res, next) => {
-    // After successful login, redirect back to the intended page
-    if (!req.user &&
-        req.path !== '/login' &&
-        req.path !== '/signup' &&
-        req.path !== '/bell' &&
-        !req.path.match(/^\/auth/) &&
-        !req.path.match(/\./)) {
-        console.log("@@@@@path is now");
-        console.log(req.path);
-        req.session.returnTo = req.path;
-    } else if (req.user &&
-        req.path == '/account') {
-        console.log("!!!!!!!path is now");
-        console.log(req.path);
-        req.session.returnTo = req.path;
-    }
-    next();
-});
+// app.use((req, res, next) => {
+//     // After successful login, redirect back to the intended page
+//     if (!req.user &&
+//         req.path !== '/login' &&
+//         req.path !== '/signup' &&
+//         req.path !== '/bell' &&
+//         !req.path.match(/^\/auth/) &&
+//         !req.path.match(/\./)) {
+//         console.log("@@@@@path is now");
+//         console.log(req.path);
+//         req.session.returnTo = req.path;
+//     } else if (req.user &&
+//         req.path == '/account') {
+//         console.log("!!!!!!!path is now");
+//         console.log(req.path);
+//         req.session.returnTo = req.path;
+//     }
+//     next();
+// });
 
 // var csrf = lusca({ csrf: true });
 
-function check(req, res, next) {
-    console.log("@@@@@@@@@@@@Body is now ");
-    console.log(req.body);
-    next();
-}
+// function check(req, res, next) {
+//     console.log("@@@@@@@@@@@@Body is now ");
+//     console.log(req.body);
+//     next();
+// }
 
 // All of our static files that express will automatically serve for us.
 app.use('/public', express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
@@ -158,17 +157,9 @@ app.get('/', function(req, res) {
     })
 });
 
-app.get('/profile', function(req, res) {
-    res.render('profile', {
-        title: 'Create Username and Photo'
-    });
-});
+app.get('/profile', userController.getProfile);
 
-app.get('/feed', function(req, res) {
-    res.render('feed', {
-        title: 'Feed'
-    });
-});
+app.get('/feed', userController.getFeed);
 
 app.get('/feed_no', function(req, res) {
     res.render('feed_no', {
@@ -184,32 +175,49 @@ app.get('/test2', function(req, res) {
 });
 
 // Create a new guest account
-app.get('/guest', userController.getGuest);
+app.get('/guest', userController.createGuest);
+// Record page 
+app.post('/pageLog', userController.postPageLog);
 // Update profile picture and username
 app.post('/profile', userController.postUpdateProfile);
 // Record action in feed 
-app.post('/feed')
+app.post('/feed', userController.postAction);
 
 /**
  * Error Handler.
  */
-app.use(errorHandler());
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
 // error handler
 app.use(function(err, req, res, next) {
-    // set locals, only providing error in development
+    // No routes handled the request and no system error, that means 404 issue.
+    // Forward to next middleware to handle it.
+    if (!err) return next();
+
+    console.error(err);
+
+    err.status = err.status || 500;
+    err.message = "Oops! Something went wrong.";
+
     res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.locals.error = err;
 
     // render the error page
-    res.status(err.status || 500);
+    res.status(err.status);
+    res.render('error');
+});
+
+// catch 404. 404 should be considered as a default behavior, not a system error.
+// Necessary to include because in express, 404 responses are not the result of an error, so the error-handler middleware will not capture them. https://expressjs.com/en/starter/faq.html 
+app.use(function(req, res, next) {
+    var err = new Error('Page Not Found.');
+    err.status = 404;
+
+    console.log(err);
+
+    res.locals.message = err.message + " Oops! We can't seem to find the page you're looking for.";
+    res.locals.error = err;
+
+    // render the error page
+    res.status(err.status);
     res.render('error');
 });
 
