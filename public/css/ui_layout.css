@@ -18,9 +18,9 @@ body {
 
 /* Layout  CSS*/
 
-.wide.column.centered {
-    margin-top: 125px;
-    margin-bottom: 25px;
+.ui.vertically.padded.stackable.grid {
+    padding-top: 125px;
+    padding-bottom: 25px;
 }
 
 

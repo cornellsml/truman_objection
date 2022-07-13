@@ -1,3 +1,19 @@
+.ui.warning.message {
+    margin: 15px;
+    font-size: medium;
+    /* margin-bottom: 50px; */
+}
+
+.ui.warning.message>.content>.header {
+    margin-bottom: 15px;
+}
+
+.ui.warning.message>.content>.boldText {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+
 /* ---- VIDEO CSS ---- */
 
 .ui.fluid.card>.content>.description>p,

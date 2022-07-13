@@ -5,7 +5,17 @@ block styles
   link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
 
 block content
-  .computer.only.tablet.only.three.wide.column.centered
+  .four.wide.column.centered
+    .ui.warning.icon.message
+      
+      .content
+        i.icon.info.circle.large
+        | This is a snapshot of VidShare. You are welcome to view the video content on this page, but make sure to look through all the conversations.
+        br
+        br
+        | After you are done, 
+        span.boldText RETURN to the SURVEY page
+        |  to complete the survey.
   .eight.wide.column.centered
     .ui.fluid.card      
       //- .image
@@ -14,10 +24,8 @@ block content
       .content
         .description
           h2 FDA granted full approval to the Pfizer vaccine 
-          .viewCount-div 
-            i.icon.user
-            p watching &#183; Aug 29, 2021
-            p.viewCount &#32;8&#32;
+          .viewCount-div
+            p Uploaded: Aug 29, 2021
           p.description.short
             b Description: 
             | This week, the FDA granted full approval to the Pfizer vaccine. Will that make a difference for vaccine-hesitant Americans? Dr. Irwin Redlener, founding director of the National Center for Disaster Preparedness at Columbia University and a MSNBC Public Health Analyst, joined NBC’s Joshua Johnson to discuss the process behind full FDA approval and its possible impact on vaccination rates.
@@ -164,7 +172,7 @@ block content
                 | Flag
               a.share 
                 | Share
-  .computer.only.tablet.only.three.wide.column.centered
+  .four.wide.column.centered
   
 block scripts
   script(src='/public/js/feed_no.js')
