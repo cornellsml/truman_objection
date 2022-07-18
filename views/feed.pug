@@ -5,12 +5,13 @@ block styles
   link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
 
 block content
+  -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
   .computer.only.tablet.only.three.wide.column.centered
   .eight.wide.column.centered
     .ui.fluid.card      
       //- .image
         //- iframe(width='100%' height='568' src='https://www.youtube.com/embed/0bXmNBl9Xbg' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
-      video(src='/post_pictures/Objection_Video.mp4' width='100%' controls type='video/mp4')
+      video(src=cdn+'/Objection_Video.mp4' width='100%' controls type='video/mp4')
       .content
         .description
           h2 FDA granted full approval to the Pfizer vaccine 

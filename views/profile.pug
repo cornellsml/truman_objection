@@ -4,9 +4,10 @@ block styles
     link(type='text/css', rel='stylesheet', href='/public/css/profile.css')
 
 block content
+    -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
     -var initials = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] 
-    -var colored_photos = ['/profile_pictures/animals-2/1_bear.svg', '/profile_pictures/animals-2/2_bird.svg','/profile_pictures/animals-2/3_buffalo.svg','/profile_pictures/animals-2/4_cat.svg','/profile_pictures/animals-2/5_cow.svg','/profile_pictures/animals-2/6_deer.svg','/profile_pictures/animals-2/7_dog.svg','/profile_pictures/animals-2/8_elephant.svg','/profile_pictures/animals-2/9_fox.svg','/profile_pictures/animals-2/10_husky.svg']
-    -var photos = ['/profile_pictures/animals/1_ant.svg', '/profile_pictures/animals/3_butterfly.svg', '/profile_pictures/animals/2_bear.svg', '/profile_pictures/animals/4_cat.svg','/profile_pictures/animals/5_chicken.svg','/profile_pictures/animals/6_crab.svg','/profile_pictures/animals/7_deer.svg','/profile_pictures/animals/8_gorilla.svg','/profile_pictures/animals/9_dog.svg','/profile_pictures/animals/10_monkey.svg']
+    //- -var colored_photos = ['/profile_pictures/animals-2/1_bear.svg', '/profile_pictures/animals-2/2_bird.svg','/profile_pictures/animals-2/3_buffalo.svg','/profile_pictures/animals-2/4_cat.svg','/profile_pictures/animals-2/5_cow.svg','/profile_pictures/animals-2/6_deer.svg','/profile_pictures/animals-2/7_dog.svg','/profile_pictures/animals-2/8_elephant.svg','/profile_pictures/animals-2/9_fox.svg','/profile_pictures/animals-2/10_husky.svg']
+    -var photos = ['/profile_pictures/1_ant.svg', '/profile_pictures/3_butterfly.svg', '/profile_pictures/2_bear.svg', '/profile_pictures/4_cat.svg','/profile_pictures/5_chicken.svg','/profile_pictures/6_crab.svg','/profile_pictures/7_deer.svg','/profile_pictures/8_gorilla.svg','/profile_pictures/9_dog.svg','/profile_pictures/10_monkey.svg']
     .computer.only.tablet.only.three.wide.column.centered
     .eight.wide.column.centered
         h2 Create a Username
@@ -50,7 +51,7 @@ block content
                 each filename in photos
                     .image
                         a.avatar
-                            img(src=filename)
+                            img(src=cdn+filename)
                         i.icon.green.check.hidden
         .ui.big.labeled.icon.button
           i.arrow.alternate.circle.right.icon

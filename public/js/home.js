@@ -33,7 +33,7 @@ let stepsList = [{
     {
         intro: `<b>Note:</b> You will receive the video link to share<b> at the end of study</b> when you click share.
         This way you won't be redirected to another site in the middle of the study.`,
-        element: '.ui.share.button'
+        element: '.ui.share.button.visible-button'
     },
     {
         intro: `You can comment on the video by entering a comment in the box below the video.`,
@@ -72,6 +72,9 @@ let stepsList = [{
 ]
 
 $(window).on("load", function() {
+    const visibleShare = $(".ui.share.button:visible")
+    visibleShare.addClass('visible-button');
+
     var intro = introJs().setOptions({
         steps: stepsList,
         'doneLabel': 'Done &#10003',

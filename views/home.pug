@@ -6,6 +6,7 @@ block styles
   link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
 
 block content
+  -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
   .eight.wide.column.centered 
     h1 Welcome to 
       span.title VidShare
@@ -21,7 +22,7 @@ block content
     h3.demo-text Below is a walkthrough of our site interface and features before you proceed to the prototype.
     .demo
       .ui.fluid.card.centered   
-        video(src='' width='100%' controls type='video/mp4' poster='/public/howto-image.jpg')
+        video(width='100%' controls type='video/mp4' poster=cdn+'/howto-image.jpg')
         .content
           .description
             h2 Basketball Trick SHOTS!! 
@@ -103,7 +104,7 @@ block content
                 | Share
       .ui.form
         .inline.field
-          img.ui.image.rounded(src='/profile_pictures/avatar-icon.svg')
+          img.ui.image.rounded(src=cdn+'/profile_pictures/avatar-icon.svg')
           textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1' readonly)
         .ui.submit.button.replyToVideo
             | Comment
@@ -112,7 +113,7 @@ block content
       .ui.comments
         .comment
           a.avatar
-            img(src='/profile_pictures/avatar-icon.svg')
+            img(src=cdn+'/profile_pictures/avatar-icon.svg')
           .content
             a.author John Smith
             .metadata
@@ -135,7 +136,7 @@ block content
             .comments
               .comment.sampleReply
                 a.avatar
-                  img(src='/profile_pictures/avatar-icon.svg')
+                  img(src=cdn+'/profile_pictures/avatar-icon.svg')
                 .content
                   a.author Jane Doe
                   .metadata

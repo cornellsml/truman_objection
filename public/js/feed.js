@@ -1,3 +1,4 @@
+const cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
 const viewCount = {
     3000: 7, // 0: 3 seconds
     10000: 8, // 1: 10 seconds
@@ -39,7 +40,7 @@ $(window).on("load", async function() {
 
                 // ----- Future actor -----
                 if (element_id === "#actor5") {
-                    $("#actor5 img.popupNotificationImage").attr("src", actor["src"]);
+                    $("#actor5 img.popupNotificationImage").attr("src", cdn + actor["src"]);
                     $("#actor5 .label").css("background-color", actor["color"]);
                     $("#actor5 span.author").html(actor["name"] + " ");
                     $("#actor5 span.text").html(actor["message"]);
@@ -49,7 +50,7 @@ $(window).on("load", async function() {
                             `<div class="comment incomingComment hidden" id="actor5">
                                 <div class="image" style="background-color:${actor["color"]}">
                                     <a class="avatar"> 
-                                        <img src=${actor["src"]}> 
+                                        <img src=${cdn + actor["src"]}> 
                                     </a>
                                 </div>
                                 <div class="content">
@@ -100,7 +101,7 @@ $(window).on("load", async function() {
                 // ----- Existing actors -----
                 const comment_element = $(`.comment${element_id}`);
                 // Change Profile Picture
-                comment_element.find('.image a.avatar img').attr("src", actor["src"]);
+                comment_element.find('.image a.avatar img').attr("src", cdn + actor["src"]);
                 comment_element.find('.image').css("background-color", actor["color"]);
                 // Change Name
                 comment_element.find('.content a.author').html(actor["name"]);
