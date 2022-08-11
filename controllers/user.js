@@ -139,7 +139,6 @@ exports.postUpdateProfile = (req, res, next) => {
  * Get video feed
  */
 exports.getFeed = (req, res, next) => {
-    // TO DO: should pull from database and add it to the feed 
     User.findOne({ r_id: req.query.r_id }, (err, user) => {
         if (err) { return next(err); }
         if (!user) {

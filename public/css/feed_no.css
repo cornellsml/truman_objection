@@ -219,47 +219,6 @@ a.avatar:hover {
 }
 
 
-/* notification popups */
-
-
-/* https://stackoverflow.com/questions/26421274/css-circular-cropping-of-rectangle-image */
-
-.ui.info.message {
-    background-color: #ffffff;
-    box-shadow: 0 1px 10px #2B8490 !important;
-}
-
-.ui.sticky.notificationPopup .label {
-    overflow: hidden;
-    width: 3em;
-    height: 3em;
-    border-radius: 50% !important;
-    background-color: #b7c9c8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-
-.ui.feed>.event>.label>img.popupNotificationImage {
-    width: 65%;
-    border-radius: 0%;
-}
-
-#desktopPopup,
-#mobilePopup {
-    padding-bottom: 4em;
-    padding-left: 1em;
-    padding-right: 1em;
-    display: none;
-    cursor: pointer;
-}
-
-.three.wide.column.centered {
-    margin-left: 0;
-}
-
-
 /** when page width < 1250px **/
 
 @media (max-width: 1250px) {

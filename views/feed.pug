@@ -195,8 +195,22 @@ block content
         .ui.green.ok.inverted.button
           i.checkmark.icon
           |   Done
+    //-Mobile version of the notification popup
+    .ui.fixed.bottom.sticky.notificationPopup.hidden#mobilePopup
+      .ui.info.message#actor5
+       i.close.icon
+       .ui.feed
+        .event
+          .label
+            img.popupNotificationImage
+          .content
+            .summary 
+              span.author
+              | commented on the video: 
+              span.text
+  //-Computer version of the notification popup
   .computer.only.tablet.only.three.wide.column.centered
-    .ui.fixed.bottom.sticky.notificationPopup.hidden#desktopPopup(correspondingpost=0)
+    .ui.fixed.bottom.sticky.notificationPopup.hidden#desktopPopup
      .ui.info.message#actor5
        i.close.icon
        .ui.feed
