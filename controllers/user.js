@@ -18,6 +18,17 @@ function makeid(length) {
     return result;
 }
 
+// create the query string given dictionary of query parameter keys and values
+function makeQueryString(queryParameters) {
+    let string = Object.keys(queryParameters).length === 0 ? "" : "?";
+    let first = true;
+    for (const [key, value] of Object.entries(queryParameters)) {
+        string += `${first?"":"&"}${key}=${value}`;
+        first = false;
+    }
+    return string;
+}
+
 /**
  * GET /guest?r_id={}
  * Create a new local guest account.
@@ -25,7 +36,7 @@ function makeid(length) {
 exports.createGuest = (req, res, next) => {
     // (1) If given r_id from Qualtrics: If user instance exists, go to profile page. If doens't exist, create a user instance. 
     // (2) If not given r_id from Qualtrics: Generate a random username, not used yet, and save user instance.
-    if (req.query.r_id === "null") {
+    if (!req.query.r_id) {
         req.query.r_id = makeid(10);
     }
     const user = new User({
@@ -35,7 +46,7 @@ exports.createGuest = (req, res, next) => {
         if (err) { return next(err); }
         if (existingUser) {
             req.flash('errors', { msg: 'Account with that Username already exists.' });
-            return res.redirect('/profile?r_id=' + req.query.r_id);
+            return res.redirect('/profile' + makeQueryString(req.query));
         }
         user.save((err) => {
             if (err) {
@@ -57,7 +68,7 @@ exports.createGuest = (req, res, next) => {
             //     });
             // });
             req.flash('success', { msg: 'New user has been created successfully.' });
-            return res.redirect('/profile?r_id=' + req.query.r_id);
+            return res.redirect('/profile' + makeQueryString(req.query));
         });
     });
 };
@@ -96,7 +107,7 @@ exports.getProfile = (req, res, next) => {
         if (err) { return next(err); }
         if (!user) {
             // happens when no r_id is provided, or the user didn't see and come from the home page
-            return res.redirect((req.query.r_id) ? '/?r_id=' + req.query.r_id : '/');
+            return res.redirect("/" + makeQueryString(req.query));
         } else {
             res.render('profile', {
                 title: 'Create Username and Photo'
@@ -143,11 +154,11 @@ exports.getFeed = (req, res, next) => {
         if (err) { return next(err); }
         if (!user) {
             // happens when no r_id is provided, or the user didn't see home page + profile page
-            return res.redirect((req.query.r_id) ? '/?r_id=' + req.query.r_id : '/');
+            return res.redirect("/" + makeQueryString(req.query));
         } else {
             // If user did not "save" a username or profile photo, redirect the user to the profile page 
             if (!user.profile.username || !user.profile.photo) {
-                return res.redirect('/profile?r_id=' + req.query.r_id);
+                return res.redirect('/profile' + makeQueryString(req.query));
             } else {
                 res.render('feed', {
                     title: 'Feed',

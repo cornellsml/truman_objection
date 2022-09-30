@@ -109,9 +109,10 @@ $(window).on("load", function() {
 
     $(".ui.big.labeled.icon.button").on('click', function() {
         // let userID = window.location.pathname.split('/')[1];
-        const userID = (new URL(document.location)).searchParams.get("r_id"); // value is null or Response ID from Qualtrics Survey
+        // const userID = (new URL(document.location)).searchParams.get("r_id"); // value is null or Response ID from Qualtrics Survey
+        const queryParams = window.location.search;
         if ($(this).hasClass("green")) {
-            window.location.href = '/guest?r_id=' + userID;
+            window.location.href = '/guest' + queryParams;
         } else {
             $(".introjs-tooltip")[0].scrollIntoView({ behavior: "smooth", block: "center" });
         }

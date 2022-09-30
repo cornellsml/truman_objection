@@ -107,11 +107,12 @@ $(window).on("load", async function() {
                     _csrf: $('meta[name="csrf-token"]').attr('content')
                 })
                 .done(function(json) {
+                    const queryParams = window.location.search;
                     if (json["result"] === "success") {
-                        window.location.href = '/'; // TOOD: Change link to redirect back to qualtrics link 
+                        window.location.href = '/feed' + queryParams;
                     } else {
                         // Should never happen, but if it does
-                        const query_string = (!userID) ? "/" : '/?r_id=' + userID;
+                        const query_string = "/" + queryParams;
                         window.location.href = query_string;
                     }
                 });
