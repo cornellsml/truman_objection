@@ -7,11 +7,16 @@ h1 {
     text-align: center;
 }
 
+h3 {
+    line-height: 1.5;
+}
+
 .title {
     color: #2B8490;
 }
 
-.demo {
+.demo,
+.demo-2 {
     width: 95%;
     border-style: solid;
     border-color: #2B8490;

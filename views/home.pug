@@ -8,18 +8,18 @@ block styles
 block content
   -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
   .eight.wide.column.centered 
-    h1 Welcome to 
+    h1 Welcome to
+      img(src='https://dhpd030vnpk29.cloudfront.net/truman-objections/favicon.svg', height="50px", style="margin-bottom:-10px")
       span.title VidShare
       | !
-      //- img(src='/public/homepage_2.jpg', width="50%")
-    h3 We are a new video-based social media platform, and we are still building the community and improving the design of the platform. We welcome you to join us and other users to try out our initial prototype.
-    h3 Here's what you can do on the site:
-    ul
-      li View videos
-      li Upvote, Downvote, Comment on, Share, and Flag videos
-      li View comments left by other users
-      li Upvote, Downvote, Reply to, Share, and Flag comments left by other users 
-    h3.demo-text Below is a walkthrough of our site interface and features before you proceed to the prototype.
+    h3(style="font-weight: normal") We are a new video-based social media platform, and we are still building the community and improving the design of the platform. Please join us and other users to try out our initial prototype.
+    //- h3 Here's what you can do on the site:
+    //- ul
+    //-   li View videos
+    //-   li Upvote, Downvote, Comment on, Share, and Flag videos
+    //-   li View comments left by other users
+    //-   li Upvote, Downvote, Reply to, Share, and Flag comments left by other users 
+    h3.demo-text Before you begin, here is a walkthrough of our site interface and features.
     .demo
       .ui.fluid.card.centered   
         video(width='100%' controls type='video/mp4' poster=cdn+'/howto-image.jpg')
@@ -156,7 +156,18 @@ block content
                       | Flag
                     a.share 
                       | Share
-    h3 After completing the tutorial and becoming comfortable with the features of the site, go to the prototype by clicking the "Let's Go!" button.
+    .demo-2
+      .sampleUpvote(style="padding:10px;")
+        h3 Upvoting a comment...
+        .ui.grid.relaxed.middle.aligned
+          .four.wide.column
+            img(src='https://dhpd030vnpk29.cloudfront.net/truman-objections/upvote.gif', width='150px')
+          .twelve.wide.column 
+            h3(style="margin-left:10px;")
+              span(style="font-weight: normal") causes 
+              span more people to see the comment. 
+          
+    h3(style="font-weight: normal") When you are done with the tutorial and comfortable with the features of the site, go to the prototype by clicking the "Let's Go!" button.
     .ui.big.labeled.icon.button
       i.arrow.alternate.circle.right.icon
       | Let's Go!

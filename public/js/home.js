@@ -50,13 +50,17 @@ let stepsList = [{
     {
         intro: `You can: <br>
         <ul>
-            <li><b>Upvote comments</b>: If you like someone's comment</li>
-            <li><b>Downvote comments</b>: If you dislike someone's  comment</li>
-            <li><b>Reply to comments</b></li>
-            <li><b>Flag comments</b>: If you want to report someone's comment</li>
-            <li><b>Share comments</b>: If you want to share someone's comment</li>
+            <li><b>Upvote</b> comments</li>
+            <li><b>Downvote</b> comments</li>
+            <li><b>Reply to</b> comments</li>
+            <li><b>Flag</b> comments</li>
+            <li><b>Share</b> comments</li>
         </ul> `,
         element: '.sampleComment'
+    },
+    {
+        intro: `Please read.`,
+        element: '.sampleUpvote',
     },
     {
         intro: `<b>Note:</b> Similar to videos, you will receive the comment link to share<b> at the end of study</b> when you click share.
@@ -93,7 +97,7 @@ $(window).on("load", function() {
             intro.setOption('scrollToElement', true);
         }
         // Scrolling is a little weird for first and last step, so manually scroll to the top of the demo box
-        if (this._currentStep == 0 || this._currentStep == 11) {
+        if (this._currentStep == 0 || this._currentStep == 12) {
             intro.setOption('scrollToElement', false);
             $(".demo-text")[0].scrollIntoView({
                 behavior: "smooth",
