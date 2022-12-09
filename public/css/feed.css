@@ -105,6 +105,11 @@ textarea {
 
 /* ---- COMMENTS ---- */
 
+.ui.info.message.helper {
+    background-color: #f8ffff;
+    box-shadow: 0 0 0 1px #a9d5de inset, 0 0 0 0 transparent !important;
+}
+
 .ui.comments {
     margin-top: 1em;
 }

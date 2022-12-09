@@ -60,7 +60,7 @@ let stepsList = [{
     },
     {
         intro: `Please read.`,
-        element: '.sampleUpvote',
+        element: '#sampleUpvote',
     },
     {
         intro: `<b>Note:</b> Similar to videos, you will receive the comment link to share<b> at the end of study</b> when you click share.
