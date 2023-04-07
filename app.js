@@ -168,11 +168,12 @@ app.get('/feed_no', function(req, res) {
 });
 
 // Test Pages
-app.get('/test2', function(req, res) {
+app.get('/test', function(req, res) {
     res.render('test_script', {
         title: 'Feed'
     });
 });
+app.get('/test2', userController.getTestFeed);
 
 // Create a new guest account
 app.get('/guest', userController.createGuest);

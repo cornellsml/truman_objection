@@ -1,0 +1,254 @@
+/* ---- VIDEO CSS ---- */
+
+.ui.fluid.card>.content .description>p,
+.ui.fluid.card>.content .description>.viewCount-div {
+    font-size: 1.1em;
+}
+
+.viewCount-div {
+    white-space: pre-wrap;
+    font-size: 1.1em;
+    margin-left: 10px;
+    float: right;
+}
+
+i.icon.user {
+    margin: 0.11rem 0 0 0;
+}
+
+p.description.short {
+    overflow: hidden;
+    height: 3em;
+}
+
+.ui.fluid.card>.content>.description>a {
+    font-size: 0.85em;
+}
+
+
+/* ---- VIDEO FUNCTIONALIIES CSS ---- */
+
+.ui.upvote.button,
+.ui.downvote.button,
+.ui.reply.button,
+.ui.flag.button,
+.ui.share.button {
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    border: 1px solid #D3D3D3 !important;
+    border-radius: 3em;
+}
+
+.ui.button,
+.ui.button:focus {
+    background-color: #f9f9f9;
+    margin: 0.5em 0.5em 0.5em 0px;
+}
+
+.ui.left.labeled.button a {
+    border-radius: 3em 0 0 3em;
+}
+
+.ui.right.labeled.button a {
+    border-radius: 0 3em 3em 0;
+}
+
+.ui.labeled.button .ui.button {
+    border-radius: 0;
+}
+
+
+/* .pointing.label {
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+} */
+
+
+/* .ui.downvote.button {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+} */
+
+
+/* ---- COMMENT FORM TO VIDEO AND COMMENTS CSS ---- */
+
+.ui.form {
+    display: inline-block;
+    width: 100%;
+    margin-top: 1em;
+}
+
+.ui.form>.inline.field {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0em !important;
+}
+
+.ui.form>.inline.field>.image {
+    max-width: 44px !important;
+    width: 100%;
+    height: auto;
+    background-color: #a6a488;
+    border-radius: 50% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.ui.form>.inline.field>.image>img.ui.image.rounded {
+    width: 65%
+}
+
+textarea {
+    font-size: 1.1em !important;
+}
+
+.ui.button.replyToVideo {
+    float: right;
+    margin-top: 1em !important;
+    display: none;
+}
+
+.ui.button.replyToComment {
+    float: right;
+    margin-top: 1em !important;
+}
+
+
+/* ---- COMMENTS ---- */
+
+.ui.info.message.helper {
+    background-color: #f8ffff;
+    box-shadow: 0 0 0 1px #a9d5de inset, 0 0 0 0 transparent !important;
+}
+
+.ui.comments {
+    margin-top: 1em;
+    height: 55vh !important;
+    overflow-y: auto;
+    max-width: none;
+}
+
+.ui.comments>.comment {
+    margin: 1em 0em 1em 0em;
+}
+
+.ui.comments,
+.ui.comments>h3 {
+    font-size: 1.25em;
+}
+
+.ui.comments>form.ui.reply.form {
+    width: 100%;
+}
+
+.comment>.comments {
+    padding-left: 3em !important;
+    padding-bottom: 0em !important;
+}
+
+.comment>.image {
+    width: 2.5em;
+    height: 2.5em;
+    margin: 0.2em 0.2em 0 0;
+    float: left;
+    background-color: #b7c9c8;
+    border-radius: 50% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.comment>.image.user_img {
+    background-color: #a6a488;
+}
+
+.comment>.image>a.avatar {
+    margin: 0 !important;
+}
+
+.comment>.image>a.avatar>img {
+    width: 65% !important;
+}
+
+.ui.comments .comment>.image~.content {
+    margin-left: 3.5em
+}
+
+
+/* notification popups */
+
+
+/* https://stackoverflow.com/questions/26421274/css-circular-cropping-of-rectangle-image */
+
+.ui.info.message {
+    background-color: #ffffff;
+    box-shadow: 0 1px 10px #2B8490 !important;
+}
+
+.ui.sticky.notificationPopup .label {
+    overflow: hidden;
+    width: 3em;
+    height: 3em;
+    border-radius: 50% !important;
+    background-color: #b7c9c8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.ui.feed>.event>.label>img.popupNotificationImage {
+    width: 65%;
+    border-radius: 0%;
+}
+
+#desktopPopup,
+#mobilePopup {
+    padding-bottom: 4em;
+    padding-left: 1em;
+    padding-right: 1em;
+    display: none;
+    cursor: pointer;
+}
+
+.three.wide.column.centered {
+    margin-left: 0;
+}
+
+
+/** when page width < 1250px **/
+
+@media (max-width: 1250px) {
+    .largeScreen {
+        transition: 0.8s all ease;
+        display: none;
+        /** to hide/show the navbar items **/
+    }
+    .mediumScreen {
+        transition: 0.8s all ease;
+        display: inline;
+        /** to hide/show the navbar icon**/
+    }
+    .ui.attached.buttons {
+        margin-top: 0px;
+    }
+    .ui.reply.button,
+    .ui.flag.button,
+    .ui.share.button {
+        border-style: solid;
+        border-color: rgba(0, 0, 0, .3);
+        border-width: 0.1px 0.1px 0 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .ui.comments {
+        height: auto !important;
+        max-width: none;
+    }
+}

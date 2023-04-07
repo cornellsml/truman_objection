@@ -169,6 +169,30 @@ exports.getFeed = (req, res, next) => {
     });
 };
 
+/**
+ * GET /test2?r_id={}
+ * Get video feed
+ */
+exports.getTestFeed = (req, res, next) => {
+    User.findOne({ r_id: req.query.r_id }, (err, user) => {
+        if (err) { return next(err); }
+        if (!user) {
+            // happens when no r_id is provided, or the user didn't see home page + profile page
+            return res.redirect("/" + makeQueryString(req.query));
+        } else {
+            // If user did not "save" a username or profile photo, redirect the user to the profile page 
+            if (!user.profile.username || !user.profile.photo) {
+                return res.redirect('/profile' + makeQueryString(req.query));
+            } else {
+                res.render('test2', {
+                    title: 'Feed',
+                    user: user
+                });
+            }
+        }
+    });
+};
+
 exports.postAction = (req, res, next) => {
     User.findOne({ r_id: req.body.r_id }, (err, user) => {
         if (err) { return next(err); }
