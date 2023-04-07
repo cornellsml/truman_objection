@@ -109,7 +109,7 @@ $(window).on("load", async function() {
                 .done(function(json) {
                     const queryParams = window.location.search;
                     if (json["result"] === "success") {
-                        window.location.href = '/feed' + queryParams;
+                        window.location.href = '/test2' + queryParams;
                     } else {
                         // Should never happen, but if it does
                         const query_string = "/" + queryParams;
