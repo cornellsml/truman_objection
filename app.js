@@ -18,6 +18,9 @@ const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
 const _ = require('lodash');
 const compression = require('compression');
+const fs = require('fs');
+const util = require('util');
+fs.readFileAsync = util.promisify(fs.readFile);
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -158,6 +161,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/profile', userController.getProfile);
+app.get('/account/interest', async function(req, res) {
+    const data = await fs.readFileAsync(`${__dirname}/public/jsons/interestData.json`)
+    const interestData = JSON.parse(data.toString());
+
+    res.render('interest', {
+        title: 'Choose your Interest',
+        interestData
+    });
+});
 
 app.get('/feed', userController.getFeed);
 

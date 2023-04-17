@@ -1,4 +1,4 @@
-.ui.fluid.card.videopost(style="margin-bottom:3em", id=element)
+.ui.fluid.card.videopost(style="margin-bottom:3em", id=index)
   .content 
     h2 !{element.title}
   .content
@@ -17,11 +17,6 @@
                 i.thumbs.down.icon
                 | Downvote
               a.ui.basic.red.left.pointing.label 2
-          p.viewCount-div 
-            i.icon.user
-            span.viewCount &#32;8&#32;
-            | watching
-          br
           //- .ui.reply.button(style="border: 1px solid #D3D3D3 !important")
           //-     i.comment.icon
           //-     | Comment
@@ -40,6 +35,7 @@
       .nine.wide.column.centered
         h3 Comments
         .ui.divider(style="margin:0px;")
+        .ui.comments
         .ui.form
           .inline.field
             .image
@@ -49,96 +45,6 @@
               | Comment
           .ui.cancel.basic.blue.button.replyToVideo
               | Cancel
-        .ui.comments
-              .comment#actor1
-                .image
-                  a.avatar
-                    img
-                .content
-                  a.author
-                  .metadata
-                    span.date
-                  .text
-                  .actions
-                    a.upvote
-                      i.icon.thumbs.up
-                      span.num
-                    a.downvote
-                      i.icon.thumbs.down
-                      span.num
-                    a.reply 
-                      | Reply
-                    a.flag 
-                      | Flag
-                    a.share 
-                      | Share
-              .comment#actor2
-                .image
-                  a.avatar
-                    img
-                .content
-                  a.author
-                  .metadata
-                    span.date
-                  .text#offense
-                  .actions
-                    a.upvote
-                      i.icon.thumbs.up
-                      span.num
-                    a.downvote
-                      i.icon.thumbs.down
-                      span.num
-                    a.reply 
-                      | Reply
-                    a.flag 
-                      | Flag
-                    a.share
-                      | Share
-                .comments
-                  .comment#actor3
-                    .image
-                      a.avatar
-                        img
-                    .content
-                      a.author
-                      .metadata
-                        span.date
-                      .text#objection
-                      .actions
-                        a.upvote
-                          i.icon.thumbs.up
-                          span.num
-                        a.downvote
-                          i.icon.thumbs.down
-                          span.num
-                        a.reply 
-                          | Reply
-                        a.flag 
-                          | Flag
-                        a.share 
-                          | Share
-              .comment#actor4
-                .image
-                  a.avatar
-                    img
-                .content
-                  a.author
-                  .metadata
-                    span.date
-                  .text
-                  .actions
-                    a.upvote
-                      i.icon.thumbs.up
-                      span.num
-                    a.downvote
-                      i.icon.thumbs.down
-                      span.num
-                    a.reply 
-                      | Reply
-                    a.flag 
-                      | Flag
-                    a.share 
-                      | Share
         .ui.small.shareVideo.modal
           .ui.icon.header
             i.share.icon

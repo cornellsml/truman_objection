@@ -59,10 +59,6 @@ let stepsList = [{
         element: '.sampleComment'
     },
     {
-        intro: `Please read.`,
-        element: '#sampleUpvote',
-    },
-    {
         intro: `<b>Note:</b> Similar to videos, you will receive the comment link to share<b> at the end of study</b> when you click share.
         This way you won't be redirected to another site in the middle of the study. `,
         element: 'a.share'

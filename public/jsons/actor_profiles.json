@@ -1,53 +1,58 @@
 {
     "misinformation": [{
-            "id": "#actor1",
+            "id": "actor1",
             "src": "/profile_pictures/mis_dolphin.svg",
             "name": "mr219",
             "color": "#a6888a",
-            "time": "3 hours ago",
+            "time": "00:30",
             "message": "That's great",
             "likes": "0",
-            "dislikes": "0"
+            "dislikes": "0",
+            "timeStamps": 30000
         },
         {
-            "id": "#actor2",
+            "id": "actor2",
             "src": "/profile_pictures/mis_elephant.svg",
             "name": "ef039",
             "color": "#8999a2",
-            "time": "Yesterday at 12:30AM",
-            "message": "",
+            "time": "1:20",
+            "message": "it means many more will die",
             "likes": "1",
-            "dislikes": "1"
+            "dislikes": "1",
+            "timeStamps": 80000
         },
         {
-            "id": "#actor3",
+            "id": "actor3",
             "src": "/profile_pictures/mis_fish.svg",
             "name": "jh120",
             "color": "#a69588",
-            "time": "30 minutes ago",
+            "time": "1:58",
             "message": "",
             "likes": "1",
-            "dislikes": "1"
+            "dislikes": "1",
+            "timeStamps": 118000
         },
         {
-            "id": "#actor4",
+            "id": "actor4",
             "src": "/profile_pictures/mis_spider.svg",
             "name": "hp092",
             "color": "#93ae9f",
-            "time": "5 days ago",
+            "time": "3:04",
             "message": "Ah so sweet, the tears of the unvaccinated",
             "likes": "1",
-            "dislikes": "0"
+            "dislikes": "0",
+            "timeStamps": 184000
         },
         {
-            "id": "#actor5",
+            "id": "actor5",
             "src": "/profile_pictures/mis_squid.svg",
             "name": "ac991",
             "color": "#b7c9c8",
-            "time": "Just now",
+            "time": "5:06",
             "message": "That is interesting",
             "likes": "0",
-            "dislikes": "0"
+            "dislikes": "0",
+            "timeStamps": 306000
         }
     ],
     "harassment": [{

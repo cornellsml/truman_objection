@@ -7,7 +7,7 @@ block styles
 block content
   -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
   .fourteen.wide.computer.sixteen.wide.tablet.sixteen.wide.mobile.column.centered
-    each element in [{"title":"VIDEO: FDA granted full approval to the Pfizer vaccine", "date": "Aug 29, 2021", "description": "This week, the FDA granted full approval to the Pfizer vaccine. Will that make a difference for vaccine-hesitant Americans? Dr. Irwin Redlener, founding director of the National Center for Disaster Preparedness at Columbia University and a MSNBC Public Health Analyst, joined NBC's Joshua Johnson to discuss the process behind full FDA approval and its possible impact on vaccination rates.", "filepath": '/Objection_Video.mp4'}, {"title": "VIDEO: Sara Sidner: I have three words for Will Smith", "date": "Mar 28, 2022", "description": "CNN+ anchor Sara Sidner says that Will Smith's confrontation with Chris Rock at the Academy Awards drew attention away from the other Oscar winners and from serious news affecting people around the world.", "filepath": '/Objection_Video2.mp4'}, {"title": "VIDEO: CNN reporter identifies strange moment in new Putin speech", "date": "Mar 4, 2022", "description": "Russian President Vladimir Putin addressed his country as the invasion into Ukraine and crippling sanctions on Russia's economy continue. CNN's Nic Robertson reports.", "filepath": '/Objection_Video3.mp4'}]
+    each element, index in [{"title":"VIDEO: FDA granted full approval to the Pfizer vaccine", "date": "Aug 29, 2021", "description": "This week, the FDA granted full approval to the Pfizer vaccine. Will that make a difference for vaccine-hesitant Americans? Dr. Irwin Redlener, founding director of the National Center for Disaster Preparedness at Columbia University and a MSNBC Public Health Analyst, joined NBC's Joshua Johnson to discuss the process behind full FDA approval and its possible impact on vaccination rates.", "filepath": '/Objection_Video.mp4'}, {"title": "VIDEO: Sara Sidner: I have three words for Will Smith", "date": "Mar 28, 2022", "description": "CNN+ anchor Sara Sidner says that Will Smith's confrontation with Chris Rock at the Academy Awards drew attention away from the other Oscar winners and from serious news affecting people around the world.", "filepath": '/Objection_Video2.mp4'}, {"title": "VIDEO: CNN reporter identifies strange moment in new Putin speech", "date": "Mar 4, 2022", "description": "Russian President Vladimir Putin addressed his country as the invasion into Ukraine and crippling sanctions on Russia's economy continue. CNN's Nic Robertson reports.", "filepath": '/Objection_Video3.mp4'}]
       include ./test2-post.pug
     .ui.small.shareComment.modal
       .ui.icon.header
@@ -24,19 +24,6 @@ block content
         .ui.green.ok.inverted.button
           i.checkmark.icon
           |   Done
-    //-Mobile version of the notification popup
-    .ui.fixed.bottom.sticky.notificationPopup.hidden#mobilePopup
-      .ui.info.message#actor5
-      i.close.icon
-      .ui.feed
-        .event
-          .label
-            img.popupNotificationImage
-          .content
-            .summary 
-              span.author
-              | commented on the video: 
-              span.text
 
 
 block scripts
@@ -45,4 +32,4 @@ block scripts
   script(src='/public/js/lib/jquery.highlight-within-textarea.js')
   script(src='/public/js/feed_no.js')
   script(src='/public/js/feed2.js')
-  script(src='/public/js/postFunctionalities2.js')
+  //- script(src='/public/js/postFunctionalities2.js')

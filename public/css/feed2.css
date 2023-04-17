@@ -59,6 +59,10 @@ p.description.short {
     border-radius: 0;
 }
 
+.ui.buttons.small {
+    margin-right: 8px;
+}
+
 
 /* .pointing.label {
     border-top-right-radius: 0px !important;

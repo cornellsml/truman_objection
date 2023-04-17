@@ -1,0 +1,27 @@
+extends ./ui_layout
+
+block styles 
+    link(type='text/css', rel='stylesheet', href='/public/css/interest.css')
+
+block content
+    .twelve.wide.computer.tablet.sixteen.wide.mobile.column(style="margin-top: 2em; margin-bottom: 2em;")
+        h2(style="text-align: center;") Choose an interest
+        .ui.warning.message.hidden
+            i.close.icon 
+            .header Choose an interest to proceed!
+        h3 To help us better set up and tailor your feed, tell us which topic you are most interested in! 
+        .ui.form(style="display: flex;justify-content: center;")
+            .fields
+                .images
+                    each interestInfo, interest in interestData
+                        .image(id=style)
+                            i.massive.icon(class=interestInfo["Icon"])
+                            h2 !{interest}
+                            i.icon.green.check.hidden
+        .ui.divider
+        .ui.big.labeled.icon.button.feed
+            i.rocket.icon
+            |   Let's Go!
+
+block scripts
+    script(src='/public/js/interest.js')
