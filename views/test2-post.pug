@@ -1,12 +1,13 @@
 .ui.fluid.card.videopost(style="margin-bottom:3em", id=index)
-  .content 
-    h2 !{element.title}
+  .content(style="width: 100%")
+    h2 !{element.description}
+      span(style="float: right; font-size: 0.8em; font-weight: normal;") Posted: !{element.date}
   .content
     .ui.two.column.grid.stackable
-      .seven.wide.column.centered   
-        video(src=cdn+element.filepath width='100%' controls type='video/mp4')
-        .content(style="padding: 0.5em 0;")
-          .ui.buttons.small
+      .six.wide.column.centered   
+        video(src='/post_pictures/'+element.filepath width='100%' controls type='video/mp4')
+        .content(style="padding: 0.5rem 0.65rem")
+          .ui.buttons.tiny
             .ui.left.labeled.button
               a.ui.basic.green.right.pointing.label 2
               .ui.upvote.button(tabindex='0', data-tooltip="I like this", data-position="bottom center", data-variation="mini")
@@ -20,19 +21,20 @@
           //- .ui.reply.button(style="border: 1px solid #D3D3D3 !important")
           //-     i.comment.icon
           //-     | Comment
-          .ui.flag.button.small(tabindex='0', data-tooltip="Report Video", data-position="bottom center", data-variation="mini")
+          br
+          .ui.flag.button.tiny(tabindex='0', data-tooltip="Report Video", data-position="bottom center", data-variation="mini", style="margin-bottom:0;")
             i.flag.icon
             | Flag
-          .ui.share.button.small(tabindex='0', data-tooltip="Share Video", data-position="bottom center", data-variation="mini")
+          .ui.share.button.tiny(tabindex='0', data-tooltip="Share Video", data-position="bottom center", data-variation="mini", style="margin-bottom:0;")
             | Share
-          .ui.card.fluid(style="background:#f9f9f9; color: black;")
-            .content                   
-              p !{element.date}
-              p.description.short
-                b Description: 
-                | !{element.description}
-              a.showMoreLess SHOW MORE
-      .nine.wide.column.centered
+          //- .ui.card.fluid(style="background:#f9f9f9; color: black;")
+          //-   .content                   
+          //-     p !{element.date}
+          //-     p.description.short
+          //-       b Description: 
+          //-       | !{element.description}
+          //-     //- a.showMoreLess SHOW MORE
+      .ten.wide.column.centered
         h3 Comments
         .ui.divider(style="margin:0px;")
         .ui.comments
@@ -45,18 +47,3 @@
               | Comment
           .ui.cancel.basic.blue.button.replyToVideo
               | Cancel
-        .ui.small.shareVideo.modal
-          .ui.icon.header
-            i.share.icon
-            |     You have shared this video!
-          .content(style='text-align:center;')
-            h3(style='text-align:left;') Note: The "Copy Link" feature is currently disabled. 
-            h4(style='text-align:left;') However, we keep track of all the links you would like to share, and at the end of the study, we will give you a list of those links so you can share them. 
-            .ui.left.labeled.button.large.centered
-              .ui.basic.label.pathname
-            .ui.icon.button(data-tooltip="Copy Link (DISABLED)", data-position="bottom center", data-variation="mini")
-              i.copy.icon
-          .actions   
-            .ui.green.ok.inverted.button
-              i.checkmark.icon
-              |   Done

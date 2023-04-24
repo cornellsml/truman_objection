@@ -184,9 +184,93 @@ exports.getTestFeed = (req, res, next) => {
             if (!user.profile.username || !user.profile.photo) {
                 return res.redirect('/profile' + makeQueryString(req.query));
             } else {
+                const vids = [{
+                        "date": "Aug 29, 2021",
+                        "description": "Breathtaking underwater sea life footage 🐋 #NatGeo",
+                        "filepath": '/ObjectionVideo1.mp4'
+                    },
+                    {
+                        "date": "Mar 28, 2022",
+                        "description": "A look at how saxophones are made | How It's Made | Science Channel",
+                        "filepath": '/ObjectionVideo2.mp4'
+                    }
+                ]
                 res.render('test2', {
                     title: 'Feed',
-                    user: user
+                    user: user,
+                    vids: vids
+                });
+            }
+        }
+    });
+};
+
+/**
+ * GET /test2?r_id={}
+ * Get video feed
+ */
+exports.getTestFeed3 = (req, res, next) => {
+    User.findOne({ r_id: req.query.r_id }, (err, user) => {
+        if (err) { return next(err); }
+        if (!user) {
+            // happens when no r_id is provided, or the user didn't see home page + profile page
+            return res.redirect("/" + makeQueryString(req.query));
+        } else {
+            // If user did not "save" a username or profile photo, redirect the user to the profile page 
+            if (!user.profile.username || !user.profile.photo) {
+                return res.redirect('/profile' + makeQueryString(req.query));
+            } else {
+                const vids = [{
+                        "date": "Aug 29, 2021",
+                        "description": "Breathtaking underwater sea life footage 🐋 #NatGeo",
+                        "filepath": '/ObjectionVideo1.mp4'
+                    },
+                    {
+                        "date": "Mar 28, 2022",
+                        "description": "A look at how saxophones are made | How It's Made | Science Channel",
+                        "filepath": '/ObjectionVideo2.mp4'
+                    }
+                ]
+                res.render('test3', {
+                    title: 'Feed',
+                    user: user,
+                    vids: vids
+                });
+            }
+        }
+    });
+};
+
+/**
+ * GET /test2?r_id={}
+ * Get video feed
+ */
+exports.getTestFeed4 = (req, res, next) => {
+    User.findOne({ r_id: req.query.r_id }, (err, user) => {
+        if (err) { return next(err); }
+        if (!user) {
+            // happens when no r_id is provided, or the user didn't see home page + profile page
+            return res.redirect("/" + makeQueryString(req.query));
+        } else {
+            // If user did not "save" a username or profile photo, redirect the user to the profile page 
+            if (!user.profile.username || !user.profile.photo) {
+                return res.redirect('/profile' + makeQueryString(req.query));
+            } else {
+                const vids = [{
+                        "date": "Aug 29, 2021",
+                        "description": "Breathtaking underwater sea life footage 🐋 #NatGeo",
+                        "filepath": '/ObjectionVideo1.mp4'
+                    },
+                    {
+                        "date": "Mar 28, 2022",
+                        "description": "A look at how saxophones are made | How It's Made | Science Channel",
+                        "filepath": '/ObjectionVideo2.mp4'
+                    }
+                ]
+                res.render('test4', {
+                    title: 'Feed',
+                    user: user,
+                    vids: vids
                 });
             }
         }

@@ -1,157 +1,54 @@
-{
-    "misinformation": [{
-            "id": "actor1",
-            "src": "/profile_pictures/mis_dolphin.svg",
-            "name": "mr219",
-            "color": "#a6888a",
-            "time": "00:30",
-            "message": "That's great",
-            "likes": "0",
-            "dislikes": "0",
-            "timeStamps": 30000
-        },
-        {
-            "id": "actor2",
-            "src": "/profile_pictures/mis_elephant.svg",
-            "name": "ef039",
-            "color": "#8999a2",
-            "time": "1:20",
-            "message": "it means many more will die",
-            "likes": "1",
-            "dislikes": "1",
-            "timeStamps": 80000
-        },
-        {
-            "id": "actor3",
-            "src": "/profile_pictures/mis_fish.svg",
-            "name": "jh120",
-            "color": "#a69588",
-            "time": "1:58",
-            "message": "",
-            "likes": "1",
-            "dislikes": "1",
-            "timeStamps": 118000
-        },
-        {
-            "id": "actor4",
-            "src": "/profile_pictures/mis_spider.svg",
-            "name": "hp092",
-            "color": "#93ae9f",
-            "time": "3:04",
-            "message": "Ah so sweet, the tears of the unvaccinated",
-            "likes": "1",
-            "dislikes": "0",
-            "timeStamps": 184000
-        },
-        {
-            "id": "actor5",
-            "src": "/profile_pictures/mis_squid.svg",
-            "name": "ac991",
-            "color": "#b7c9c8",
-            "time": "5:06",
-            "message": "That is interesting",
-            "likes": "0",
-            "dislikes": "0",
-            "timeStamps": 306000
-        }
-    ],
-    "harassment": [{
-            "id": "#actor1",
-            "src": "/profile_pictures/harass_bee.svg",
-            "name": "wh394",
-            "color": "#DCB190",
-            "time": "50 minutes ago",
-            "message": "That's nice",
-            "likes": "0",
-            "dislikes": "0"
-        }, {
-            "id": "#actor2",
-            "src": "/profile_pictures/harass_fox.svg",
-            "name": "vi909",
-            "color": "#8aa688",
-            "time": "2 days ago",
-            "message": "",
-            "likes": "1",
-            "dislikes": "1"
-        }, {
-            "id": "#actor3",
-            "src": "/profile_pictures/harass_hawk.svg",
-            "name": "eh552",
-            "color": "#888aa6",
-            "time": "Yesterday",
-            "message": "",
-            "likes": "1",
-            "dislikes": "1"
-        }, {
-            "id": "#actor4",
-            "src": "/profile_pictures/harass_jellyfish.svg",
-            "name": "ad213",
-            "color": "#9BBCD6",
-            "time": "4 days ago",
-            "message": "What great news",
-            "likes": "1",
-            "dislikes": "0"
-        },
-        {
-            "id": "#actor5",
-            "src": "/profile_pictures/harass_lion.svg",
-            "name": "jt083",
-            "color": "#c18f92",
-            "time": "Just now",
-            "message": "I want to know more",
-            "likes": "0",
-            "dislikes": "0"
-        }
-    ],
-    "hate_speech": [{
-            "id": "#actor1",
-            "src": "/profile_pictures/hate_squirrel.svg",
-            "name": "ck883",
-            "color": "#EEC86F",
-            "time": "Yesterday at 3:39PM",
-            "message": "That's wonderful",
-            "likes": "0",
-            "dislikes": "0"
-        },
-        {
-            "id": "#actor2",
-            "src": "/profile_pictures/hate_sealion.svg",
-            "name": "oc732",
-            "color": "#8FC1BE",
-            "time": "2 days ago",
-            "message": "",
-            "likes": "1",
-            "dislikes": "1"
-        },
-        {
-            "id": "#actor3",
-            "src": "/profile_pictures/hate_frog.svg",
-            "name": "lj382",
-            "color": "#A7A9AC",
-            "time": "Yesterday at 9:32PM",
-            "message": "",
-            "likes": "1",
-            "dislikes": "1"
-        },
-        {
-            "id": "#actor4",
-            "src": "/profile_pictures/hate_pig.svg",
-            "name": "pg372",
-            "color": "#ADB954",
-            "time": "4 days ago",
-            "message": "I hope the pandemic will end quickly",
-            "likes": "1",
-            "dislikes": "0"
-        },
-        {
-            "id": "#actor5",
-            "src": "/profile_pictures/hate_whale.svg",
-            "name": "si511",
-            "color": "#E48175",
-            "time": "Just now",
-            "message": "This is sweet",
-            "likes": "0",
-            "dislikes": "0"
-        }
-    ]
-}
+[{
+        "id": "actor1",
+        "src": "/profile_pictures/mis_elephant.svg",
+        "name": "ef039",
+        "color": "#8999a2",
+        "time": "0:08",
+        "message": "Wow i learned sumthing new today.",
+        "likes": "1",
+        "dislikes": "1",
+        "timeStamps": 9000
+    }, {
+        "id": "actor3",
+        "src": "/profile_pictures/mis_fish.svg",
+        "name": "jh120",
+        "color": "#a69588",
+        "time": "0:11",
+        "message": "LOL, what a waste of time! Did you make this video with your eyes closed? It's so poorly edited and boring. Nobody cares about your garbage content. Do us all a favor and stop wasting your time.",
+        "likes": "1",
+        "dislikes": "1",
+        "timeStamps": 12800
+    }, {
+        "id": "actor2",
+        "src": "/profile_pictures/mis_dolphin.svg",
+        "name": "mr219",
+        "color": "#a6888a",
+        "time": "0:30",
+        "message": "That's great",
+        "likes": "0",
+        "dislikes": "0",
+        "timeStamps": 31000
+    },
+    {
+        "id": "actor4",
+        "src": "/profile_pictures/mis_spider.svg",
+        "name": "hp092",
+        "color": "#93ae9f",
+        "time": "0:38",
+        "message": "Shut your mouth.  What you said is wrong.  Don’t you know how to respect others?  Don’t be a jerk",
+        "likes": "1",
+        "dislikes": "0",
+        "timeStamps": 39400
+    },
+    {
+        "id": "actor5",
+        "src": "/profile_pictures/mis_squid.svg",
+        "name": "ac991",
+        "color": "#b7c9c8",
+        "time": "0:40",
+        "message": "That is interesting",
+        "likes": "0",
+        "dislikes": "0",
+        "timeStamps": 41600
+    }
+]

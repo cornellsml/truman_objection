@@ -186,6 +186,8 @@ app.get('/test', function(req, res) {
     });
 });
 app.get('/test2', userController.getTestFeed);
+app.get('/test3', userController.getTestFeed3);
+app.get('/test4', userController.getTestFeed4);
 
 // Create a new guest account
 app.get('/guest', userController.createGuest);

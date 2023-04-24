@@ -6,25 +6,9 @@ block styles
 
 block content
   -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
-  .fourteen.wide.computer.sixteen.wide.tablet.sixteen.wide.mobile.column.centered
-    each element, index in [{"title":"VIDEO: FDA granted full approval to the Pfizer vaccine", "date": "Aug 29, 2021", "description": "This week, the FDA granted full approval to the Pfizer vaccine. Will that make a difference for vaccine-hesitant Americans? Dr. Irwin Redlener, founding director of the National Center for Disaster Preparedness at Columbia University and a MSNBC Public Health Analyst, joined NBC's Joshua Johnson to discuss the process behind full FDA approval and its possible impact on vaccination rates.", "filepath": '/Objection_Video.mp4'}, {"title": "VIDEO: Sara Sidner: I have three words for Will Smith", "date": "Mar 28, 2022", "description": "CNN+ anchor Sara Sidner says that Will Smith's confrontation with Chris Rock at the Academy Awards drew attention away from the other Oscar winners and from serious news affecting people around the world.", "filepath": '/Objection_Video2.mp4'}, {"title": "VIDEO: CNN reporter identifies strange moment in new Putin speech", "date": "Mar 4, 2022", "description": "Russian President Vladimir Putin addressed his country as the invasion into Ukraine and crippling sanctions on Russia's economy continue. CNN's Nic Robertson reports.", "filepath": '/Objection_Video3.mp4'}]
+  .eleven.wide.computer.fourteen.wide.tablet.sixteen.wide.mobile.column.centered
+    each element, index in vids
       include ./test2-post.pug
-    .ui.small.shareComment.modal
-      .ui.icon.header
-        i.share.icon
-        |     You have shared this comment!
-      .content(style='text-align:center;')
-        h3(style='text-align:left;') Note: The "Copy Link" feature is currently disabled. 
-        h4(style='text-align:left;') However, we keep track of all the links you would like to share, and at the end of the study, we will give you a list of those links so you can share them. 
-        .ui.left.labeled.button.large.centered
-          .ui.basic.label.pathname
-        .ui.icon.button(data-tooltip="Copy Link (DISABLED)", data-position="bottom center", data-variation="mini")
-          i.copy.icon
-      .actions   
-        .ui.green.ok.inverted.button
-          i.checkmark.icon
-          |   Done
-
 
 block scripts
   script.
