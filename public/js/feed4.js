@@ -1,9 +1,9 @@
 const cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
-const r_id = searchParams.get("r_id");
+const r_id = (new URL(document.location)).searchParams.get("r_id");
 
 $(window).on("load", async function() {
     await $.when(
-            $.getJSON('/public/jsons/actor_profiles.json'),
+            $.getJSON('/public/jsons/actor_profiles(times).json'),
             $.getJSON('/public/jsons/offense_messages.json'),
             $.getJSON('/public/jsons/objection_messages.json'))
         .done(function(actorData, offenseMessageData, objectionMessageData) {
@@ -44,27 +44,18 @@ $(window).on("load", async function() {
                             </div>
                     </div>`;
                 if (actor["id"] == "actor4") {
-                    setTimeout(function() {
-                        $("#actor3").append('<div class="comments"></div>');
-                        $("#actor3 .comments").append(mess);
-                        $(`#${actor["id"]}`).addClass("glowBorder", 1000);
-
-                        $('.container .overlay p.user').html(`
-                        <div class="avatar" style="background-color:${actor["color"]}; width: 25px; height: 25px; border-radius: 50%;text-align:center; margin: 2px;float:left;"> 
-                            <img src=${cdn + actor["src"]} style ="width: 15px; height: 15px;"> 
-                        </div><span style="font-weight:bold; font-size: 18px;margin-top:3px;">${actor["name"]} just commented: </span>
-                        `);
-                        $('.container .overlay p.comment').html(`${actor["message"]}`);
-
-                        $('.overlay').transition('fade up');
-                        setTimeout(function() {
-                            $(`#${actor["id"]}`).removeClass("glowBorder", 1000);
-                            $('.overlay').transition('fade up');
-                        }, 2500);
-                    }, (actor["timeStamps"]));
+                    $("#actor3").append('<div class="comments"></div>');
+                    $("#actor3 .comments").append(mess);
                 } else {
                     $(".ui.comments").append(mess);
                 }
             }
         });
+
+    $('video').on("timeupdate", function() {
+        if (this.currentTime * 1000 > 52000) { // After 52 seconds.
+            $('.ui.comment-box').remove();
+            $('.ui.comments').removeClass("hidden");
+        }
+    });
 });

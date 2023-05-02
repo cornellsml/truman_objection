@@ -1,11 +1,15 @@
-.ui.fluid.card.videopost(style="margin-bottom:3em", id=index)
+.ui.fluid.card.videopost(id=index)
   .content(style="width: 100%")
     h2 !{element.description}
       span(style="float: right; font-size: 0.8em; font-weight: normal;") Posted: !{element.date}
   .content
     .ui.two.column.grid.stackable
       .six.wide.column.centered   
-        video(src='/post_pictures/'+element.filepath width='100%' controls type='video/mp4')
+        .container 
+          video(src='/post_pictures/'+element.filepath width='100%' controls type='video/mp4')
+          .overlay.hidden
+            p.user(style="margin:0px;")
+            p.comment(style="margin:0px;")
         .content(style="padding: 0.5rem 0.65rem")
           .ui.buttons.tiny
             .ui.left.labeled.button
@@ -18,26 +22,20 @@
                 i.thumbs.down.icon
                 | Downvote
               a.ui.basic.red.left.pointing.label 2
-          //- .ui.reply.button(style="border: 1px solid #D3D3D3 !important")
-          //-     i.comment.icon
-          //-     | Comment
           br
           .ui.flag.button.tiny(tabindex='0', data-tooltip="Report Video", data-position="bottom center", data-variation="mini", style="margin-bottom:0;")
             i.flag.icon
             | Flag
           .ui.share.button.tiny(tabindex='0', data-tooltip="Share Video", data-position="bottom center", data-variation="mini", style="margin-bottom:0;")
             | Share
-          //- .ui.card.fluid(style="background:#f9f9f9; color: black;")
-          //-   .content                   
-          //-     p !{element.date}
-          //-     p.description.short
-          //-       b Description: 
-          //-       | !{element.description}
-          //-     //- a.showMoreLess SHOW MORE
       .ten.wide.column.centered
         h3 Comments
         .ui.divider(style="margin:0px;")
-        .ui.comments
+        .ui.comment-box
+          i.eye.slash.icon.huge
+          h3 Comments are currently hidden. 
+          h3.description(style="font-weight: normal; margin:0;") Finish watching the video to view the comments.
+        .ui.comments.hidden
         .ui.form
           .inline.field
             .image

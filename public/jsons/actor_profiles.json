@@ -23,22 +23,22 @@
         "src": "/profile_pictures/mis_dolphin.svg",
         "name": "mr219",
         "color": "#a6888a",
-        "time": "0:30",
+        "time": "0:21",
         "message": "That's great",
         "likes": "0",
         "dislikes": "0",
-        "timeStamps": 31000
+        "timeStamps": 21000
     },
     {
         "id": "actor4",
         "src": "/profile_pictures/mis_spider.svg",
         "name": "hp092",
         "color": "#93ae9f",
-        "time": "0:38",
+        "time": "0:29",
         "message": "Shut your mouth.  What you said is wrong.  Don’t you know how to respect others?  Don’t be a jerk",
         "likes": "1",
         "dislikes": "0",
-        "timeStamps": 39400
+        "timeStamps": 29400
     },
     {
         "id": "actor5",

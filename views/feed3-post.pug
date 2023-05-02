@@ -1,11 +1,15 @@
-.ui.fluid.card.videopost(style="margin-bottom:3em", id=index)
+.ui.fluid.card.videopost(id=index)
   .content(style="width: 100%")
     h2 !{element.description}
       span(style="float: right; font-size: 0.8em; font-weight: normal;") Posted: !{element.date}
   .content
     .ui.two.column.grid.stackable
       .six.wide.column.centered   
-        video(src='/post_pictures/'+element.filepath width='100%' controls type='video/mp4')
+        .container 
+          video(src='/post_pictures/'+element.filepath width='100%' controls type='video/mp4')
+          .overlay.hidden
+            p.user(style="margin:0px;")
+            p.comment(style="margin:0px;")
         .content(style="padding: 0.5rem 0.65rem")
           .ui.buttons.tiny
             .ui.left.labeled.button
@@ -37,7 +41,12 @@
       .ten.wide.column.centered
         h3 Comments
         .ui.divider(style="margin:0px;")
-        .ui.comments
+        .ui.comment-box
+          i.eye.slash.icon.huge
+          h3 Comments are currently hidden. 
+          h3.description(style="font-weight: normal; margin:0;") Unlock and view the comments by watching the video.
+          button.ui.primary.basic.button.viewComments(style="display: none") Click to View Comments
+        .ui.comments.hidden
         .ui.form
           .inline.field
             .image

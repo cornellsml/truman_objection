@@ -1,0 +1,19 @@
+extends ui_layout
+
+block styles 
+  link(type='text/css', rel='stylesheet', href='/public/css/feed.css')
+  link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
+
+block content
+  -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
+  .ten.wide.computer.fourteen.wide.tablet.sixteen.wide.mobile.column.centered
+    each element, index in vids
+      include ./feed1-post.pug
+
+block scripts
+  script.
+    let user = !{JSON.stringify(user)};
+  script(src='/public/js/lib/jquery.highlight-within-textarea.js')
+  script(src='/public/js/postFunctionalities2.js')
+  script(src='/public/js/feed_no.js')
+  script(src='/public/js/feed1.js')

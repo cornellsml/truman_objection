@@ -1,9 +1,9 @@
 const cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
-const r_id = searchParams.get("r_id");
+const r_id = (new URL(document.location)).searchParams.get("r_id");
 
 $(window).on("load", async function() {
     await $.when(
-            $.getJSON('/public/jsons/actor_profiles.json'),
+            $.getJSON('/public/jsons/actor_profiles(times).json'),
             $.getJSON('/public/jsons/offense_messages.json'),
             $.getJSON('/public/jsons/objection_messages.json'))
         .done(function(actorData, offenseMessageData, objectionMessageData) {
@@ -43,12 +43,6 @@ $(window).on("load", async function() {
                                 </div>
                             </div>
                     </div>`;
-                setTimeout(function() {
-                    $(`#${actor["id"]}`).addClass("glowBorder", 1000);
-                    setTimeout(function() {
-                        $(`#${actor["id"]}`).removeClass("glowBorder", 1000);
-                    }, 2500);
-                }, (actor["timeStamps"]));
                 if (actor["id"] == "actor4") {
                     $("#actor3").append('<div class="comments"></div>');
                     $("#actor3 .comments").append(mess);
@@ -57,4 +51,16 @@ $(window).on("load", async function() {
                 }
             }
         });
+
+    $('video').on("timeupdate", function() {
+        if (this.currentTime * 1000 > 20000) { // After 20 seconds.
+            $('.ui.comment-box .description').addClass("hidden");
+            $('.ui.comment-box .viewComments').css("display", "inline-block");
+        }
+    });
+
+    $('.viewComments').on("click", function() {
+        $('.ui.comment-box').remove();
+        $('.ui.comments').removeClass("hidden");
+    });
 });

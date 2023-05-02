@@ -1,17 +1,13 @@
-.ui.fluid.card.videopost(style="margin-bottom:3em", id=index)
+.ui.fluid.card.videopost(id=index)
   .content(style="width: 100%")
     h2 !{element.description}
       span(style="float: right; font-size: 0.8em; font-weight: normal;") Posted: !{element.date}
   .content
     .ui.two.column.grid.stackable
       .six.wide.column.centered   
-        .container 
-          video(src='/post_pictures/'+element.filepath width='100%' controls type='video/mp4')
-          .overlay.hidden
-            p.user(style="margin:0px;")
-            p.comment(style="margin:0px;")
+        video(src='/post_pictures/'+element.filepath width='100%' controls type='video/mp4')
         .content(style="padding: 0.5rem 0.65rem")
-          .ui.buttons.tiny
+          .ui.buttons.small
             .ui.left.labeled.button
               a.ui.basic.green.right.pointing.label 2
               .ui.upvote.button(tabindex='0', data-tooltip="I like this", data-position="bottom center", data-variation="mini")
@@ -22,26 +18,16 @@
                 i.thumbs.down.icon
                 | Downvote
               a.ui.basic.red.left.pointing.label 2
-          //- .ui.reply.button(style="border: 1px solid #D3D3D3 !important")
-          //-     i.comment.icon
-          //-     | Comment
           br
-          .ui.flag.button.tiny(tabindex='0', data-tooltip="Report Video", data-position="bottom center", data-variation="mini", style="margin-bottom:0;")
+          .ui.flag.button.small(tabindex='0', data-tooltip="Report Video", data-position="bottom center", data-variation="mini", style="margin-bottom:0;")
             i.flag.icon
             | Flag
-          .ui.share.button.tiny(tabindex='0', data-tooltip="Share Video", data-position="bottom center", data-variation="mini", style="margin-bottom:0;")
+          .ui.share.button.small(tabindex='0', data-tooltip="Share Video", data-position="bottom center", data-variation="mini", style="margin-bottom:0;")
             | Share
-          //- .ui.card.fluid(style="background:#f9f9f9; color: black;")
-          //-   .content                   
-          //-     p !{element.date}
-          //-     p.description.short
-          //-       b Description: 
-          //-       | !{element.description}
-          //-     //- a.showMoreLess SHOW MORE
       .ten.wide.column.centered
         h3 Comments
         .ui.divider(style="margin:0px;")
-        .ui.comments
+        .ui.comments(style="height:65vh")
         .ui.form
           .inline.field
             .image

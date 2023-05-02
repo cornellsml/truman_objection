@@ -6,14 +6,14 @@ block styles
 
 block content
   -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
-  .eleven.wide.computer.fourteen.wide.tablet.sixteen.wide.mobile.column.centered
+  .ten.wide.computer.fourteen.wide.tablet.sixteen.wide.mobile.column.centered
     each element, index in vids
-      include ./test2-post.pug
+      include ./feed4-post.pug
 
 block scripts
   script.
     let user = !{JSON.stringify(user)};
   script(src='/public/js/lib/jquery.highlight-within-textarea.js')
+  script(src='/public/js/postFunctionalities2.js')
   script(src='/public/js/feed_no.js')
-  script(src='/public/js/feed2.js')
-  //- script(src='/public/js/postFunctionalities2.js')
+  script(src='/public/js/feed4.js')

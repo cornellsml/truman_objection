@@ -171,23 +171,13 @@ app.get('/account/interest', async function(req, res) {
     });
 });
 
-app.get('/feed', userController.getFeed);
-
-app.get('/feed_no', function(req, res) {
-    res.render('feed_no', {
-        title: 'Feed'
-    });
-});
-
 // Test Pages
-app.get('/test', function(req, res) {
-    res.render('test_script', {
-        title: 'Feed'
-    });
-});
-app.get('/test2', userController.getTestFeed);
-app.get('/test3', userController.getTestFeed3);
-app.get('/test4', userController.getTestFeed4);
+app.get('/feed1', userController.getTestFeed);
+app.get('/feed2', userController.getTestFeed2);
+app.get('/feed3', userController.getTestFeed3);
+app.get('/feed4', userController.getTestFeed4);
+app.get('/feed5', userController.getTestFeed5);
+app.get('/feed6', userController.getTestFeed6);
 
 // Create a new guest account
 app.get('/guest', userController.createGuest);

@@ -5,13 +5,6 @@
     font-size: 1.1em;
 }
 
-.viewCount-div {
-    white-space: pre-wrap;
-    font-size: 1.1em;
-    margin-left: 10px;
-    float: right;
-}
-
 i.icon.user {
     margin: 0.11rem 0 0 0;
 }
@@ -155,9 +148,22 @@ textarea {
 
 .ui.comments {
     margin-top: 1em;
-    height: 63vh !important;
+    margin-bottom: 0.25em;
+    height: 65vh;
     overflow-y: auto;
     max-width: none;
+}
+
+.ui.comment-box {
+    margin: 1em 2em 0.25em 2em;
+    height: 65vh;
+    overflow-y: auto;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .comment {

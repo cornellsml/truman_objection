@@ -27,7 +27,7 @@
         "message": "That's great",
         "likes": "0",
         "dislikes": "0",
-        "timeStamps": 31000
+        "timeStamps": 21000
     },
     {
         "id": "actor4",
@@ -35,10 +35,10 @@
         "name": "hp092",
         "color": "#93ae9f",
         "time": "Just now",
-        "message": "Shut your mouth.  What you said is wrong.  Don’t you know how to respect others?  Don’t be a jerk",
+        "message": "Shut your mouth.  What you said is wrong.  Don't you know how to respect others?  Don't be a jerk",
         "likes": "1",
         "dislikes": "0",
-        "timeStamps": 39400
+        "timeStamps": 10400
     },
     {
         "id": "actor5",
