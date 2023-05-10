@@ -162,7 +162,7 @@ exports.getTestFeed = (req, res, next) => {
             } else {
                 const vids = [{
                         "date": "Aug 29, 2021",
-                        "description": "Breathtaking underwater sea life footage 🐋 #NatGeo",
+                        "description": 'What does "chance of rain" really mean?',
                         "filepath": '/ObjectionVideo1.mp4',
                         "author": "@NatGeo"
                     },
@@ -200,7 +200,7 @@ exports.getTestFeed2 = (req, res, next) => {
             } else {
                 const vids = [{
                         "date": "Aug 29, 2021",
-                        "description": "Breathtaking underwater sea life footage 🐋 #NatGeo",
+                        "description": 'What does "chance of rain" really mean?',
                         "filepath": '/ObjectionVideo1.mp4'
                     },
                     // {
@@ -236,7 +236,7 @@ exports.getTestFeed3 = (req, res, next) => {
             } else {
                 const vids = [{
                         "date": "Aug 29, 2021",
-                        "description": "Breathtaking underwater sea life footage 🐋 #NatGeo",
+                        "description": 'What does "chance of rain" really mean?',
                         "filepath": '/ObjectionVideo1.mp4'
                     },
                     // {
@@ -272,7 +272,7 @@ exports.getTestFeed4 = (req, res, next) => {
             } else {
                 const vids = [{
                         "date": "Aug 29, 2021",
-                        "description": "Breathtaking underwater sea life footage 🐋 #NatGeo",
+                        "description": 'What does "chance of rain" really mean?',
                         "filepath": '/ObjectionVideo1.mp4'
                     },
                     // {
@@ -308,7 +308,7 @@ exports.getTestFeed5 = (req, res, next) => {
             } else {
                 const vids = [{
                         "date": "Aug 29, 2021",
-                        "description": "Breathtaking underwater sea life footage 🐋 #NatGeo",
+                        "description": 'What does "chance of rain" really mean?',
                         "filepath": '/ObjectionVideo1.mp4',
                         "author": "@NatGeo"
                     },
@@ -346,7 +346,7 @@ exports.getTestFeed6 = (req, res, next) => {
             } else {
                 const vids = [{
                         "date": "Aug 29, 2021",
-                        "description": "Breathtaking underwater sea life footage 🐋 #NatGeo",
+                        "description": 'What does "chance of rain" really mean?',
                         "filepath": '/ObjectionVideo1.mp4'
                     },
                     {
