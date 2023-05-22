@@ -150,37 +150,43 @@ exports.postUpdateProfile = (req, res, next) => {
  * Get video feed
  */
 exports.getTestFeed = (req, res, next) => {
-    User.findOne({ r_id: req.query.r_id }, (err, user) => {
-        if (err) { return next(err); }
-        if (!user) {
-            // happens when no r_id is provided, or the user didn't see home page + profile page
-            return res.redirect("/" + makeQueryString(req.query));
-        } else {
-            // If user did not "save" a username or profile photo, redirect the user to the profile page 
-            if (!user.profile.username || !user.profile.photo) {
-                return res.redirect('/profile' + makeQueryString(req.query));
-            } else {
-                const vids = [{
-                        "date": "Aug 29, 2021",
-                        "description": 'What does "chance of rain" really mean?',
-                        "filepath": '/ObjectionVideo1.mp4',
-                        "author": "@NatGeo"
-                    },
-                    // {
-                    //     "date": "Mar 28, 2022",
-                    //     "description": "A look at how saxophones are made ",
-                    //     "filepath": '/ObjectionVideo2.mp4',
-                    //     "author": "@sciencechannel"
-                    // }
-                ]
-                res.render('feed1', {
-                    title: 'Feed',
-                    user: user,
-                    vids: vids
-                });
-            }
+    // User.findOne({ r_id: req.query.r_id }, (err, user) => {
+    //     if (err) { return next(err); }
+    //     if (!user) {
+    //         // happens when no r_id is provided, or the user didn't see home page + profile page
+    //         return res.redirect("/" + makeQueryString(req.query));
+    //     } else {
+    //         // If user did not "save" a username or profile photo, redirect the user to the profile page 
+    //         if (!user.profile.username || !user.profile.photo) {
+    //             return res.redirect('/profile' + makeQueryString(req.query));
+    //         } else {
+    const vids = [{
+            "date": "Aug 29, 2021",
+            "description": 'What does "chance of rain" really mean?',
+            "filepath": '/ObjectionVideo1.mp4',
+            "author": "@NatGeo"
+        },
+        {
+            "date": "Mar 28, 2022",
+            "description": "A look at how saxophones are made ",
+            "filepath": '/ObjectionVideo2.mp4',
+            "author": "@sciencechannel"
+        },
+        {
+            "date": "May 2, 2023",
+            "description": "What happens when you crack your knuckles?",
+            "filepath": '/ObjectionVideo4.mp4',
+            "author": "@Vox"
         }
+    ]
+    res.render('feed1', {
+        title: 'Feed',
+        // user: user,
+        vids: vids
     });
+    // }
+    // }
+    // });
 };
 
 /**

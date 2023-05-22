@@ -48,7 +48,7 @@ $(window).on("load", async function() {
             //     .done(function(json) {
             const queryParams = window.location.search;
             //         if (json["result"] === "success") {
-            window.location.href = '/feed1' + queryParams;
+            window.location.href = '/feed1';
             //     }
             // });
         } else {

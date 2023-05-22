@@ -7,160 +7,21 @@ block styles
 
 block content
   -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
-  .eight.wide.column.centered 
+  .eight.wide.column.centered(style="margin-top:3em")
     h1 Welcome to
       img(src='https://dhpd030vnpk29.cloudfront.net/truman-objections/favicon.svg', height="50px", style="margin-bottom:-10px")
       span.title VidShare
       | !
-    h3(style="font-weight: normal") We are a new video-based social media platform, and we are still building the community and improving the design of the platform. Please join us and other users to try out our initial prototype.
-    //- h3 Here's what you can do on the site:
-    //- ul
-    //-   li View videos
-    //-   li Upvote, Downvote, Comment on, Share, and Flag videos
-    //-   li View comments left by other users
-    //-   li Upvote, Downvote, Reply to, Share, and Flag comments left by other users 
-    h3.demo-text Before you begin, here is a walkthrough of our site interface and features.
-    .demo
-      .ui.fluid.card.centered   
-        video(width='100%' controls type='video/mp4' poster=cdn+'/howto-image.jpg')
-        .content
-          .description
-            h2 Basketball Trick SHOTS!! 
-            .viewCount-div
-              .viewCount-string 
-                i.icon.user
-                p.viewCount &#32;20
-                p.watching &#32;watching 
-              p.date &#183; April 8, 2022
-            p.description.short
-              b Description: 
-              | check out my dope basketball shots
-        .video_buttons
-          .largeScreen
-            .ui.bottom.attached.buttons
-              .ui.labeled.button
-                .ui.upvote.button(tabindex='0')
-                  i.thumbs.up.icon
-                  | Upvote
-                a.ui.basic.green.left.pointing.label 0
-              .ui.labeled.button
-                .ui.downvote.button(tabindex='0')
-                  i.thumbs.down.icon
-                  | Downvote
-                a.ui.basic.red.left.pointing.label 0
-              .ui.reply.button(tabindex='0')
-                  i.comment.icon
-                  | Comment
-              .ui.flag.button(tabindex='0')
-                i.flag.icon
-                | Flag
-              .ui.share.button(tabindex='0')
-                i.share.icon
-                | Share
-          .mediumScreen
-            .ui.bottom.attached.buttons
-              .ui.labeled.button
-                .ui.upvote.button(tabindex='0')
-                  i.thumbs.up.icon
-                  | Upvote
-                a.ui.basic.green.left.pointing.label 2
-              .ui.labeled.button
-                .ui.downvote.button(tabindex='0')
-                  i.thumbs.down.icon
-                  | Downvote
-                a.ui.basic.red.left.pointing.label 4
-            .ui.bottom.attached.buttons
-              .ui.reply.button
-                  i.comment.icon
-                  | Comment
-              .ui.flag.button(tabindex='0')
-                i.flag.icon
-                | Flag
-              .ui.share.button(tabindex='0')
-                i.share.icon
-                | Share
-          .smallScreen
-            .ui.bottom.attached.buttons
-              .ui.labeled.button
-                .ui.upvote.button(tabindex='0')
-                  i.thumbs.up.icon
-                  | Upvote
-                a.ui.basic.green.left.pointing.label 2
-            .ui.bottom.attached.buttons
-              .ui.labeled.button
-                .ui.downvote.button(tabindex='0')
-                  i.thumbs.down.icon
-                  | Downvote
-                a.ui.basic.red.left.pointing.label 4
-            .ui.bottom.attached.buttons.vertical.fluid
-              .ui.reply.button
-                  i.comment.icon
-                  | Comment
-              .ui.flag.button(tabindex='0')
-                i.flag.icon
-                | Flag
-              .ui.share.button(tabindex='0')
-                i.share.icon
-                | Share
-      .ui.form
-        .inline.field
-          img.ui.image.rounded(src=cdn+'/profile_pictures/avatar-icon.svg')
-          textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1' readonly)
-        .ui.submit.button.replyToVideo
-            | Comment
-        .ui.cancel.basic.blue.button.replyToVideo
-            | Cancel
-      .ui.comments
-        .comment
-          a.avatar
-            img(src=cdn+'/profile_pictures/avatar-icon.svg')
-          .content
-            a.author John Smith
-            .metadata
-              span.date 2 minutes ago
-            .text
-              | Cool
-            .actions.sampleComment
-              a.upvote
-                i.icon.thumbs.up
-                span.num 0
-              a.downvote
-                i.icon.thumbs.down
-                span.num 0
-              a.reply 
-                | Reply
-              a.flag 
-                | Flag
-              a.share 
-                | Share
-            .comments
-              .comment.sampleReply
-                a.avatar
-                  img(src=cdn+'/profile_pictures/avatar-icon.svg')
-                .content
-                  a.author Jane Doe
-                  .metadata
-                    span.date Just now
-                  .text
-                    | This is a reply!
-                  .actions
-                    a.upvote
-                      i.icon.thumbs.up
-                      span.num 0
-                    a.downvote
-                      i.icon.thumbs.down
-                      span.num 0
-                    a.reply 
-                      | Reply
-                    a.flag 
-                      | Flag
-                    a.share 
-                      | Share
-          
-    h3(style="font-weight: normal") When you are done with the tutorial and comfortable with the features of the site, go to the prototype by clicking the "Let's Go!" button.
-    .ui.big.labeled.icon.button
+    h3(style="font-weight: normal") We are a new video-based social media platform. 
+    h3(style="font-weight: normal")  Our goal is to foster and build communities through user interactions and comments on video content. Please join us and other users to try out our initial prototype.
+
+    .ui.big.labeled.icon.green.button(style="margin-top:2em")
       i.arrow.alternate.circle.right.icon
       | Let's Go!
 
-block scripts
-  script(src='/public/js/home.js')
+
+  script.
+    $('.ui.big.labeled.icon.green.button').on('click', function() {
+      console.log('test')
+      window.location.href = '/account/interest';
+    });

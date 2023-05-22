@@ -9,25 +9,25 @@
         "dislikes": "1",
         "timeStamps": 9000
     }, {
-        "id": "actor3",
-        "src": "/profile_pictures/mis_fish.svg",
-        "name": "jh120",
-        "color": "#a69588",
-        "time": "0:11",
-        "message": "LOL, what a waste of time! Did you make this video with your eyes closed? It's so poorly edited and boring. Nobody cares about your garbage content. Do us all a favor and stop wasting your time.",
-        "likes": "1",
-        "dislikes": "1",
-        "timeStamps": 12800
-    }, {
         "id": "actor2",
         "src": "/profile_pictures/mis_dolphin.svg",
         "name": "mr219",
         "color": "#a6888a",
-        "time": "0:21",
+        "time": "0:11",
         "message": "That's great",
         "likes": "0",
         "dislikes": "0",
-        "timeStamps": 21000
+        "timeStamps": 12800
+    }, {
+        "id": "actor3",
+        "src": "/profile_pictures/mis_fish.svg",
+        "name": "jh120",
+        "color": "#a69588",
+        "time": "0:20",
+        "message": "LOL, what a waste of time! Did you make this video with your eyes closed? It's so poorly edited and boring. Nobody cares about your garbage content. Do us all a favor and stop wasting your time.",
+        "likes": "1",
+        "dislikes": "1",
+        "timeStamps": 20800
     },
     {
         "id": "actor4",
