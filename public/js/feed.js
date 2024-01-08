@@ -1,4 +1,4 @@
-const cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
+const cdn = "";
 const viewCount = {
     3000: 7, // 0: 3 seconds
     10000: 8, // 1: 10 seconds

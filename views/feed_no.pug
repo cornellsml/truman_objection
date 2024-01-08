@@ -5,7 +5,7 @@ block styles
   link(type='text/css', rel='stylesheet', href='/public/css/jquery.highlight-within-textarea.css')
 
 block content
-  -var cdn = "https://dhpd030vnpk29.cloudfront.net/truman-objections";
+  -var cdn = "";
   .four.wide.column.centered
     .ui.warning.icon.message
       .content
@@ -20,7 +20,7 @@ block content
     .ui.fluid.card      
       //- .image
         //- iframe(width='100%' height='568' src='https://www.youtube.com/embed/0bXmNBl9Xbg' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen='')
-      video(src=cdn+'/Objection_Video.mp4' width='100%' controls type='video/mp4')
+      video(src=cdn+'/post_pictures/Objection_Video.mp4' width='100%' controls type='video/mp4')
       .content
         .description
           h2 FDA granted full approval to the Pfizer vaccine 
@@ -76,7 +76,7 @@ block content
     .ui.form
       .inline.field
         .image
-          img.ui.image.rounded(src=cdn+"/profile_pictures/4_cat.svg")
+          img.ui.image.rounded(src=cdn+"/profile_pictures/animals/4_cat.svg")
         textarea.replyToVideo(name='replyToVideo' type='text' placeholder='Add a Comment...' rows='1' readonly)
       .ui.submit.button.replyToVideo
           | Comment
@@ -86,7 +86,7 @@ block content
         .comment#actor1
           .image(style="background-color:#9BBCD6")
             a.avatar
-              img(src=cdn+"/profile_pictures/harass_jellyfish.svg")
+              img(src=cdn+"/profile_pictures/animals/harass_jellyfish.svg")
           .content
             a.author ad213
             .metadata
@@ -108,7 +108,7 @@ block content
         .comment#actor2
           .image(style="background-color:#8FC1BE")
             a.avatar
-              img(src=cdn+"/profile_pictures/hate_sealion.svg")
+              img(src=cdn+"/profile_pictures/animals/hate_sealion.svg")
           .content
             a.author oc732
             .metadata
@@ -131,7 +131,7 @@ block content
             .comment#actor3
               .image(style="background-color:#A7A9AC")
                 a.avatar
-                  img(src=cdn+"/profile_pictures/hate_frog.svg")
+                  img(src=cdn+"/profile_pictures/animals/hate_frog.svg")
               .content
                 a.author lj382
                 .metadata
@@ -153,7 +153,7 @@ block content
         .comment#actor4
           .image(style="background-color:#a69588;")
             a.avatar
-              img(src=cdn+"/profile_pictures/mis_elephant.svg")
+              img(src=cdn+"/profile_pictures/animals/mis_elephant.svg")
           .content
             a.author ef039
             .metadata
